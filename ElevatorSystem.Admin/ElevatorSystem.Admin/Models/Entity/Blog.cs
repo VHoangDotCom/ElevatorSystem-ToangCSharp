@@ -13,16 +13,28 @@ namespace ElevatorSystem.Admin.Models.Entity
         public int ID { get; set; }
         [Required(ErrorMessage = "Please enter title !")]
         public string Title { get; set; }
-        public string Description { get; set; }
-        public string Content { get; set; }
-        public string Image { get; set; }
+        public string Summary { get; set; }
+        public bool IsPublished { get; set; }
+        public string PostContent { get; set; }
+        public string Thumbnail { get; set; }
+        public string Slug { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
+        public DateTime PublishedAt { get; set; }
+
+        //Foreign key
+        public int TagID { get; set; }
+        public virtual Tag Tag { get; set; }
 
         public Blog()
         {
             this.Title = "";
-            this.Description = "";
-            this.Content = "";
-            this.Image = "";
+            this.Summary = "";
+            this.PostContent = "";
+            this.Thumbnail = "";
+            this.Slug = "";
+            this.CreatedAt = DateTime.Now;
+            this.IsPublished = true;
         }
     }
 }

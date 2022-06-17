@@ -17,7 +17,7 @@ namespace ElevatorSystem.Admin.Models.Entity
 
         //Foreign key
         public int OrderID { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual Order_Detail Order_Detail { get; set; }
 
         public Complaint()
         {
