@@ -16,7 +16,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Improvement { get; set; }
 
         //Foreign key
-        public int ApplicationUserID { get; set; }
+        //public int ApplicationUser_Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public int ElevatorID { get; set; }
         public virtual Elevator Elevator { get; set; }

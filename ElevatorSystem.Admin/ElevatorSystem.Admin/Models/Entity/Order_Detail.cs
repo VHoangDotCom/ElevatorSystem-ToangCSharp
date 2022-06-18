@@ -24,7 +24,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         public DateTime ModifiedAt { get; set; }
 
         //Foreign key
-        public int ApplicationUserID { get; set; }
+        //public int ApplicationUser_Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public int PaymentID { get; set; }
         public virtual Payment_Detail Payment_Detail { get; set; }

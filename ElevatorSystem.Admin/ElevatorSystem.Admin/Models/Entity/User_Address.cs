@@ -17,7 +17,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Country { get; set; }
         public string Telephone { get; set; }
         public string Mobile { get; set; }
-        public int ApplicationUserID { get; set; }
+        //public int ApplicationUser_Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public User_Address()
         {
