@@ -15,7 +15,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         public int Account_no { get; set; }
         public string ZIP { get; set; }
         public DateTime Expiry { get; set; }
-        public int ApplicationUserID { get; set; }
+        //public int ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public User_Payment()
         {

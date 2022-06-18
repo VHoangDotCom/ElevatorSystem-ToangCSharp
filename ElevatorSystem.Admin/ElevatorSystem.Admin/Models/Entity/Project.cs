@@ -25,7 +25,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         //Foreign key
         public int Order_DetailID { get; set; }
         public virtual Order_Detail Order_Detail { get; set; }
-        public int ApplicationUserID { get; set; }
+        //public int ApplicationUser_Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public Project()
