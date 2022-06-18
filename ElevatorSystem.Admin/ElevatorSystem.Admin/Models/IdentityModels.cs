@@ -14,9 +14,12 @@ namespace ElevatorSystem.Admin.Models
     {
         public ICollection<Feedback> Feedbacks { get; set; }
         public ICollection<Order_Detail> Order_Details { get; set; }
-        public ICollection<User_Address> User_Addresses { get; set; }
-        public ICollection<User_Payment> User_Payments { get; set; }
+       
         public ICollection<Project> Projects { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
         public string ContactDetails { get; set; }
         public string Company { get; set; }
         public int Status { get; set; }
@@ -33,8 +36,7 @@ namespace ElevatorSystem.Admin.Models
         {
             this.Feedbacks = new HashSet<Feedback>();
             this.Order_Details = new HashSet<Order_Detail>();
-            this.User_Addresses = new HashSet<User_Address>();
-            this.User_Payments = new HashSet<User_Payment>();
+        
             this.Projects = new HashSet<Project>();
         }
     }
@@ -48,7 +50,6 @@ namespace ElevatorSystem.Admin.Models
        
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Discount> Discounts { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
         public DbSet<Elevator> Elevators { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
@@ -57,12 +58,11 @@ namespace ElevatorSystem.Admin.Models
         public DbSet<Payment_Detail> Payment_Details { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<User_Address> User_Addresses { get; set; }
-        public DbSet<User_Payment> User_Payments { get; set; }
-
+      
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
     }
 }

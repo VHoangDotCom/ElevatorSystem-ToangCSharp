@@ -37,8 +37,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         //Foreign key
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
-        public int DiscountID { get; set; }
-        public virtual Discount Discount { get; set; }
+        
 
 
         public ICollection<Feedback> Feedbacks { get; set; }
