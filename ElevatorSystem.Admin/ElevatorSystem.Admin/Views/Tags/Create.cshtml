@@ -81,16 +81,16 @@
 
 <main id="main" class="main">
 
-    @using (Html.BeginForm(new { @class= "row g-3"}))
+    @using (Html.BeginForm(new { @class = "row g-3" }))
     {
         @Html.AntiForgeryToken()
         <div class="pagetitle">
-            <h1>Form Layouts</h1>
+            <h1>Tag Management</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Forms</li>
-                    <li class="breadcrumb-item active">Layouts</li>
+                    <li class="breadcrumb-item">Tags</li>
+                    <li class="breadcrumb-item active">Create</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -144,13 +144,14 @@
                                             </div>
                                         </div>
                                     </fieldset>
-
+                                   
                                 </div>
                                 <div class="row mb-3 m-3">
                                     <label for="inputDate" class="col-sm-2 col-form-label">Published date</label>
                                     <div class="col-sm-10">
                                         @Html.ValidationMessageFor(model => model.PublishedAt, "", new { @class = "text-danger" })
-                                        @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                        @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })
+                                        @* @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })*@
                                     </div>
                                 </div>
 
@@ -172,5 +173,4 @@
             </div>
         </section>
     }
-    </main><!-- End #main -->
-
+</main><!-- End #main -->

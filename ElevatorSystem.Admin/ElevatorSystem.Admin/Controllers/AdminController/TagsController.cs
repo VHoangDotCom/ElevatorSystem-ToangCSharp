@@ -51,6 +51,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         {
             if (ModelState.IsValid)
             {
+                tag.CreatedAt = DateTime.Today;
                 db.Tags.Add(tag);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -71,6 +72,8 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             {
                 return HttpNotFound();
             }
+            ViewBag.CheckStatus = tag.IsPublished;
+
             return View(tag);
         }
 
@@ -83,6 +86,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         {
             if (ModelState.IsValid)
             {
+                tag.ModifiedAt = DateTime.Today;
                 db.Entry(tag).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -102,6 +106,8 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             {
                 return HttpNotFound();
             }
+            ViewBag.CheckStatus = tag.IsPublished;
+           
             return View(tag);
         }
 
@@ -111,9 +117,10 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         public ActionResult DeleteConfirmed(int id)
         {
             Tag tag = db.Tags.Find(id);
-            db.Tags.Remove(tag);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+           
+                db.Tags.Remove(tag);
+                db.SaveChanges();
+                return RedirectToAction("Index"); 
         }
 
         protected override void Dispose(bool disposing)

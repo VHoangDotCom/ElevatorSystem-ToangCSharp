@@ -18,13 +18,16 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Term { get; set; }
         public string Images { get; set; }
         public string ContractDocument { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public DateTime DeletedAt { get; set; }
+        [DataType(DataType.Date)]
+        public Nullable<DateTime> CreatedAt { get; set; }
+        [DataType(DataType.Date)]
+        public Nullable<DateTime> UpdatedAt { get; set; }
+        [DataType(DataType.Date)]
+        public Nullable<DateTime> DeletedAt { get; set; }
 
         //Foreign key
         public int Order_DetailID { get; set; }
-        public virtual Order_Detail Order_Detail { get; set; }
+        public virtual Order Order { get; set; }
         //public int ApplicationUser_Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
