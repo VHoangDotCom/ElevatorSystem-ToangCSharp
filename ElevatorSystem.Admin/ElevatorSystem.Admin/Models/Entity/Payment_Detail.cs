@@ -14,8 +14,8 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Provider { get; set; }
         public int Status { get; set; }
         public string PaymentType { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime ModifiedAt { get; set; }
+        public Nullable<DateTime> CreatedAt { get; set; }
+        public Nullable<DateTime> ModifiedAt { get; set; }
         public Payment_Detail()
         {
             this.Amount = 1;

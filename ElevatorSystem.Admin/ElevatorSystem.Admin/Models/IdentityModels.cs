@@ -13,7 +13,7 @@ namespace ElevatorSystem.Admin.Models
     public class ApplicationUser : IdentityUser
     {
         public ICollection<Feedback> Feedbacks { get; set; }
-        public ICollection<Order_Detail> Order_Details { get; set; }
+        public ICollection<Order> Orders { get; set; }
        
         public ICollection<Project> Projects { get; set; }
         public string AddressLine1 { get; set; }
@@ -23,8 +23,8 @@ namespace ElevatorSystem.Admin.Models
         public string ContactDetails { get; set; }
         public string Company { get; set; }
         public int Status { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime ModifiedAt { get; set; }
+        public Nullable<DateTime> CreatedAt { get; set; }
+        public Nullable<DateTime> ModifiedAt { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -35,7 +35,7 @@ namespace ElevatorSystem.Admin.Models
         public ApplicationUser()
         {
             this.Feedbacks = new HashSet<Feedback>();
-            this.Order_Details = new HashSet<Order_Detail>();
+            this.Orders = new HashSet<Order>();
         
             this.Projects = new HashSet<Project>();
         }
@@ -53,7 +53,7 @@ namespace ElevatorSystem.Admin.Models
         public DbSet<Complaint> Complaints { get; set; }
         public DbSet<Elevator> Elevators { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Order_Detail> Order_Details { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Order_Items> Order_Items { get; set; }
         public DbSet<Payment_Detail> Payment_Details { get; set; }
         public DbSet<Project> Projects { get; set; }

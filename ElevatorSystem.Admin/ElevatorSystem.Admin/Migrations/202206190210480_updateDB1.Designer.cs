@@ -7,13 +7,13 @@ namespace ElevatorSystem.Admin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UpdateUserID : IMigrationMetadata
+    public sealed partial class updateDB1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateUserID));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateDB1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202206180009261_UpdateUserID"; }
+            get { return "202206190210480_updateDB1"; }
         }
         
         string IMigrationMetadata.Source

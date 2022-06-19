@@ -10,41 +10,32 @@ namespace ElevatorSystem.Admin.Models.Entity
     {
         [Key]
         public int ID { get; set; }
-        //Order number la ma tu sinh
-        public string OrderNumber { get; set; }
-        [Required(ErrorMessage = "Please enter order name !")]
-        public string OrderName { get; set; }
-        [Required(ErrorMessage = "Please enter cost !")]
-        public double Cost { get; set; }
-        public int Status { get; set; }
-        [Required(ErrorMessage = "Please enter payment method !")]
-        public int Payment { get; set; }
-        [Required(ErrorMessage = "Please enter number of floor !")]
-        public int NumOfFloor { get; set; }
-        [Required(ErrorMessage = "Please enter Amount of elevators !")]
-        public int Amount { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public double Total { get; set; }
+        [Required(ErrorMessage = "Please enter Shipping fee !")]
+        public double ShippingFee { get; set; }
+        [Required(ErrorMessage = "Please enter Tax field !")]
+        public float Tax { get; set; }
+        [Required(ErrorMessage = "Please enter an Order email !")]
+        public string OrderEmail { get; set; }
+        public int OrderStatus { get; set; }
+        public int ShipStatus { get; set; }
+        public Nullable<DateTime> OrderDate { get; set; }
+        public Nullable<DateTime> CreatedAt { get; set; }
+        public Nullable<DateTime> ModifiedAt { get; set; }
 
         //Foreign key
-        public int ElevatorID { get; set; }
-        public virtual Elevator Elevator { get; set; }
-        public int ApplicationUserID { get; set; }
+        //public int ApplicationUser_Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public int PaymentID { get; set; }
+        public virtual Payment_Detail Payment_Detail { get; set; }
+        public ICollection<Order_Items> Order_Items { get; set; }
         public ICollection<Complaint> Complaints { get; set; }
 
         public Order()
         {
-            this.OrderName = "";
-            this.OrderName = "";
-            this.Cost = 1;
-            this.Status = 1;
-            this.Payment = 1;
-            this.NumOfFloor = 1;
-            this.Amount = 1;
-            this.CreatedAt = DateTime.Now;
-            this.UpdatedAt = DateTime.Now;
-
+            this.Total = 1;
+            this.ShippingFee = 1;
+            this.Order_Items = new HashSet<Order_Items>();
             this.Complaints = new HashSet<Complaint>();
         }
     }

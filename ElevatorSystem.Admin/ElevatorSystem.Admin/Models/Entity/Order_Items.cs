@@ -14,8 +14,8 @@ namespace ElevatorSystem.Admin.Models.Entity
         public int NumberOfFloor { get; set; }
         [Required(ErrorMessage = "Please enter quantity of elevators !")]
         public int Quantity { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime ModifiedAt { get; set; }
+        public Nullable<DateTime> CreatedAt { get; set; }
+        public Nullable<DateTime> ModifiedAt { get; set; }
 
         //Foreign key
         public int ElevatorID { get; set; }
@@ -23,7 +23,7 @@ namespace ElevatorSystem.Admin.Models.Entity
 
         //Foreign key
         public int Order_DetailID { get; set; }
-        public virtual Order_Detail Order_Detail { get; set; }
+        public virtual Order Order { get; set; }
 
         public Order_Items()
         {

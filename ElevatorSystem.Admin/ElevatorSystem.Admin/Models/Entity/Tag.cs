@@ -16,11 +16,20 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Description { get; set; }
         public bool IsPublished { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedAt { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{MM-dd-yyyy}")]
+        [DataType(DataType.Date)]
+        public Nullable<DateTime> CreatedAt { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime ModifiedAt { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{MM-dd-yyyy}")]
+        [DataType(DataType.Date)]
+        public Nullable<DateTime> ModifiedAt { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime PublishedAt { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{MM-dd-yyyy}")]
+        [DataType(DataType.Date)]
+        [Column(TypeName = "datetime2")]
+        public Nullable<DateTime> PublishedAt { get; set; }
 
         public ICollection<Blog> Blogs { get; set; }
         public Tag()

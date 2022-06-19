@@ -29,9 +29,9 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Location { get; set; }
         public string Slug { get; set; }
         public string Tag { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public DateTime DeletedAt { get; set; }
+        public Nullable<DateTime> CreatedAt { get; set; }
+        public Nullable<DateTime> UpdatedAt { get; set; }
+        public Nullable<DateTime> DeletedAt { get; set; }
        
 
         //Foreign key
