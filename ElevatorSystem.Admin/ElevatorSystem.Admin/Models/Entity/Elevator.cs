@@ -29,8 +29,11 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Location { get; set; }
         public string Slug { get; set; }
         public string Tag { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> CreatedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> UpdatedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> DeletedAt { get; set; }
        
 

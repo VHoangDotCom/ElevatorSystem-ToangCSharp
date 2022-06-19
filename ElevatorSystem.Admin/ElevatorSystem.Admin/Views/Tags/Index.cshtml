@@ -6,72 +6,72 @@
 
 @*<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsPublished)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishedAt)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsPublished)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublishedAt)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPublished)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishedAt)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPublished)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishedAt)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>*@
 
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Data Tables</h1>
+        <h1>Tag Management</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item">Tags</li>
+                <li class="breadcrumb-item active">Index</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -84,8 +84,8 @@
                     <div class="card-body">
                         <h5 class="card-title">List Tags</h5>
                         <p>Tags will help you to create groups of articles according to different criteria than categories. In this case, it serves as an anonymous float for <code>.Elevator</code> </p>
-                        
-                        <button type="button" style="margin-left:800px"  class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Tags")'"><i class="bi bi-plus-lg"> Add new</i></button>
+
+                        <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Tags")'"><i class="bi bi-plus-lg"> Add new</i></button>
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
@@ -104,33 +104,33 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr>
-                                    <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
-                                    <td> @Html.DisplayFor(modelItem => item.Title)</td>
-                                    <td> @Html.DisplayFor(modelItem => item.Description)</td>
-                                    <td> @Html.DisplayFor(modelItem => item.IsPublished)</td>
-                                    <td> @Html.DisplayFor(modelItem => item.CreatedAt)</td>
-                                    <td> @Html.DisplayFor(modelItem => item.ModifiedAt)</td>
-                                    <td> @Html.DisplayFor(modelItem => item.PublishedAt)</td>
-                                    <td>
-                                        @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
-                                        @*  @Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
-                                        @* @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
-                                        <button type="button" class="btn btn-secondary m-1" onclick="location.href='@Url.Action("Edit", "Tags",new { id = item.ID })'"><i class="bi bi-pen">Edit</i></button>
-                                        <button type="button" class="btn btn-info m-1" onclick="location.href='@Url.Action("Details", "Tags",new { id = item.ID })'"><i class="bi bi-info-circle-fill">Detail</i></button>
-                                        <button type="button" class="btn btn-danger m-1" onclick="location.href='@Url.Action("Delete", "Tags",new { id = item.ID })'"><i class="bi bi-exclamation-octagon"> Delete</i></button>
+                                    <tr>
+                                        <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
+                                        <td> @Html.DisplayFor(modelItem => item.Title)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Description)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.IsPublished)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.CreatedAt)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.ModifiedAt)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.PublishedAt)</td>
+                                        <td>
+                                            @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
+                                            @*  @Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+                                            @* @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                                            <button type="button" class="btn btn-secondary m-1" onclick="location.href='@Url.Action("Edit", "Tags",new { id = item.ID })'"><i class="bi bi-pen">Edit</i></button>
+                                            <button type="button" class="btn btn-info m-1" onclick="location.href='@Url.Action("Details", "Tags",new { id = item.ID })'"><i class="bi bi-info-circle-fill">Detail</i></button>
+                                            <button type="button" class="btn btn-danger m-1" onclick="location.href='@Url.Action("Delete", "Tags",new { id = item.ID })'"><i class="bi bi-exclamation-octagon"> Delete</i></button>
 
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                     @* <tr>
-                        <th scope="row">5</th>
-                        <td>Raheem Lehner</td>
-                        <td>Dynamic Division Officer</td>
-                        <td>false</td>
-                        <td>2011-04-19</td>
-                        <td>2016-05-25</td>
-                        <td>2016-05-25</td>
-                    </tr>*@
+                                            <th scope="row">5</th>
+                                            <td>Raheem Lehner</td>
+                                            <td>Dynamic Division Officer</td>
+                                            <td>false</td>
+                                            <td>2011-04-19</td>
+                                            <td>2016-05-25</td>
+                                            <td>2016-05-25</td>
+                                        </tr>*@
                                 }
                             </tbody>
 

@@ -1,10 +1,8 @@
 ﻿@model ElevatorSystem.Admin.Models.Entity.Tag
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
-<h2>Details</h2>
+@*<h2>Details</h2>
 
 <div>
     <h4>Tag</h4>
@@ -63,4 +61,100 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Tags Management</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Tags</li>
+                <li class="breadcrumb-item active">Detail</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="row g-3">
+                            <h5 class="card-title"> Tag " @Html.DisplayFor(model => model.Title)"</h5>
+
+                        <!-- Floating Labels Form -->
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Tag title</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.Title)" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Tag description</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" placeholder=" @Html.DisplayFor(model => model.Description)" disabled id="floatingTextarea" style="height: 100px;"></textarea>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Publish status</label>
+                            <div class="col-sm-6">
+
+                                @{
+                                    if (ViewBag.CheckStatus == true)
+                                    {
+                                        @Html.DisplayFor(model => model.IsPublished)
+                                        <label class="row-cols-sm-6 col-form-label">Activated</label>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => model.IsPublished)
+                                        <label class="row-cols-sm-6 col-form-label">Not Activated</label>
+                                    }
+                                }
+
+                            </div>
+                             <div class="row mb-3">
+                                    <label for="inputDate" class="col-sm-4 m-1 col-form-label">Published date</label>
+                                    <div class="col-sm-6">
+                                        @*<input type="date" value=" @Html.DisplayFor(model => model.PublishedAt)" disabled class="form-control">*@
+                                        @Html.DisplayFor(model => model.PublishedAt, new {htmlAttributes = new {@class= "form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputDate" class="col-sm-4 m-1 col-form-label">Created date</label>
+                                    <div class="col-sm-6">
+                                        @*<input type="date" value=" @Html.DisplayFor(model => model.CreatedAt)" disabled class="form-control">*@
+                                        @Html.DisplayFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputDate" class="col-sm-4 m-1 col-form-label">Modified date</label>
+                                    <div class="col-sm-6">
+                                      @*  <input type="date" value=" @Html.DisplayFor(model => model.ModifiedAt)" disabled class="form-control">*@
+                                        @Html.DisplayFor(model => model.ModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+
+                        </div>
+
+
+                        <div class="text-center">
+                            <button type="button" class="btn btn-secondary m-1" onclick="location.href='@Url.Action("Edit", "Tags",new { id = Model.ID })'"><i class="bi bi-pen">Edit</i></button>
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Tags")'"><i class="bi arrow-left-circle">Back to list</i></button>
+                        </div>
+                        </form><!-- End floating Labels Form -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->

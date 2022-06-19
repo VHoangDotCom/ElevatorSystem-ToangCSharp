@@ -19,8 +19,11 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string OrderEmail { get; set; }
         public int OrderStatus { get; set; }
         public int ShipStatus { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> OrderDate { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> CreatedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> ModifiedAt { get; set; }
 
         //Foreign key

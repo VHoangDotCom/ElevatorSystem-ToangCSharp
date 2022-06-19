@@ -18,8 +18,11 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Term { get; set; }
         public string Images { get; set; }
         public string ContractDocument { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> CreatedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> UpdatedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> DeletedAt { get; set; }
 
         //Foreign key

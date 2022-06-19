@@ -18,8 +18,11 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string PostContent { get; set; }
         public string Thumbnail { get; set; }
         public string Slug { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> CreatedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> ModifiedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> PublishedAt { get; set; }
 
         //Foreign key

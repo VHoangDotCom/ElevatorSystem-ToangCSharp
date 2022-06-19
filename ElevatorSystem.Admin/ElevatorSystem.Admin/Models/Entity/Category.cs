@@ -13,8 +13,11 @@ namespace ElevatorSystem.Admin.Models.Entity
         [Required(ErrorMessage = "Please enter Category name !")]
         public string Name { get; set; }
         public string Description { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> CreatedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> ModifiedAt { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<DateTime> DeletedAt { get; set; }
         public ICollection<Elevator> Elevators { get; set; }
 

@@ -14,9 +14,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         public int NumberOfFloor { get; set; }
         [Required(ErrorMessage = "Please enter quantity of elevators !")]
         public int Quantity { get; set; }
-        public Nullable<DateTime> CreatedAt { get; set; }
-        public Nullable<DateTime> ModifiedAt { get; set; }
-
+        
         //Foreign key
         public int ElevatorID { get; set; }
         public virtual Elevator Elevator { get; set; }
@@ -29,8 +27,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         {
             this.NumberOfFloor = 1;
             this.Quantity = 1;
-            this.CreatedAt = DateTime.Now;
-            this.ModifiedAt = DateTime.Now;
+           
         }
     }
 }
