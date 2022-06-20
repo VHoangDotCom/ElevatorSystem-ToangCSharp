@@ -170,6 +170,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController\BlogsController.cs" />
+    <Compile Include="Controllers\AdminController\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController\TagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -179,14 +181,6 @@
     <Compile Include="Migrations\202206171109166_InitDB.cs" />
     <Compile Include="Migrations\202206171109166_InitDB.Designer.cs">
       <DependentUpon>202206171109166_InitDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206190210480_updateDB1.cs" />
-    <Compile Include="Migrations\202206190210480_updateDB1.Designer.cs">
-      <DependentUpon>202206190210480_updateDB1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206191650511_DateTag1.cs" />
-    <Compile Include="Migrations\202206191650511_DateTag1.Designer.cs">
-      <DependentUpon>202206191650511_DateTag1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202206191704362_DateTag3.cs" />
     <Compile Include="Migrations\202206191704362_DateTag3.Designer.cs">
@@ -614,6 +608,16 @@
     <Content Include="Views\Tags\Edit.cshtml" />
     <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\Tags\WrongTitle.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Blogs\Create.cshtml" />
+    <Content Include="Views\Blogs\Delete.cshtml" />
+    <Content Include="Views\Blogs\Details.cshtml" />
+    <Content Include="Views\Blogs\Edit.cshtml" />
+    <Content Include="Views\Blogs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -640,12 +644,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202206171109166_InitDB.resx">
       <DependentUpon>202206171109166_InitDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206190210480_updateDB1.resx">
-      <DependentUpon>202206190210480_updateDB1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206191650511_DateTag1.resx">
-      <DependentUpon>202206191650511_DateTag1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206191704362_DateTag3.resx">
       <DependentUpon>202206191704362_DateTag3.cs</DependentUpon>
