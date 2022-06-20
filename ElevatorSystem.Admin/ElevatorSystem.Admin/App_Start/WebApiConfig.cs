@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ElevatorSystem.Admin
 {
@@ -11,6 +12,8 @@ namespace ElevatorSystem.Admin
         public static void Register(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
