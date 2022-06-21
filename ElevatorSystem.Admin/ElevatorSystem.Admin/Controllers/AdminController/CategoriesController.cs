@@ -51,8 +51,10 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         {
             if (ModelState.IsValid)
             {
+                category.CreatedAt = DateTime.Today;
                 db.Categories.Add(category);
                 db.SaveChanges();
+                TempData["CreateMessage"] = "Category { #" + category.ID + "." + category.Name + " } has been added to the list !";
                 return RedirectToAction("Index");
             }
 
@@ -83,8 +85,10 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         {
             if (ModelState.IsValid)
             {
+                category.ModifiedAt = DateTime.Today;
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["UpdateMessage"] = "Category { #" + category.ID + "." + category.Name + " } has been updated !";
                 return RedirectToAction("Index");
             }
             return View(category);

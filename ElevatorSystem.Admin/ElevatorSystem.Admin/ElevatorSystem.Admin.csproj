@@ -186,6 +186,10 @@
     <Compile Include="Migrations\202206191704362_DateTag3.Designer.cs">
       <DependentUpon>202206191704362_DateTag3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206210314278_Updateimage.cs" />
+    <Compile Include="Migrations\202206210314278_Updateimage.Designer.cs">
+      <DependentUpon>202206210314278_Updateimage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entity\Blog.cs" />
@@ -200,7 +204,9 @@
     <Compile Include="Models\Entity\Tag.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\BlogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BlogRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -621,6 +627,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
+    <Folder Include="Image\Blogs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -647,6 +655,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206191704362_DateTag3.resx">
       <DependentUpon>202206191704362_DateTag3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206210314278_Updateimage.resx">
+      <DependentUpon>202206210314278_Updateimage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
