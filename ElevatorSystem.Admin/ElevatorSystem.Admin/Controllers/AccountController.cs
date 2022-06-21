@@ -52,7 +52,7 @@ namespace ElevatorSystem.Admin.Controllers
             }
         }
 
-        //
+       
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -61,7 +61,7 @@ namespace ElevatorSystem.Admin.Controllers
             return View();
         }
 
-        //
+        
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]

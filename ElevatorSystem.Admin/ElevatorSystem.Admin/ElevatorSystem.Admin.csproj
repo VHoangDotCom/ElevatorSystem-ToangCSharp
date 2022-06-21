@@ -271,6 +271,7 @@
     <Compile Include="Controllers\AdminController\ElevatorsController.cs" />
     <Compile Include="Controllers\AdminController\TagsController.cs" />
     <Compile Include="Controllers\APIClient\AuthController.cs" />
+    <Compile Include="Controllers\APIClient\BlogsController.cs" />
     <Compile Include="Controllers\APIClient\CategoriesController.cs" />
     <Compile Include="Controllers\APIClient\ComplaintsController.cs" />
     <Compile Include="Controllers\APIClient\ElevatorsController.cs" />
