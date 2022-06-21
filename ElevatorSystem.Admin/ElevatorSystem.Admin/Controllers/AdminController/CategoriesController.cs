@@ -114,9 +114,12 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+           
             Category category = db.Categories.Find(id);
+            category.DeletedAt = DateTime.Today;
             db.Categories.Remove(category);
             db.SaveChanges();
+            TempData["DeleteMessage"] = "Category { #" + category.ID + "." + category.Name + " } has been removed from the list !";
             return RedirectToAction("Index");
         }
 
