@@ -17,11 +17,14 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
     {
         private ApplicationDbContext db;
         private UserManager<ApplicationUser> userManager;
+        private RoleManager<IdentityRole> roleManager;
         public AuthController()
         {
             db = new ApplicationDbContext();
             UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(db);
+            RoleStore<IdentityRole> roleStore = new RoleStore<IdentityRole>(db);
             userManager = new UserManager<ApplicationUser>(userStore);
+            roleManager = new RoleManager<IdentityRole>(roleStore);
         }
 
         [Route("api/Register")]
@@ -35,7 +38,16 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                 Email = request.Email,
                 EmailConfirmed = true
             };
+           
+           
+                
+            
+            
             var result = userManager.Create(user, request.Password);
+            if (result.Succeeded)
+            {
+                userManager.AddToRole(user.Id,"user");
+            }
             return Ok(result);
         }
 
@@ -44,6 +56,8 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
         public IHttpActionResult Login(LoginRequest request)
         {
             var result = userManager.Find(request.UserName, request.Password);
+            var role = userManager.GetRoles(result.Id);
+           
             if (result == null)
             {
                 return Ok("Username or Password not match");
@@ -54,7 +68,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
         }
 
 
-        [Authorize(Roles = "user")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Profile")]
         public Object GetName2()
@@ -66,18 +80,37 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                
                 var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
                 var result =  userManager.FindById(id);
-
-
                 return new
                 {
                     data = result,
-                  
                 };
 
             }
             return null;
         }
+
+
         [Authorize(Roles = "user")]
+        [HttpPost]
+        [Route("api/Profile12")]
+        public Object GetName3()
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                IEnumerable<Claim> claims = identity.Claims;
+
+                var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
+                var result = userManager.FindById(id);
+                return new
+                {
+                    data = result,
+                };
+
+            }
+            return null;
+        }
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/updateProfile")]
         public Object UpdateProfile(ApplicationUser applicationUser)
