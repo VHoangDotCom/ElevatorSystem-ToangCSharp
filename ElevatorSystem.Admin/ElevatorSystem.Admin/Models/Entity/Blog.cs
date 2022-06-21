@@ -13,7 +13,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         public int ID { get; set; }
         [Required(ErrorMessage = "Please enter title !")]
         public string Title { get; set; }
-        public string Summary { get; set; }
+        public string Summary { get; set; } 
         public bool IsPublished { get; set; }
         public string PostContent { get; set; }
         public string Thumbnail { get; set; }
