@@ -53,41 +53,52 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             return Ok(token);
         }
 
-        [Authorize]
-        [HttpPost]
-        [Route("api/GetName")]
-        public String GetName1()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var identity = User.Identity as ClaimsIdentity;
-                if (identity != null)
-                {
-                    IEnumerable<Claim> claims = identity.Claims;
-                }
-                return "Valid";
-            }
-            else
-            {
-                return "Invalid";
-            }
-        }
 
         [Authorize(Roles = "user")]
         [HttpPost]
-        [Route("api/GetName1")]
+        [Route("api/Profile")]
         public Object GetName2()
         {
             var identity = User.Identity as ClaimsIdentity;
             if (identity != null)
             {
                 IEnumerable<Claim> claims = identity.Claims;
-                var name = claims.Where(p => p.Type == "Username").FirstOrDefault()?.Value;
-                var role = claims.Where(p => p.Type == "Email").FirstOrDefault()?.Value;
+               
+                var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
+                var result =  userManager.FindById(id);
+
+
                 return new
                 {
-                    data = name,
-                    role
+                    data = result,
+                  
+                };
+
+            }
+            return null;
+        }
+        [Authorize(Roles = "user")]
+        [HttpPut]
+        [Route("api/updateProfile")]
+        public Object UpdateProfile(ApplicationUser applicationUser)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                IEnumerable<Claim> claims = identity.Claims;
+
+                var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
+                var user = userManager.FindById(id);
+                user.AddressLine1 = applicationUser.AddressLine1;
+                user.AddressLine2 = applicationUser.AddressLine2;
+                user.City = applicationUser.City;
+                user.Country = applicationUser.Country;
+                user.Company = applicationUser.Company;
+                var result = userManager.Update(user);
+                return new
+                {
+                    data = result,
+
                 };
 
             }

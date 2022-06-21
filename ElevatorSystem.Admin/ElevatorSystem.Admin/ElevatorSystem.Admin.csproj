@@ -214,6 +214,10 @@
     <Compile Include="Controllers\AdminController\TagsController.cs" />
     <Compile Include="Controllers\APIClient\AuthController.cs" />
     <Compile Include="Controllers\APIClient\CategoriesController.cs" />
+    <Compile Include="Controllers\APIClient\ComplaintsController.cs" />
+    <Compile Include="Controllers\APIClient\ElevatorsController.cs" />
+    <Compile Include="Controllers\APIClient\FeedbacksController.cs" />
+    <Compile Include="Controllers\APIClient\OrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
