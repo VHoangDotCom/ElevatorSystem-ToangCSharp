@@ -104,7 +104,7 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <!-- Floating Labels Form -->
                             <form class="row g-3">
-                                <div class="col-md-12 m-3">
+                                <div class="col-md-10 m-3">
                                     <div class="form-floating">
                                         @*<input type="text" class="form-control" id="floatingName" placeholder="Tag title">
                                             <label for="floatingName">Tag title</label>*@
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 m-3">
+                                <div class="col-10 m-3">
                                     <div class="form-floating">
                                         @* <textarea class="form-control" placeholder="Tag description" id="floatingTextarea" style="height: 100px;"></textarea>
                                             <label for="floatingTextarea">Tag description</label>*@
@@ -123,32 +123,34 @@
                                         @Html.LabelFor(model => model.Description, htmlAttributes: new { @for = "floatingTextarea" })
                                     </div>
                                 </div>
-                                <div class="col-12 m-3">
+
+                             @*  Set Public Status by hand*@
+                                <!--<div class="col-12 m-3">
                                     <fieldset class="row mb-3">
                                         <legend class="col-form-label col-sm-2 pt-0">Publish Status</legend>
                                         <div class="col-sm-10">
                                             @Html.ValidationMessageFor(model => model.IsPublished, "", new { @class = "text-danger" })
-                                            <div class="form-check">
+                                            <div class="form-check">-->
                                                 @*<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>*@
-                                                @Html.RadioButtonFor(model => model.IsPublished, true, new { htmlAttributes = new { @class = "form-check-input", @type = "radio", @name = "gridRadios", @id = "gridRadios1", @value = "option1", @checked = "true" } })
+                                                <!--@Html.RadioButtonFor(model => model.IsPublished, true, new { htmlAttributes = new { @class = "form-check-input", @type = "radio", @name = "gridRadios", @id = "gridRadios1", @value = "option1", @checked = "true" } })
                                                 <label class="form-check-label" for="gridRadios1">
                                                     Published
                                                 </label>
                                             </div>
-                                            <div class="form-check">
+                                            <div class="form-check">-->
                                                 @*<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">*@
-                                                @Html.RadioButtonFor(model => model.IsPublished, false, new { htmlAttributes = new { @class = "form-check-input", @type = "radio", @name = "gridRadios", @id = "gridRadios2", @value = "option2" } })
+                                                <!--@Html.RadioButtonFor(model => model.IsPublished, false, new { htmlAttributes = new { @class = "form-check-input", @type = "radio", @name = "gridRadios", @id = "gridRadios2", @value = "option2" } })
                                                 <label class="form-check-label" for="gridRadios2">
                                                     Not Published
                                                 </label>
                                             </div>
                                         </div>
                                     </fieldset>
-                                   
-                                </div>
+                                </div>-->
+
                                 <div class="row mb-3 m-3">
                                     <label for="inputDate" class="col-sm-2 col-form-label">Published date</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8">
                                         @Html.ValidationMessageFor(model => model.PublishedAt, "", new { @class = "text-danger" })
                                         @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })
                                         @* @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })*@
