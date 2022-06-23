@@ -38,29 +38,36 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         }
 
         // GET: Elevators/Create
-        public PartialViewResult Create()
+        public ActionResult Create()
         {
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
-            return PartialView("Create");
+           // ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
+            return View("Create");
+        }
+
+        [HttpPost]
+        public string UploadImages(HttpPostedFileBase file)
+        {
+            Random r = new Random();
+            int num = r.Next();
+
+            file.SaveAs(Server.MapPath("~/Content/Elevator/") + num + "_" + file.FileName);
+            return "/Content/Elevator/" + num + "_" + file.FileName;
         }
 
         // POST: Elevators/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,SKU,Status,Description,Thumbnails,Capacity,Speed,Price,MaxPerson,Location,Slug,Tag,CreatedAt,UpdatedAt,DeletedAt,CategoryID")] Elevator elevator)
+        public JsonResult Create( Elevator elevator)
         {
             if (ModelState.IsValid)
             {
                 db.Elevators.Add(elevator);
                 db.SaveChanges();
-                TempData["success"] = "Create Success";
-                return PartialView("Index");
             }
 
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", elevator.CategoryID);
-            return View(elevator);
+           // ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", elevator.CategoryID);
+            return Json(elevator, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Elevators/Edit/5
@@ -84,7 +91,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,SKU,Status,Description,Thumbnails,Capacity,Speed,Price,MaxPerson,Location,Slug,Tag,CreatedAt,UpdatedAt,DeletedAt,CategoryID")] Elevator elevator)
+        public ActionResult Edit(Elevator elevator)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +99,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", elevator.CategoryID);
+           // ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", elevator.CategoryID);
             return View(elevator);
         }
 
