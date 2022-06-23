@@ -62,7 +62,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 }
                 db.Tags.Add(tag);
                 db.SaveChanges();
-                TempData["CreateMessage"] = "Tag #"+tag.ID+" '"+tag.Title + "' has been added to the list !";
+                TempData["success"] = "Tag #"+tag.ID+" '"+tag.Title + "' has been added to the list !";
                 return RedirectToAction("Index");
             }
 
@@ -106,7 +106,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 }
                 db.Entry(tag).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["UpdateMessage"] = "Tag #" + tag.ID + " '" + tag.Title + "' has been updated !";
+                TempData["success"] = "Tag #" + tag.ID + " '" + tag.Title + "' has been updated !";
                 return RedirectToAction("Index");
             }
             return View(tag);
@@ -138,7 +138,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
            
                 db.Tags.Remove(tag);
                 db.SaveChanges();
-            TempData["DeleteMessage"] = "Tag #" + tag.ID + " '" + tag.Title + "' has been removed from the list !";
+            TempData["success"] = "Tag #" + tag.ID + " '" + tag.Title + "' has been removed from the list !";
             return RedirectToAction("Index"); 
         }
 

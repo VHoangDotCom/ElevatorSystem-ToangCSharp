@@ -2,67 +2,6 @@
 
 @{ ViewBag.Title = "Details"; }
 
-@*<h2>Details</h2>
-
-<div>
-    <h4>Tag</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsPublished)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsPublished)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PublishedAt)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
-
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -122,21 +61,21 @@
                              <div class="row mb-3">
                                     <label for="inputDate" class="col-sm-4  col-form-label">Published date</label>
                                     <div class="col-sm-6 m-1">
-                                        @*<input type="date" value=" @Html.DisplayFor(model => model.PublishedAt)" disabled class="form-control">*@
+                                       
                                         @Html.DisplayFor(model => model.PublishedAt, new {htmlAttributes = new {@class= "form-control" } })
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputDate" class="col-sm-4  col-form-label">Created date</label>
                                     <div class="col-sm-6 m-1">
-                                        @*<input type="date" value=" @Html.DisplayFor(model => model.CreatedAt)" disabled class="form-control">*@
+                                       
                                         @Html.DisplayFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputDate" class="col-sm-4  col-form-label">Modified date</label>
                                     <div class="col-sm-6 m-1">
-                                      @*  <input type="date" value=" @Html.DisplayFor(model => model.ModifiedAt)" disabled class="form-control">*@
+                                    
                                         @Html.DisplayFor(model => model.ModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
                                     </div>
                                 </div>

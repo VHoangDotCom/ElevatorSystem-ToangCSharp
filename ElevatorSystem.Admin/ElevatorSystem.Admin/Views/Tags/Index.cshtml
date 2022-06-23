@@ -4,65 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-@*<h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsPublished)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PublishedAt)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsPublished)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedAt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModifiedAt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PublishedAt)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -85,47 +26,20 @@
                         <h5 class="card-title">List Tags</h5>
                         <p>Tags will help you to create groups of articles according to different criteria than categories. In this case, it serves as an anonymous float for <code>.Elevator</code> </p>
 
-                        @* <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-            <i class="bi bi-collection me-1"></i>
-            A simple secondary alert with icon—check it out!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>*@
-
-                        @if (@TempData["CreateMessage"] != null)
+                        @if (@TempData["success"] != null)
                         {
-
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <i class="bi bi-check-circle me-1"></i>
-                                <strong>Success !</strong>  @TempData["CreateMessage"]
+                                <strong>Success !</strong>  @TempData["success"]
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         }
-                        @if (@TempData["UpdateMessage"] != null)
-                        {
-
-                            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                                <i class="bi bi-info-circle me-1"></i>
-                                <strong>Success !</strong>  @TempData["UpdateMessage"]
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        }
-                        @if (@TempData["DeleteMessage"] != null)
-                        {
-
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <i class="bi bi-trash me-1"></i>
-                                <strong>Success !</strong>  @TempData["DeleteMessage"]
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        }
-
-
+                       
                         <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Tags")'"><i class="bi bi-plus-lg"> Add new</i></button>
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
                                 <tr>
-
                                     <th scope="col">#</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Description</th>
@@ -148,33 +62,16 @@
                                         <td> @Html.DisplayFor(modelItem => item.ModifiedAt)</td>
                                         <td> @Html.DisplayFor(modelItem => item.PublishedAt)</td>
                                         <td class="col-3">
-                                            @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
-                                            @*  @Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
-                                            @* @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
                                             <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Tags",new { id = item.ID })'"><i class="bi bi-pen"></i></button>
                                             <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Tags",new { id = item.ID })'"><i class="bi bi-info-circle-fill"></i></button>
                                             <button type="button" class="btn btn-danger m-1" title="Delete" onclick="location.href='@Url.Action("Delete", "Tags",new { id = item.ID })'"><i class="bi bi-trash"></i></button>
-
                                         </td>
                                     </tr>
-                                    @* <tr>
-                        <th scope="row">5</th>
-                        <td>Raheem Lehner</td>
-                        <td>Dynamic Division Officer</td>
-                        <td>false</td>
-                        <td>2011-04-19</td>
-                        <td>2016-05-25</td>
-                        <td>2016-05-25</td>
-                    </tr>*@
                                 }
                             </tbody>
-
                         </table>
-                        <!-- End Table with stripped rows -->
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

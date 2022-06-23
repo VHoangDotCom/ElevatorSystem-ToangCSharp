@@ -729,6 +729,8 @@
     <Content Include="Views\Elevators\Details.cshtml" />
     <Content Include="Views\Elevators\Edit.cshtml" />
     <Content Include="Views\Elevators\Index.cshtml" />
+    <Content Include="Views\Modal\_Create.cshtml" />
+    <Content Include="Views\Modal\_Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
