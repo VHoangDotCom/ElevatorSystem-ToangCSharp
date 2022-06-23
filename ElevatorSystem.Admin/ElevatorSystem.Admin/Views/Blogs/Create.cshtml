@@ -219,10 +219,13 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Design Blog's content</h5>
                                         <!-- TinyMCE Editor -->
-                                        <textarea class="tinymce-editor">
-                                              @Html.EditorFor(model => model.PostContent, new { htmlAttributes = new { @class = "tinymce-editor" } })
+                                        @*<textarea class="tinymce-editor" >
+                                              @Html.TextAreaFor(model => model.PostContent, new { htmlAttributes = new { @class = "tinymce-editor" } })
                                               @Html.ValidationMessageFor(model => model.PostContent, "", new { @class = "text-danger" })
-                                        </textarea><!-- End TinyMCE Editor -->
+                                        </textarea>*@
+                                        <!-- End TinyMCE Editor -->
+                                        @Html.TextAreaFor(model => model.PostContent, new { @class = "tinymce-editor" } )
+
                                     </div>
                                 </div>
                             </div>
