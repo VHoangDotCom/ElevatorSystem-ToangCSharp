@@ -38,11 +38,6 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                 Email = request.Email,
                 EmailConfirmed = true
             };
-           
-           
-                
-            
-            
             var result = userManager.Create(user, request.Password);
             if (result.Succeeded)
             {
@@ -68,7 +63,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
         }
 
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user")]
         [HttpPost]
         [Route("api/Profile")]
         public Object GetName2()
@@ -88,28 +83,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             }
             return null;
         }
-
-
-        [Authorize(Roles = "user")]
-        [HttpPost]
-        [Route("api/Profile12")]
-        public Object GetName3()
-        {
-            var identity = User.Identity as ClaimsIdentity;
-            if (identity != null)
-            {
-                IEnumerable<Claim> claims = identity.Claims;
-
-                var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
-                var result = userManager.FindById(id);
-                return new
-                {
-                    data = result,
-                };
-
-            }
-            return null;
-        }
+       
         [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/updateProfile")]

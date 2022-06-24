@@ -1,147 +1,241 @@
 ﻿@model ElevatorSystem.Admin.Models.Entity.Elevator
-
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .elevator .showImages {
+        width: 400px;
+        height: 250px;
+        border: 1px solid black;
+        overflow: auto;
+    }
 
+    .elevator .container-image {
+        position: relative;
+    }
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
+    .elevator .image-item {
+        position: relative;
+        margin: 5px;
+    }
+
+    .elevator  .showImages {
+        display: flex;
+        align-items: center;
+        width: 400px;
+        height: 250px;
+    }
+    .elevator .btn-delete {
+           cursor: pointer;
+           width: 20px;
+           height: 20px;
+           border-radius: 50%;
+           position: absolute;
+           background: black;
+           text-align: center;
+           color: white;
+           line-height: 20px;   
+           font-size: 20px;
+           top: -5px;
+           right: -5px;
+    }
+    .elevator .btn-create{
+        border: none;
+        padding: 5px;
+    }
     
-    <div class="form-horizontal">
+</style>
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Category Management</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item">Elevator</li>
+                <li class="breadcrumb-item active">Create Elevator</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <div class="form-horizontal elevator">
         <h4>Elevator</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <span class="my-2">Name</span>
+                <input placeholder="Name" id="name" class=" form-control" />
+            </div>
+            <div class="col-md-4">
+                <span class="my-2">SKU</span>
+                <input placeholder="SKU" id="sku" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <span class="my-2">Status</span>
+                <input placeholder="Status" id="status" class="form-control" />
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SKU, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SKU, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SKU, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            <div class="col-md-4">
+                <span class="my-2">Description</span>
+                <input placeholder="Description" id="description" class=" form-control" />
+            </div>
+            <div class="col-md-4">
+                <span class="my-2">Capacity</span>
+                <input placeholder="Capacity" id="capacity" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <span class="my-2">Speed</span>
+                <input placeholder="Speed" id="speed" class="form-control" />
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            <div class="col-md-4">
+                <span class="my-2">Price</span>
+                <input placeholder="Price" id="price" class=" form-control" />
+            </div>
+            <div class="col-md-4">
+                <span class="my-2">Max Persion</span>
+                <input placeholder="MaxPersion" id="maxPersion" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <span class="my-2">Localtion</span>
+                <input placeholder="Localtion" id="localtion" class="form-control" />
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            <div class="col-md-4">
+                <span class="my-2">Slug</span>
+                <input placeholder="Slug" id="slug" class=" form-control" />
+            </div>
+            <div class="col-md-4">
+                <span class="my-2">Tag</span>
+                <input placeholder="Tag" id="tag" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <span class="my-2">CregoryId</span>
+                <input placeholder="CregoryId" id="category" class="form-control" />
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Thumbnails, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Thumbnails, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Thumbnails, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            Upload Image
+            <div class="container-image">
+                <input type="file" id="fileElevator" onchange="addFile()" style="display:none;" />
+                <input type="text" id="dataFile" style="display:none;" />
+                <button class="btn-showFile"><i class="bi bi-file-code"></i></button>
+                <div class="showImages">
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Speed, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Speed, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaxPerson, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaxPerson, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaxPerson, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tag, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tag, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeletedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DeletedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DeletedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CategoryID, "CategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            <div>
+                <button class="btn-success btn-create" onclick="submitDataElevator()" >Create</button>
             </div>
         </div>
     </div>
+
+</main>
+
+@section Scripts {
+    <script>
+        var arrayData = [
+            "/Content/Elevator/1755437800_Screenshot_6.png",
+            "/Content/Elevator/2087630343_Screenshot_8.png",
+            "/Content/Elevator/1469137192_take_feedback.png",
+        ];
+        var arrayDataString = "";
+        $(document).ready(function () {
+            var image = $('#dataFile').val();
+            console.log(image)
+
+            $('.btn-showFile').click(function () {
+                $('#fileElevator').click();
+            });
+        });
+        function showImages() {
+            if (arrayData.length != 0) {
+                var htmlString = "";
+                $('.showImages').html("")
+                for (var i = 0; i < arrayData.length; i++) {
+                    htmlString += '<div class="image-item">'
+                    htmlString += '<div class="btn-delete" onclick="deleteImage(' + i +')"> x'
+                    htmlString += '</div>'
+                    htmlString += `<img  style="width: 200px; height: 200px; " src=${arrayData[i]} />`
+                    htmlString += '</div>'
+                    $('.showImages').html(htmlString);
+                    arrayDataString += arrayData[i] + ','
+                }
+                $('#dataFile').val("");
+                $('#dataFile').val(arrayDataString);
+
+               @* $("#dataFile").val(arrDataString);*@
+            }
+        }
+        function deleteImage(i) {
+            arrayData.splice(i, 1);
+            arrDataString = ""
+            showImages()
+        }
+
+        function addFile() {
+            var fileUpload = $('#fileElevator').get(0);
+            var files = fileUpload.files;
+            var formData = new FormData();
+            formData.append('file', files[0]);
+            $.ajax({
+                url: '/Elevators/UploadImages',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (response) {
+                    arrayData.push(response)
+                    showImages()
+                },
+                error: function (msg) {
+                    alert("Error: " + msg);
+                }
+            });
+        }
+        function submitDataElevator() {
+            showImages()
+            var data = {
+                "Name": $('#name').val(),
+                "SKU": $('#sku').val(),
+                "Status": $('#status').val(),
+                "Description": $('#description').val(),
+                "Thumbnails": $('#dataFile').val(),
+                "Capacity": $('#capacity').val(),
+                "Speed": $('#speed').val(),
+                "Price": $('#price').val(),
+                "MaxPerson": $('#maxPersion').val(),
+                "Location": $('#localtion').val(),
+                "Slug": $('#slug').val(),
+                "Tag": $('#tag').val(),
+                "CategoryID": parseInt(140),
+            }
+            
+
+           $.ajax({
+                url: '/Elevators/Create',
+               type: 'POST',
+
+               contentType: "application/json",
+               dataType: 'json',
+               data: JSON.stringify(data),
+                success: function (response) {
+                    console.log(response)
+                },
+                error: function (msg) {
+                    alert("Error: " + msg);
+                }
+            });
+        }
+
+    </script>
 }
+
 
 
