@@ -3,60 +3,8 @@
 @{
     ViewBag.Title = "Details";
 }
-@*
-<h2>Details</h2>
 
-<div>
-    <h4>Category</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-*@
 
 <main id="main" class="main">
 
@@ -64,7 +12,7 @@
         <h1>Categories Management</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
                 <li class="breadcrumb-item">Categories</li>
                 <li class="breadcrumb-item active">Detail</li>
             </ol>
@@ -77,7 +25,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form class="row g-3">
-                            <h5 class="card-title"> Tag " @Html.DisplayFor(model => model.Name)"</h5>
+                            <h5 class="card-title m-5"> Category <code  style="font-size: 30px">@Html.DisplayFor(model => model.Name)</code></h5>
 
                             <!-- Floating Labels Form -->
                             <div class="row mb-3">

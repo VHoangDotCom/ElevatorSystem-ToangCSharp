@@ -88,14 +88,16 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 }
 
                 //Insert thumbnail
-                
+                if(blog.Thumbnail != null)
+                {
                     string fileName = Path.GetFileNameWithoutExtension(blog.ThumbnailFile.FileName);
                     string extension = Path.GetExtension(blog.ThumbnailFile.FileName);
-                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;//ko can datetine
-                    blog.Thumbnail = "~/Content/images/" + fileName;
-                    fileName = Path.Combine(Server.MapPath("~/Content/images/"), fileName);
+                    fileName = fileName /*+ DateTime.Now.ToString("yymmssfff")*/ + extension;//ko can datetine
+                    blog.Thumbnail = "~/Image/Blogs/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Image/Blogs/"), fileName);
                     blog.ThumbnailFile.SaveAs(fileName);
-
+                }
+                    
                 //Save data
                 db.Blogs.Add(blog);
                 db.SaveChanges();
@@ -109,6 +111,18 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             ModelState.Clear();
             return View(blog);
         }
+
+        [HttpPost]
+        public string UploadImages(HttpPostedFileBase file)
+        {
+            Random r = new Random();
+            int num = r.Next();
+
+            file.SaveAs(Server.MapPath("~/Content/Blogs/") + num + "_" + file.FileName);
+            return "/Content/Blogs/" + num + "_" + file.FileName;
+        }
+
+      
 
         // GET: Blogs/Edit/5
         public ActionResult Edit(int? id)

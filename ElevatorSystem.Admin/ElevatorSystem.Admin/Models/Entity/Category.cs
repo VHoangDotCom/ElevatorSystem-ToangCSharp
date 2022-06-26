@@ -24,7 +24,10 @@ namespace ElevatorSystem.Admin.Models.Entity
         public Category()
         {
             this.Name = "";
+           // this.CreatedAt = DateTime.Now;
             this.Elevators = new HashSet<Elevator>();
         }
+
+        
     }
 }

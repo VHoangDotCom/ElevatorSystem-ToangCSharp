@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@*
 <h2>Index</h2>
 
 <p>
@@ -85,7 +85,7 @@
         </tr>
     }
 
-</table>
+</table>*@
 
 
 <main id="main" class="main">
@@ -94,7 +94,7 @@
         <h1>Blog Management</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
                 <li class="breadcrumb-item">Blogs</li>
                 <li class="breadcrumb-item active">Index</li>
             </ol>
@@ -140,9 +140,9 @@
                         }
 
 
-                        <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Tags")'"><i class="bi bi-plus-lg"> Add new</i></button>
+                        <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Blogs")'"><i class="bi bi-plus-lg"> Add new</i></button>
                         <!-- Table with stripped rows -->
-                        <table class="table datatable">
+                        <table class="table datatable table-striped">
                             <thead>
                                 <tr>
 
@@ -173,9 +173,9 @@
                                         @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
                                         @*  @Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
                                         @* @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
-                                        <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Tags",new { id = item.ID })'"><i class="bi bi-pen"></i></button>
-                                        <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Tags",new { id = item.ID })'"><i class="bi bi-info-circle-fill"></i></button>
-                                        <button type="button" class="btn btn-danger m-1" title="Delete" onclick="location.href='@Url.Action("Delete", "Tags",new { id = item.ID })'"><i class="bi bi-trash"></i></button>
+                                        <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Blogs",new { id = item.ID })'"><i class="bi bi-pen"></i></button>
+                                        <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Blogs",new { id = item.ID })'"><i class="bi bi-info-circle-fill"></i></button>
+                                        <button type="button" class="btn btn-danger m-1" title="Delete" onclick="location.href='@Url.Action("Delete", "Blogs",new { id = item.ID })'"><i class="bi bi-trash"></i></button>
 
                                     </td>
                                 </tr>

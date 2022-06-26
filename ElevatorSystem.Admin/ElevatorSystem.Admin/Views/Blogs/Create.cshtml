@@ -1,116 +1,11 @@
 ﻿@model ElevatorSystem.Admin.Models.Entity.Blog
 
 @{
-    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*
-<h2>Create</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Blog</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Summary, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsPublished, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsPublished)
-                    @Html.ValidationMessageFor(model => model.IsPublished, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PostContent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PostContent, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostContent, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Thumbnail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Thumbnail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ModifiedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ModifiedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PublishedAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PublishedAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TagID, "TagID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TagID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TagID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-*@
 
 <main id="main" class="main">
-    @using (Html.BeginForm("Create","Blogs",FormMethod.Post,new { enctype= "multipart/form-data" }))
+    @using (Html.BeginForm("Create", "Blogs", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -118,7 +13,7 @@
             <h1>Blog management</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
                     <li class="breadcrumb-item">Blogs</li>
                     <li class="breadcrumb-item active">Create</li>
                 </ol>
@@ -134,111 +29,87 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <!-- Floating Labels Form -->
                         <form class="row g-3">
-                            <div class="col-md-10 m-3">
-                                <div class="form-floating">
-                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Tag title" } })
-                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @for = "floatingName" })
+
+                            <div class="form-group col-sm-12 d-flex">
+                                <div class="col-md-6 ">
+                                    <div class="form-floating">
+                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Blog title" } })
+                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @for = "floatingName" })
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-floating">
+
+                                        @Html.DropDownList("TagID", null, htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
+                                        @Html.ValidationMessageFor(model => model.TagID, "", new { @class = "text-danger" })
+                                        <label for="floatingSelect">Tag</label>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-10 m-3">
-                                <div class="form-floating">
-                                    @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Summary", @style = "height: 100px;" } })
-                                    @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
-                                    @Html.LabelFor(model => model.Summary, htmlAttributes: new { @for = "floatingTextarea" })
+                            <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                <div class="col-md-6 ">
+                                    <div class="form-floating">
+                                        @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Slug" } })
+                                        @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+                                        @Html.LabelFor(model => model.Slug, htmlAttributes: new { @for = "floatingName" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                   @* <label for="inputDate" class="col-sm-2 col-form-label">Published date</label>*@
+                                    <div class="col-sm-4">
+                                        @Html.ValidationMessageFor(model => model.PublishedAt, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.LabelFor(model => model.PublishedAt, htmlAttributes: new { @for = "floatingName" })
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-10 m-3">
-                                <div class="form-floating">
-                                    @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Slug" } })
-                                    @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
-                                    @Html.LabelFor(model => model.Slug, htmlAttributes: new { @for = "floatingName" })
+                            <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                <div class="col-md-6 ">
+                                    <div class="form-floating">
+                                        @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Summary", @style = "height: 100px;" } })
+                                        @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                                        @Html.LabelFor(model => model.Summary, htmlAttributes: new { @for = "floatingTextarea" })
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row mb-3 m-4">
-                                <label for="inputNumber" class="col-sm-2 col-form-label">Thumbnail</label>
-                                <div class="col-sm-8">
-                                    @*<input class="form-control" type="file" id="formFile">*@
-                                    <input @*class="form-control"*@ type="file" name="ThumbnailFile"/>
-                                  @*  @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })*@
-                                   @* @Html.EditorFor(model => model.Thumbnail, new { htmlAttributes = new { @class = "form-control", @id = "formFile", @type = "file" } })*@
+                                    <div class="row mb-3 m-4">
+                                        @*<label for="inputNumber" class="col-sm-2 col-form-label">Thumbnail</label>*@
+                                        <div class="col-sm-8 container-image">
+                                            @Html.LabelFor(model => model.Thumbnail, htmlAttributes: new { @for = "floatingName" })
+                                        </div>
+                                    </div>
 
                                 </div>
-                            </div>
 
 
-                            <!--<div class="col-12 m-3">
-    <fieldset class="row mb-3">
-        <legend class="col-form-label col-sm-2 pt-0">Publish Status</legend>
-        <div class="col-sm-10">
-            @Html.ValidationMessageFor(model => model.IsPublished, "", new { @class = "text-danger" })
-            <div class="form-check">-->
-                            @*<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>*@
-                            <!--@Html.RadioButtonFor(model => model.IsPublished, true, new { htmlAttributes = new { @class = "form-check-input", @type = "radio", @name = "gridRadios", @id = "gridRadios1", @value = "option1", @checked = "true" } })
-        <label class="form-check-label" for="gridRadios1">
-            Published
-        </label>
-    </div>
-    <div class="form-check">-->
-                            @*<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">*@
-                            <!--@Html.RadioButtonFor(model => model.IsPublished, false, new { htmlAttributes = new { @class = "form-check-input", @type = "radio", @name = "gridRadios", @id = "gridRadios2", @value = "option2" } })
-                    <label class="form-check-label" for="gridRadios2">
-                        Not Published
-                    </label>
-                </div>
-            </div>
-        </fieldset>
-    </div>-->
-
-                            <div class="row mb-3 m-3">
-                                <label for="inputDate" class="col-sm-2 col-form-label">Published date</label>
-                                <div class="col-sm-8">
-                                    @Html.ValidationMessageFor(model => model.PublishedAt, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })
-                                    @* @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <div class="col-10 m-3">
+                                    <div class="form-floating">
+                                        @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Summary", @style = "height: 100px;" } })
+                                        @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                                        @Html.LabelFor(model => model.Summary, htmlAttributes: new { @for = "floatingTextarea" })
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-sm-10 m-3">
-                                <div class="form-floating mb-3">
-                                    @* <select class="form-select" id="floatingSelect" aria-label="Tag">
-                    <option selected>New York</option>
-                    <option value="1">Oregon</option>
-                    <option value="2">DC</option>
-                </select>*@
-                                    @Html.DropDownList("TagID", null, htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
-                                    @Html.ValidationMessageFor(model => model.TagID, "", new { @class = "text-danger" })
-                                    <label for="floatingSelect">Tag</label>
-                                </div>
-                            </div>
- 
-                                <div class="col-sm-11 m-3">
+                                <div class="col-sm-12 m-3">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">Design Blog's content</h5>
-                                            <!-- TinyMCE Editor -->
-                                            <textarea name="@TempData["Content"]" class="tinymce-editor">
-                                             @* @Html.TextAreaFor(model => model.PostContent, new { htmlAttributes = new { @class = "tinymce-editor" } })
-                                              @Html.ValidationMessageFor(model => model.PostContent, "", new { @class = "text-danger" })*@              
-                                        </textarea><!-- End TinyMCE Editor -->
+                                            @Html.TextAreaFor(model => model.PostContent, new { @class = "tinymce-editor" })
                                         </div>
                                     </div>
                                 </div>
-                               
-                           
-
-                            
 
 
-                            <div class="text-center">
-                                <button type="submit" value="Create" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
-                                <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Blogs")'">Back to list</button>
-                            </div>
-                        </form><!-- End floating Labels Form -->
+                                <div class="text-center">
+                                    <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                    <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Blogs")'">Back to list</button>
+                                </div>
+</form><!-- End floating Labels Form -->
 
                         </div>
                     </div>
@@ -247,4 +118,107 @@
         </section>
     }
 
-    </main><!-- End #main -->
+</main><!-- End #main -->
+
+
+@section Scripts {
+    <script>
+        var arrayData = [
+            "/Content/Blogs/1755437800_Screenshot_6.png",
+            "/Content/Blogs/2087630343_Screenshot_8.png",
+            "/Content/Blogs/1469137192_take_feedback.png",
+        ];
+
+
+        var arrayDataString = "";
+        $(document).ready(function () {
+            var image = $('#dataFile').val();
+            $('.btn-showFile').click(function () {
+                $('#fileElevator').click();
+            });
+
+        function showImages() {
+            if (arrayData.length != 0) {
+                var htmlString = "";
+                $('.showImages').html("")
+                for (var i = 0; i < arrayData.length; i++) {
+                    htmlString += '<div class="image-item">'
+                    htmlString += '<div class="btn-delete" onclick="deleteImage(' + i +')"> x'
+                    htmlString += '</div>'
+                    htmlString += `<img  style="width: 200px; height: 200px; " src=${arrayData[i]} />`
+                    htmlString += '</div>'
+                    $('.showImages').html(htmlString);
+                    arrayDataString += arrayData[i] + ','
+                }
+                $('#dataFile').val("");
+                $('#dataFile').val(arrayDataString);
+@* $("#dataFile").val(arrDataString);*@
+}
+}
+function deleteImage(i) {
+    arrayData.splice(i, 1);
+    arrDataString = ""
+    showImages()
+}
+
+
+
+function addFile() {
+    var fileUpload = $('#fileElevator').get(0);
+    var files = fileUpload.files;
+    var formData = new FormData();
+    formData.append('file', files[0]);
+    $.ajax({
+        url: '/Blogs/UploadImages',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (response) {
+            arrayData.push(response)
+            showImages()
+        },
+        error: function (msg) {
+            alert("Error: " + msg);
+        }
+    });
+}
+@*function submitDataElevator() {
+
+        var data = {
+            "Name": $('#name').val(),
+            "SKU": $('#sku').val(),
+            "Status": $('#status').val(),
+            "Description": $('#description').val(),
+            "Thumbnails": $('#dataFile').val(),
+            "Capacity": $('#capacity').val(),
+            "Speed": $('#speed').val(),
+            "Price": $('#price').val(),
+            "MaxPerson": $('#maxPersion').val(),
+            "Location": $('#localtion').val(),
+            "Slug": $('#slug').val(),
+            "Tag": $('#tag').val(),
+            "CategoryID": parseInt(140),
+        }
+
+
+       $.ajax({
+            url: '/Elevators/Create',
+           type: 'POST',
+
+           contentType: "application/json",
+           dataType: 'json',
+           data: JSON.stringify(data),
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (msg) {
+                alert("Error: " + msg);
+            }
+        });
+    }
+
+*@
+
+</script>
+}

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController\BlogsController.cs" />
     <Compile Include="Controllers\AdminController\CategoriesController.cs" />
+    <Compile Include="Controllers\AdminController\ElevatorsController.cs" />
     <Compile Include="Controllers\AdminController\TagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -624,9 +625,15 @@
     <Content Include="Views\Blogs\Details.cshtml" />
     <Content Include="Views\Blogs\Edit.cshtml" />
     <Content Include="Views\Blogs\Index.cshtml" />
+    <Content Include="Views\Elevators\Create.cshtml" />
+    <Content Include="Views\Elevators\Delete.cshtml" />
+    <Content Include="Views\Elevators\Details.cshtml" />
+    <Content Include="Views\Elevators\Edit.cshtml" />
+    <Content Include="Views\Elevators\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Blogs\" />
     <Folder Include="Content\images\" />
     <Folder Include="Image\Blogs\" />
   </ItemGroup>
