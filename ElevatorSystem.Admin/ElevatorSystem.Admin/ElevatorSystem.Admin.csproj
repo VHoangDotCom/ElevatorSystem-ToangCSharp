@@ -173,27 +173,16 @@
     <Compile Include="Controllers\AdminController\BlogsController.cs" />
     <Compile Include="Controllers\AdminController\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController\ElevatorsController.cs" />
+    <Compile Include="Controllers\AdminController\OrdersController.cs" />
     <Compile Include="Controllers\AdminController\TagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202206171109166_InitDB.cs" />
-    <Compile Include="Migrations\202206171109166_InitDB.Designer.cs">
-      <DependentUpon>202206171109166_InitDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206191704362_DateTag3.cs" />
-    <Compile Include="Migrations\202206191704362_DateTag3.Designer.cs">
-      <DependentUpon>202206191704362_DateTag3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206210314278_Updateimage.cs" />
-    <Compile Include="Migrations\202206210314278_Updateimage.Designer.cs">
-      <DependentUpon>202206210314278_Updateimage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206261030503_UpdateOrder-Detail.cs" />
-    <Compile Include="Migrations\202206261030503_UpdateOrder-Detail.Designer.cs">
-      <DependentUpon>202206261030503_UpdateOrder-Detail.cs</DependentUpon>
+    <Compile Include="Migrations\202206261627213_DBInit.cs" />
+    <Compile Include="Migrations\202206261627213_DBInit.Designer.cs">
+      <DependentUpon>202206261627213_DBInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -204,7 +193,6 @@
     <Compile Include="Models\Entity\Feedback.cs" />
     <Compile Include="Models\Entity\Order.cs" />
     <Compile Include="Models\Entity\Order_Items.cs" />
-    <Compile Include="Models\Entity\Payment_Detail.cs" />
     <Compile Include="Models\Entity\Project.cs" />
     <Compile Include="Models\Entity\Tag.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -634,6 +622,16 @@
     <Content Include="Views\Elevators\Details.cshtml" />
     <Content Include="Views\Elevators\Edit.cshtml" />
     <Content Include="Views\Elevators\Index.cshtml" />
+    <Content Include="Views\Payment_Detail\Create.cshtml" />
+    <Content Include="Views\Payment_Detail\Delete.cshtml" />
+    <Content Include="Views\Payment_Detail\Details.cshtml" />
+    <Content Include="Views\Payment_Detail\Edit.cshtml" />
+    <Content Include="Views\Payment_Detail\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -661,17 +659,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202206171109166_InitDB.resx">
-      <DependentUpon>202206171109166_InitDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206191704362_DateTag3.resx">
-      <DependentUpon>202206191704362_DateTag3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206210314278_Updateimage.resx">
-      <DependentUpon>202206210314278_Updateimage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206261030503_UpdateOrder-Detail.resx">
-      <DependentUpon>202206261030503_UpdateOrder-Detail.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206261627213_DBInit.resx">
+      <DependentUpon>202206261627213_DBInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
