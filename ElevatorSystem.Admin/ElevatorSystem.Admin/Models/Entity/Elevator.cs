@@ -57,8 +57,8 @@ namespace ElevatorSystem.Admin.Models.Entity
             this.Speed = 1;
             this.Price = 1;
             this.Slug = "";*/
-            this.CreatedAt = DateTime.Now;
-            this.UpdatedAt = DateTime.Now;
+            //this.CreatedAt = DateTime.Now;
+            //this.UpdatedAt = DateTime.Now;
 
             this.Feedbacks = new HashSet<Feedback>();
         }

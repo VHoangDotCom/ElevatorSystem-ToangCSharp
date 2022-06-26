@@ -37,7 +37,7 @@ namespace ElevatorSystem.Admin.Models.Entity
             this.Title = "";
             this.Description = "";
             this.IsPublished = true;
-            this.CreatedAt = DateTime.Now;
+           // this.CreatedAt = DateTime.Now;
 
             this.Blogs = new HashSet<Blog>();
         }

@@ -191,6 +191,10 @@
     <Compile Include="Migrations\202206210314278_Updateimage.Designer.cs">
       <DependentUpon>202206210314278_Updateimage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206261030503_UpdateOrder-Detail.cs" />
+    <Compile Include="Migrations\202206261030503_UpdateOrder-Detail.Designer.cs">
+      <DependentUpon>202206261030503_UpdateOrder-Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entity\Blog.cs" />
@@ -665,6 +669,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206210314278_Updateimage.resx">
       <DependentUpon>202206210314278_Updateimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206261030503_UpdateOrder-Detail.resx">
+      <DependentUpon>202206261030503_UpdateOrder-Detail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -4,143 +4,152 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<main id="main" class="main">
 
-<div>
-    <h4>Elevator</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </dt>
+    <div class="pagetitle">
+        <h1>Elevator Management</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
+                <li class="breadcrumb-item">Elevators</li>
+                <li class="breadcrumb-item active">Delete elevator</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="row g-3">
+                            <h5 class="card-title m-5">Elevator <code style="font-size: 30px">#@Html.DisplayFor(model => model.ID). @Html.DisplayFor(model => model.Name)</code> </h5>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                            <div class="form-group col-sm-12 d-flex">
+                                <div class="col-md-4 ">
+                                    <div class="form-floating">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SKU)
-        </dt>
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.Category.Name)" disabled>
+                                        <label for="floatingSelect">Category</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 ">
+                                    <div class="form-floating">
 
-        <dd>
-            @Html.DisplayFor(model => model.SKU)
-        </dd>
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.Name)" disabled>
+                                        <label for="floatingSelect">Elevator Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 ">
+                                    <div class="form-floating">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.SKU)" disabled>
+                                        <label for="floatingSelect">Stock Keeping Unit ( SKU )</label>
+                                    </div>
+                                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                            <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Thumbnails)
-        </dt>
+                                <div class="col-md-4 ">
+                                    <div class="form-floating">
 
-        <dd>
-            @Html.DisplayFor(model => model.Thumbnails)
-        </dd>
+                                        <input type="text" class="form-control" value="@ViewData["elevatorStatus"]" disabled>
+                                        <label for="floatingSelect">Status</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Capacity)" disabled>
+                                        <span class="input-group-text">lbs</span>
+                                    </div>
+                                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </dt>
+                                <div class="col-md-4 ">
+                                    <div class="form-floating">
 
-        <dd>
-            @Html.DisplayFor(model => model.Capacity)
-        </dd>
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.MaxPerson)" disabled>
+                                        <label for="floatingSelect">Maximum people</label>
+                                    </div>
+                                </div>
+                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Speed)
-        </dt>
+                            <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                <div class="col-md-4">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">metres per sec</span>
+                                        <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Speed)" disabled>
+                                        <span class="input-group-text">(m/s)</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">$</span>
+                                        <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Price)" disabled>
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 ">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.Tag)" disabled>
+                                        <label for="floatingSelect">Tag</label>
+                                    </div>
+                                </div>
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Speed)
-        </dd>
+                            <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                <div class="col-md-11 ">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.Thumbnails)" disabled>
+                                        <label for="floatingSelect">Thumbnails</label>
+                                    </div>
+                                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                            </div>
+                            <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                <div class="col-md-4 ">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.Slug)" disabled>
+                                        <label for="floatingSelect">Slug</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 ">
+                                    <div class="form-floating">
+                                        <input id="floatingTextarea" style="height: 100px;" type="text" class="form-control" value=" @Html.DisplayFor(model => model.Location)" disabled>
+                                        <label for="floatingSelect">Location</label>
+                                    </div>
+                                </div>
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                            <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                <div class="col-md-6 ">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.CreatedAt)" disabled>
+                                        <label for="floatingSelect">Created Date</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.UpdatedAt)" disabled>
+                                        <label for="floatingSelect">Updated Date</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-secondary m-1" onclick="location.href='@Url.Action("Edit", "Elevators",new { id = Model.ID })'"><i class="bi bi-pen">Edit</i></button>
+                                <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Elevators")'"><i class="bi arrow-left-circle">Back to list</i></button>
+                            </div>
+                        </form>
+                        <!-- End floating Labels Form -->
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxPerson)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaxPerson)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Slug)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Slug)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tag)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tag)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</main><!-- End #main -->

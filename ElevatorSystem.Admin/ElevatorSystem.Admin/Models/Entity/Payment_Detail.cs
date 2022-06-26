@@ -10,9 +10,9 @@ namespace ElevatorSystem.Admin.Models.Entity
     {
         [Key]
         public int ID { get; set; }
-        public double Amount { get; set; }
+       // public double Amount { get; set; }
         public string Provider { get; set; }
-        public int Status { get; set; }
+       // public int Status { get; set; }
         public string PaymentType { get; set; }
         [DataType(DataType.Date)]
         public Nullable<DateTime> CreatedAt { get; set; }
@@ -20,9 +20,9 @@ namespace ElevatorSystem.Admin.Models.Entity
         public Nullable<DateTime> ModifiedAt { get; set; }
         public Payment_Detail()
         {
-            this.Amount = 1;
+            
             this.Provider = "";
-            this.Status = 1;
+          
         }
     }
 }

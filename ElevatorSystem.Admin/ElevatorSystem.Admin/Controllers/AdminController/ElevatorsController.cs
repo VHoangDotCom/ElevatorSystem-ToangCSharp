@@ -35,6 +35,26 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Elevator elevator = db.Elevators.Find(id);
+            if (elevator.Status == 0)
+            {
+                ViewData["elevatorStatus"] = "Pending";
+            }
+            else if (elevator.Status == 1)
+            {
+                ViewData["elevatorStatus"] = "Available";
+            }
+            else if (elevator.Status == 2)
+            {
+                ViewData["elevatorStatus"] = "Upgrading";
+            }
+            else if (elevator.Status == 3)
+            {
+                ViewData["elevatorStatus"] = "Out of date";
+            }
+            else
+            {
+                ViewData["elevatorStatus"] = "Status is undefined";
+            }
             if (elevator == null)
             {
                 return HttpNotFound();
@@ -99,6 +119,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             if (ModelState.IsValid)
             {
                 elevator.UpdatedAt = DateTime.Today;
+                
                 db.Entry(elevator).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["UpdateMessage"] = "Elevator { #" + elevator.ID + "." + elevator.Name + " } has been updated !";

@@ -71,9 +71,10 @@
                         {
                             @Html.AntiForgeryToken()
 
-                            <div class="form-actions no-color text-center">
-                                <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#exampleModalCenter">Delete </button>
-                            </div>
+                    <div class="form-actions no-color text-center">
+                        <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#exampleModalCenter">Delete </button>
+                        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Categories")'"><i class="bi arrow-left-circle">Back to list</i></button>
+                    </div>
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
