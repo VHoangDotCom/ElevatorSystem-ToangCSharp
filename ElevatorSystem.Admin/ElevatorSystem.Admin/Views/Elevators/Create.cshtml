@@ -1,8 +1,15 @@
 ﻿@model ElevatorSystem.Admin.Models.Entity.Elevator
+<<<<<<< HEAD
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+=======
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+>>>>>>> origin
 <style>
     .elevator .showImages {
         width: 400px;
@@ -26,134 +33,293 @@
         width: 400px;
         height: 250px;
     }
+
     .elevator .btn-delete {
-           cursor: pointer;
-           width: 20px;
-           height: 20px;
-           border-radius: 50%;
-           position: absolute;
-           background: black;
-           text-align: center;
-           color: white;
-           line-height: 20px;   
-           font-size: 20px;
-           top: -5px;
-           right: -5px;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        background: black;
+        text-align: center;
+        color: white;
+        line-height: 20px;
+        font-size: 20px;
+        top: -5px;
+        right: -5px;
     }
-    .elevator .btn-create{
+
+    .elevator .btn-create {
         border: none;
         padding: 5px;
     }
-    
+
+    .elevator li {
+        list-style: none;
+        background: #ccc;
+        border-radius: 2px;
+        font-size: 13px;
+        margin: 2px;
+        cursor: pointer;
+        padding: 2px;
+    }
+
+    .container-tag * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .elevator container-tag li span {
+        cursor: pointer;
+        width: 10px;
+        height: 10px;
+        background: white;
+        border-radius: 50%;
+    }
+
+    .elevator .container-tag input {
+        width: 100px;
+        border: none;
+    }
+
+        .elevator .container-tag input:focus {
+            outline: none;
+        }
 </style>
 
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Category Management</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item">Elevator</li>
-                <li class="breadcrumb-item active">Create Elevator</li>
-            </ol>
-        </nav>
-    </div><!-- End Page Title -->
 
-    <div class="form-horizontal elevator">
-        <h4>Elevator</h4>
-        <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="pagetitle">
+            <h1>Elevator management</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
+                    <li class="breadcrumb-item">Elevators</li>
+                    <li class="breadcrumb-item active">Create</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
 
-        <div class="form-group row">
-            <div class="col-md-4">
-                <span class="my-2">Name</span>
-                <input placeholder="Name" id="name" class=" form-control" />
-            </div>
-            <div class="col-md-4">
-                <span class="my-2">SKU</span>
-                <input placeholder="SKU" id="sku" class="form-control" />
-            </div>
-            <div class="col-md-4">
-                <span class="my-2">Status</span>
-                <input placeholder="Status" id="status" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-4">
-                <span class="my-2">Description</span>
-                <input placeholder="Description" id="description" class=" form-control" />
-            </div>
-            <div class="col-md-4">
-                <span class="my-2">Capacity</span>
-                <input placeholder="Capacity" id="capacity" class="form-control" />
-            </div>
-            <div class="col-md-4">
-                <span class="my-2">Speed</span>
-                <input placeholder="Speed" id="speed" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-4">
-                <span class="my-2">Price</span>
-                <input placeholder="Price" id="price" class=" form-control" />
-            </div>
-            <div class="col-md-4">
-                <span class="my-2">Max Persion</span>
-                <input placeholder="MaxPersion" id="maxPersion" class="form-control" />
-            </div>
-            <div class="col-md-4">
-                <span class="my-2">Localtion</span>
-                <input placeholder="Localtion" id="localtion" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-4">
-                <span class="my-2">Slug</span>
-                <input placeholder="Slug" id="slug" class=" form-control" />
-            </div>
-            <div class="col-md-4">
-                <span class="my-2">Tag</span>
-                <input placeholder="Tag" id="tag" class="form-control" />
-            </div>
-            <div class="col-md-4">
-                <span class="my-2">CregoryId</span>
-                <input placeholder="CregoryId" id="category" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            Upload Image
-            <div class="container-image">
-                <input type="file" id="fileElevator" onchange="addFile()" style="display:none;" />
-                <input type="text" id="dataFile" style="display:none;" />
-                <button class="btn-showFile"><i class="bi bi-file-code"></i></button>
-                <div class="showImages">
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Create new Elevator</h5>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <!-- Floating Labels Form -->
+                            <form class="row g-3">
+
+                                <div class="form-group col-sm-12 d-flex">
+                                    <div class="col-md-4 ">
+                                        <div class="form-floating">
+
+                                            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
+                                            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                                            <label for="floatingSelect">Category</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 ">
+                                        <div class="form-floating">
+
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Elevator name" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @for = "floatingName" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Slug" } })
+                                            @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.Slug, htmlAttributes: new { @for = "floatingName" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+
+                                            @Html.DropDownListFor(model => model.Status,
+
+                                                   new List<SelectListItem>
+                                                   {
+                                                       new SelectListItem {Value = "0", Text="Pending"},
+                                                       new SelectListItem {Value = "1", Text="Available"},
+                                                       new SelectListItem {Value = "2", Text="Upgrading"},
+                                                       new SelectListItem { Value = "3", Text = "Out of date" },
+
+                                                   },
+
+                                             htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
+                                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                            <label for="floatingSelect">Status</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+                                        <div class="input-group mb-3">
+                                            @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Capacity" } })
+                                            <span class="input-group-text">lbs</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+
+                                            @Html.EditorFor(model => model.MaxPerson, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Maximum people" } })
+                                            @Html.ValidationMessageFor(model => model.MaxPerson, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.MaxPerson, htmlAttributes: new { @for = "floatingName" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                    <div class="col-md-4">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Speed per time</span>
+                                            @*<input type="text" class="form-control" placeholder="Enter Speed" aria-label="Amount (to the nearest dollar)">*@
+                                            @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Speed" } })
+                                            <span class="input-group-text">(m/s)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">$</span>
+                                            @*<input type="text" class="form-control" placeholder="Enter Price" aria-label="Amount (to the nearest dollar)">*@
+                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Price" } })
+                                            <span class="input-group-text">.00</span>
+                                        </div>
+                                    </div>
+
+                                    @* <div class="col-md-4">
+                                            <div class="form-floating container-tag">
+                                                <ul class="  d-flex showTag">
+                                                </ul>
+                                                @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control ", @id = "floatingName tag", @placeholder = "Tag" } })
+                                                @Html.ValidationMessageFor(model => model.Tag, "", new { @class = "text-danger" })
+                                                @Html.LabelFor(model => model.Tag, htmlAttributes: new { @for = "floatingName" })
+                                            </div>
+                                        </div>*@
+                                    <div class="col-md-4">
+                                        <span class="my-2">Tag</span>
+                                        <div class="d-flex form-control container-tag">
+                                            <ul class="  d-flex showTag">
+                                            </ul>
+                                            <input placeholder="" id="tag" />
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                    <div class="col-8">
+                                        <div class="form-floating">
+
+                                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Elevator Location", @style = "height: 100px;" } })
+                                            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.Location, htmlAttributes: new { @for = "floatingTextarea" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-4">
+                                        <div class="row mb-3">
+                                            <label for="inputNumber" class="row-cols-sm-1 col-form-label">Thumbnails</label>
+                                            <div class="col-sm-10">
+                                                @Html.EditorFor(model => model.Thumbnails, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Thumbnails" } })
+                                                @*<input class="form-control" type="file" name="ThumbnailFile" />*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-12 m-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Elevator description</h5>
+                                            @Html.TextAreaFor(model => model.Description, new { @class = "tinymce-editor" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group text-center">
+                                    <button title="Confirm Submit" type="submit" value="Create" class="btn btn-primary">Submit</button>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                    <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Elevators")'">Back to list</button>
+                                </div>
+
+                            </form><!-- End floating Labels Form -->
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div>
-                <button class="btn-success btn-create" onclick="submitDataElevator()" >Create</button>
-            </div>
-        </div>
-    </div>
+        </section>
+    }
 
-</main>
+</main><!-- End #main -->
 
-@section Scripts {
-    <script>
+    <script type="text/javascript">
         var arrayData = [
             "/Content/Elevator/1755437800_Screenshot_6.png",
             "/Content/Elevator/2087630343_Screenshot_8.png",
             "/Content/Elevator/1469137192_take_feedback.png",
         ];
+
+
         var arrayDataString = "";
         $(document).ready(function () {
             var image = $('#dataFile').val();
-            console.log(image)
-
             $('.btn-showFile').click(function () {
                 $('#fileElevator').click();
             });
+
+
+            //Tag
+            $('#tag').keypress(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                var dataTag = $('#tag').val();
+                if (keycode == '13') {
+                    tag.push(dataTag);
+                    showTag();
+                    $('#tag').val("")
+                }
+            });
+
+            //Tag
+
         });
+        //tag
+        var tag = ["HTML", "CSS"];
+
+        function showTag() {
+            $('.showTag').html("");
+            for (var i = 0; i < tag.length; i++) {
+                $('.showTag').append(
+                    `<li>${tag[i]} <span onclick="deleteTag(${i})" >&times;</span></li>`
+                )
+            }
+        }
+
+        function deleteTag(i) {
+            tag.splice(i, 1);
+            showTag()
+        }
+        //tag
+
+
         function showImages() {
             if (arrayData.length != 0) {
                 var htmlString = "";
@@ -169,15 +335,15 @@
                 }
                 $('#dataFile').val("");
                 $('#dataFile').val(arrayDataString);
-
-               @* $("#dataFile").val(arrDataString);*@
-            }
+@* $("#dataFile").val(arrDataString);*@}
         }
         function deleteImage(i) {
             arrayData.splice(i, 1);
             arrDataString = ""
             showImages()
         }
+
+
 
         function addFile() {
             var fileUpload = $('#fileElevator').get(0);
@@ -200,7 +366,6 @@
             });
         }
         function submitDataElevator() {
-            showImages()
             var data = {
                 "Name": $('#name').val(),
                 "SKU": $('#sku').val(),
@@ -216,7 +381,6 @@
                 "Tag": $('#tag').val(),
                 "CategoryID": parseInt(140),
             }
-            
 
            $.ajax({
                 url: '/Elevators/Create',
@@ -234,8 +398,6 @@
             });
         }
 
+
+
     </script>
-}
-
-
-

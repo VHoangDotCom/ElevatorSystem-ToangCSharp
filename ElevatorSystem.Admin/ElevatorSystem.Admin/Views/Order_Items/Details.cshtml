@@ -1,0 +1,50 @@
+﻿@model ElevatorSystem.Admin.Models.Entity.Order_Items
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order_Items</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Elevator.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Elevator.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfFloor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfFloor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

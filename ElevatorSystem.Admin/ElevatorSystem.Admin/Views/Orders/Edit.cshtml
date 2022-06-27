@@ -1,0 +1,180 @@
+﻿@model ElevatorSystem.Admin.Models.Entity.Order
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<main id="main" class="main">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="pagetitle">
+            <h1>Order Management</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
+                    <li class="breadcrumb-item">Orders</li>
+                    <li class="breadcrumb-item active">Delete order</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="row g-3">
+                                <div class="form-group col-sm-12 d-flex">
+                                    <h5 class="card-title m-5">Order <code style="font-size: 30px">#@Html.DisplayFor(model => model.ID). @Html.DisplayFor(model => model.SKU)</code> </h5>
+                                    <button type="button" style="margin-left:300px;" class="btn btn-info rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Order_Items")'"><i class="bi bi-info-circle"> Detail Order Items</i></button>
+                                </div>
+                                @if (@ViewData["InvalidStatus"] != null)
+                                {
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <i class="bi bi-exclamation-octagon me-1"></i>
+                                        <strong>Warning !</strong> @ViewData["InvalidStatus"] - The Status is <strong>@ViewData["elevatorStatus"]</strong>
+                                        <button style="text-align:right" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                }
+                                <!-- Floating Labels Form -->
+
+                                <div class="form-group col-sm-12 d-flex">
+                                    <div class="col-md-4 ">
+                                        <div class="form-floating">
+
+                                            <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.FullName)" disabled>
+                                            <label for="floatingSelect">Customer's' Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="form-floating">
+
+                                            <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.OrderEmail)" disabled>
+                                            <label for="floatingSelect">Order Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="form-floating">
+
+                                            <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.SKU)" disabled>
+                                            <label for="floatingSelect">Stock Keeping Unit ( SKU )</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+
+                                    <div class="col-md-4 ">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.PhoneNumber)" disabled>
+                                            <label for="floatingSelect">Phone Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-floating">
+
+                                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @disabled = "true", @placeholder = "User's address", @style = "height: 100px;" } })
+                                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @for = "floatingTextarea" })
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-floating">
+
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @disabled = "true", @placeholder = "Order's Description", @style = "height: 100px;" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @for = "floatingTextarea" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                    <div class="col-md-4">
+                                        <div class="input-group mb-3">
+
+                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Tax)" disabled>
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control" value="@Html.DisplayFor(model => model.ShippingFee)" disabled>
+                                            <span class="input-group-text">.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-sm-10">
+                                            @Html.LabelFor(model => model.OrderDate, htmlAttributes: new { @for = "floatingName" })
+                                            @Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.OrderDate, new { htmlAttributes = new { @class = "form-control" } })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+
+                                            @Html.DropDownListFor(model => model.OrderStatus,
+
+                    new List<SelectListItem>
+                    {
+                                                      new SelectListItem {Value = "0", Text="Pending"},
+                                                       new SelectListItem {Value = "1", Text="Processing"},
+                                                       new SelectListItem {Value = "2", Text="Completed"},
+                                                       new SelectListItem { Value = "3", Text = "Canceled" },
+                                                       new SelectListItem { Value = "4", Text = "Refund" },
+                                                       new SelectListItem { Value = "5", Text = "Complaint" },
+
+                    },
+
+              htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
+                                            @Html.ValidationMessageFor(model => model.OrderStatus, "", new { @class = "text-danger" })
+                                            <label for="floatingSelect">Order Status</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+
+                                            @Html.DropDownListFor(model => model.ShipStatus,
+
+                    new List<SelectListItem>
+                    {
+                                                      new SelectListItem {Value = "0", Text="Packaging"},
+                                                       new SelectListItem {Value = "1", Text="Delivering"},
+                                                       new SelectListItem {Value = "2", Text="Received"},
+
+},
+
+              htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
+                                            @Html.ValidationMessageFor(model => model.ShipStatus, "", new { @class = "text-danger" })
+                                            <label for="floatingSelect">Shipping Status</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <button title="Confirm Submit" type="submit" value="Save" class="btn btn-primary">Submit</button>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                    <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Orders")'">Back to list</button>
+                                </div>
+
+                            </form>
+                            <!-- End floating Labels Form -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
+    </main><!-- End #main -->

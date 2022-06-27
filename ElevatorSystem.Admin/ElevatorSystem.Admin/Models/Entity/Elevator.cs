@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ElevatorSystem.Admin.Models.Entity
 {
@@ -14,6 +15,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         public string Name { get; set; }
         public string SKU { get; set; }
         public int Status { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
         [Required(ErrorMessage = "Thumbnails field cannot be null !")]
         public string Thumbnails { get; set; }
@@ -47,16 +49,16 @@ namespace ElevatorSystem.Admin.Models.Entity
 
         public Elevator()
         {
-            this.Name = "";
+           /* this.Name = "";
             this.SKU = "";
             this.Description = "";
             this.Status = 1;
             this.Capacity = 1;
             this.Speed = 1;
             this.Price = 1;
-            this.Slug = "";
-            this.CreatedAt = DateTime.Now;
-            this.UpdatedAt = DateTime.Now;
+            this.Slug = "";*/
+            //this.CreatedAt = DateTime.Now;
+            //this.UpdatedAt = DateTime.Now;
 
             this.Feedbacks = new HashSet<Feedback>();
         }
