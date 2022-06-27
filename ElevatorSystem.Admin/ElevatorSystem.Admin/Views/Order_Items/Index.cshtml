@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ElevatorSystem.Admin.Models.Entity.Payment_Detail>
+﻿@model IEnumerable<ElevatorSystem.Admin.Models.Entity.Order_Items>
 
 @{
     ViewBag.Title = "Index";
@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Provider)
+            @Html.DisplayNameFor(model => model.Elevator.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PaymentType)
+            @Html.DisplayNameFor(model => model.Order.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            @Html.DisplayNameFor(model => model.NumberOfFloor)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ModifiedAt)
+            @Html.DisplayNameFor(model => model.Quantity)
         </th>
         <th></th>
     </tr>
@@ -29,16 +29,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Provider)
+            @Html.DisplayFor(modelItem => item.Elevator.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PaymentType)
+            @Html.DisplayFor(modelItem => item.Order.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
+            @Html.DisplayFor(modelItem => item.NumberOfFloor)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ModifiedAt)
+            @Html.DisplayFor(modelItem => item.Quantity)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

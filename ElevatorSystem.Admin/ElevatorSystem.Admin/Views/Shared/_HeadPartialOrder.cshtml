@@ -1,4 +1,5 @@
 ﻿
+@model IEnumerable<ElevatorSystem.Admin.Models.Entity.Order>
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -26,78 +27,95 @@
                 </a>
             </li><!-- End Search Icon-->
 
+
             <li class="nav-item dropdown">
+                @{
+                    int count = Model.Count();
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">@count</span>
+                    </a><!-- End Notification Icon -->
 
-                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                    <i class="bi bi-bell"></i>
-                    <span class="badge bg-primary badge-number">4</span>
-                </a><!-- End Notification Icon -->
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
 
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                    <li class="dropdown-header">
-                        You have 4 new notifications
-                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+                        <li class="dropdown-header">
+                            You have @count new notifications
+                            <a href="@Url.Action("Index", "Orders")"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
 
-                    <li class="notification-item">
-                        <i class="bi bi-exclamation-circle text-warning"></i>
-                        <div>
-                            <h4>Lorem Ipsum</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>30 min. ago</p>
-                        </div>
-                    </li>
 
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+                        @foreach (var item in Model)
+                        {
+                        if (item.OrderStatus == 0)
+                        {
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="notification-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            <div>
+                                <h4> Order #@item.ID. @item.SKU is <strong>placed</strong> !</h4>
+                                <p>by @item.FullName</p>
+                                <p>@(DateTime.Now.Hour - item.OrderDate.Value.Hour) hrs. ago</p>
+                            </div>
+                        </li>
+                        }
+                        if (item.OrderStatus == 2)
+                        {
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="notification-item">
+                            <i class="bi bi-check-circle text-success"></i>
+                            <div>
+                                <h4> Order #@item.ID. @item.SKU is <strong>completed</strong> !</h4>
+                                <p>by @item.FullName</p>
+                                <p>@(DateTime.Now.Hour - item.OrderDate.Value.Hour) hrs. ago</p>
+                            </div>
+                        </li>
+                        }
+                        if (item.OrderStatus == 3)
+                        {
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4> Order #@item.ID. @item.SKU is <strong>canceled</strong> !</h4>
+                                <p>by @item.FullName</p>
+                                <p>@(DateTime.Now.Hour - item.OrderDate.Value.Hour) hrs. ago</p>
+                            </div>
+                        </li>
+                        }
+                        if (item.OrderStatus == 5)
+                        {
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="notification-item">
+                            <i class="bi bi-exclamation-circle text-warning"></i>
+                            <div>
+                                <h4> Order #@item.ID. @item.SKU is <strong>complainted</strong> !</h4>
+                                <p>by @item.FullName</p>
+                                <p>@(DateTime.Now.Hour - item.OrderDate.Value.Hour) hrs. ago</p>
+                            </div>
+                        </li>
+                        }
 
-                    <li class="notification-item">
-                        <i class="bi bi-x-circle text-danger"></i>
-                        <div>
-                            <h4>Atque rerum nesciunt</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>1 hr. ago</p>
-                        </div>
-                    </li>
+                        }
 
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                   
-                  <li class="notification-item">
-                      <i class="bi bi-check-circle text-success"></i>
-                      <div>
-                          <h4>  is completed !</h4>
-                          <p>Quae dolorem earum veritatis oditseno</p>
-                          <p>2 hrs. ago</p>
-                      </div>
-                  </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
 
-                    <li class="notification-item">
-                        <i class="bi bi-info-circle text-primary"></i>
-                        <div>
-                            <h4>Dicta reprehenderit</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>4 hrs. ago</p>
-                        </div>
-                    </li>
 
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li class="dropdown-footer">
-                        <a href="#">Show all notifications</a>
-                    </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="@Url.Action("Index", "Orders")">Show all orders</a>
+                        </li>
 
-                </ul><!-- End Notification Dropdown Items -->
-
+                    </ul><!-- End Notification Dropdown Items -->
+                }
             </li><!-- End Notification Nav -->
 
             <li class="nav-item dropdown">

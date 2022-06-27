@@ -7,7 +7,7 @@ Xu ly CreatedDate chua hop ly
 
 2. Category : 
 Xu ly CreatedDate chua hop ly
-Xu ly xoa Category ko hop le khi co Elevator
+
 
 3. Blog :  trang Index + chua show dc anh
 Create : 
@@ -21,11 +21,12 @@ Detail : Chua co anh
 Craete : Tag - multi string
          Thumbnails - mutil pics
          Dinh dang lai trang inout tag
-Update : chua co anh + Tag + dinh dang Tag
+Update : chua co anh + Tag + dinh dang Tag + Status fail
 Delte : chua co
 Index : chua co
 Detai: 
 
+5. Order : Check lại OrderCOntroller xem có lỗi j ko
 
 [HttpPost]
         public string UploadImages(HttpPostedFileBase file)
@@ -54,3 +55,10 @@ Detai:
 bang user trong DB la model nao
 Khong cho xoa Category khi vx con Product
 XU ly cac ham ben controller
+
+
+
+0-pending
+1-processing
+2-complete
+3-cancel

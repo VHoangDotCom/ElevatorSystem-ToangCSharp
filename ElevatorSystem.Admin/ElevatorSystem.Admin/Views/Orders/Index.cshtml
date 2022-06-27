@@ -1,92 +1,9 @@
 ﻿@model IEnumerable<ElevatorSystem.Admin.Models.Entity.Order>
+@Html.Partial("_HeadPartialOrder")
 
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShippingFee)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentID)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShipStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentID)
-                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-
-</table>
 
 
 <main id="main" class="main">
@@ -109,32 +26,40 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">List Orders</h5>
-                        <p>E-commerce order management is the process of tracking an order from the initial <code>purchase transaction</code>,
-                        through the entire fulfillment process, to the point a customer <code>receives their goods</code>.</p>
+                        <p>
+                            E-commerce order management is the process of tracking an order from the initial <code>purchase transaction</code>,
+                            through the entire fulfillment process, to the point a customer <code>receives their goods</code>.
+                        </p>
 
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Some Explanation about Elevator Status</h4>
-                            <p>@TempData["0"]</p>
+                            <h4 class="alert-heading">Some Explanation about Order Status</h4>
+                            <p>@TempData["orderStatus0"]</p>
                             <hr>
-                            <p class="mb-0">@TempData["1"]</p>
+                            <p class="mb-0">@TempData["orderStatus1"]</p>
                             <hr>
-                            <p class="mb-0">@TempData["2"]</p>
+                            <p class="mb-0">@TempData["orderStatus2"]</p>
                             <hr>
-                            <p class="mb-0">@TempData["3"]</p>
+                            <p class="mb-0">@TempData["orderStatus3"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["orderStatus4"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["orderStatus5"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["n"]</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <div class="alert alert-warning  alert-dismissible fade show" role="alert">
+                            <h4 class="alert-heading">Some Explanation about Shipping Status</h4>
+                            <p>@TempData["shippingStatus0"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["shippingStatus1"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["shippingStatus2"]</p>
                             <hr>
                             <p class="mb-0">@TempData["n"]</p>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
 
-                        @if (@TempData["CreateMessage"] != null)
-                        {
-
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="bi bi-check-circle me-1"></i>
-                                <strong>Success !</strong>  @TempData["CreateMessage"]
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        }
                         @if (@TempData["UpdateMessage"] != null)
                         {
 
@@ -144,18 +69,9 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         }
-                        @if (@TempData["DeleteMessage"] != null)
-                        {
-
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <i class="bi bi-trash me-1"></i>
-                                <strong>Success !</strong>  @TempData["DeleteMessage"]
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        }
 
 
-                        <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Elevators")'"><i class="bi bi-plus-lg"> Add new</i></button>
+                      @*  <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Orders")'"><i class="bi bi-plus-lg"> Add new</i></button>*@
                         <!-- Table with stripped rows -->
                         <table class="table datatable table-striped">
                             <thead>
@@ -163,7 +79,8 @@
 
                                     <th scope="col">#</th>
                                     <th scope="col">Username</th>
-                                    <th scope="col">Payment Type</th>
+                                    <th scope="col">Phonenumber</th>
+                                    <th scope="col">SKU</th>
                                     <th scope="col">Order Status</th>
                                     <th scope="col">Total($)</th>
                                     <th scope="col">Shipping Fee </th>
@@ -181,9 +98,9 @@
                                 {
                                     <tr>
                                         <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
-                                        <td> @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Payment_Detail.PaymentType)</td>
-                                       
+                                        <td> @Html.DisplayFor(modelItem => item.FullName)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.SKU)</td>
                                         <td> @Html.DisplayFor(modelItem => item.OrderStatus)</td>
                                         <td> @Html.DisplayFor(modelItem => item.Total)</td>
                                         <td> @Html.DisplayFor(modelItem => item.ShippingFee)</td>
@@ -196,7 +113,7 @@
 
                                             <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Orders",new { id = item.ID })'"><i class="bi bi-pen"></i></button>
                                             <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Orders",new { id = item.ID })'"><i class="bi bi-info-circle-fill"></i></button>
-                                            <button type="button" class="btn btn-danger m-1" title="Delete" onclick="location.href='@Url.Action("Delete", "Orders",new { id = item.ID })'"><i class="bi bi-trash"></i></button>
+                                            @*<button type="button" class="btn btn-danger m-1" title="Delete" onclick="location.href='@Url.Action("Delete", "Orders",new { id = item.ID })'"><i class="bi bi-trash"></i></button>*@
 
                                         </td>
                                     </tr>

@@ -174,6 +174,7 @@
     <Compile Include="Controllers\AdminController\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController\ElevatorsController.cs" />
     <Compile Include="Controllers\AdminController\OrdersController.cs" />
+    <Compile Include="Controllers\AdminController\Order_ItemsController.cs" />
     <Compile Include="Controllers\AdminController\TagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -183,6 +184,18 @@
     <Compile Include="Migrations\202206261627213_DBInit.cs" />
     <Compile Include="Migrations\202206261627213_DBInit.Designer.cs">
       <DependentUpon>202206261627213_DBInit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206270158292_Add SKU Order.cs" />
+    <Compile Include="Migrations\202206270158292_Add SKU Order.Designer.cs">
+      <DependentUpon>202206270158292_Add SKU Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206270847580_Update required Order.cs" />
+    <Compile Include="Migrations\202206270847580_Update required Order.Designer.cs">
+      <DependentUpon>202206270847580_Update required Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206270849386_Update required Order1.cs" />
+    <Compile Include="Migrations\202206270849386_Update required Order1.Designer.cs">
+      <DependentUpon>202206270849386_Update required Order1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -622,16 +635,17 @@
     <Content Include="Views\Elevators\Details.cshtml" />
     <Content Include="Views\Elevators\Edit.cshtml" />
     <Content Include="Views\Elevators\Index.cshtml" />
-    <Content Include="Views\Payment_Detail\Create.cshtml" />
-    <Content Include="Views\Payment_Detail\Delete.cshtml" />
-    <Content Include="Views\Payment_Detail\Details.cshtml" />
-    <Content Include="Views\Payment_Detail\Edit.cshtml" />
-    <Content Include="Views\Payment_Detail\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Shared\_HeadPartialOrder.cshtml" />
+    <Content Include="Views\Order_Items\Create.cshtml" />
+    <Content Include="Views\Order_Items\Delete.cshtml" />
+    <Content Include="Views\Order_Items\Details.cshtml" />
+    <Content Include="Views\Order_Items\Edit.cshtml" />
+    <Content Include="Views\Order_Items\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -661,6 +675,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202206261627213_DBInit.resx">
       <DependentUpon>202206261627213_DBInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206270158292_Add SKU Order.resx">
+      <DependentUpon>202206270158292_Add SKU Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206270847580_Update required Order.resx">
+      <DependentUpon>202206270847580_Update required Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206270849386_Update required Order1.resx">
+      <DependentUpon>202206270849386_Update required Order1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

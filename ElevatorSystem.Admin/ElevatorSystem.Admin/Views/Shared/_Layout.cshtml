@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,6 +42,7 @@
 <body>
     @Html.Partial("_HeadPartial")
     @Html.Partial("_SidebarPartial")
+   
     @RenderBody()
     @Html.Partial("_FooterPartial")
     <!-- Vendor JS Files -->
@@ -73,7 +75,7 @@
     </script>
 
 
- 
+
     @RenderSection("Scripts", false/*required*/)
 
 
