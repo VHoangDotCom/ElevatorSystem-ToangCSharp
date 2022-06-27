@@ -1,8 +1,15 @@
 ﻿@model ElevatorSystem.Admin.Models.Entity.Elevator
+<<<<<<< HEAD
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+=======
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+>>>>>>> origin
 <style>
     .elevator .showImages {
         width: 400px;
@@ -20,7 +27,7 @@
         margin: 5px;
     }
 
-    .elevator .showImages {
+    .elevator  .showImages {
         display: flex;
         align-items: center;
         width: 400px;
@@ -359,7 +366,6 @@
             });
         }
         function submitDataElevator() {
-
             var data = {
                 "Name": $('#name').val(),
                 "SKU": $('#sku').val(),
@@ -375,7 +381,6 @@
                 "Tag": $('#tag').val(),
                 "CategoryID": parseInt(140),
             }
-
 
            $.ajax({
                 url: '/Elevators/Create',
