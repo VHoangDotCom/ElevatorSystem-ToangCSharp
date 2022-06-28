@@ -20,31 +20,60 @@
         margin: 5px;
     }
 
-    .elevator  .showImages {
+    .elevator .showImages {
         display: flex;
         align-items: center;
         width: 400px;
         height: 250px;
     }
+
     .elevator .btn-delete {
-           cursor: pointer;
-           width: 20px;
-           height: 20px;
-           border-radius: 50%;
-           position: absolute;
-           background: black;
-           text-align: center;
-           color: white;
-           line-height: 20px;   
-           font-size: 20px;
-           top: -5px;
-           right: -5px;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        background: black;
+        text-align: center;
+        color: white;
+        line-height: 20px;
+        font-size: 20px;
+        top: -5px;
+        right: -5px;
     }
-    .elevator .btn-create{
+
+    .elevator .btn-create {
         border: none;
         padding: 5px;
     }
-    
+
+    .elevator li {
+        list-style:none;
+        background: #ccc;
+        border-radius: 2px;
+        font-size:13px;
+        margin :2px;
+        cursor:  pointer;
+        padding: 2px;
+    }
+    .container-tag  *{
+        margin: 0;
+        padding: 0;
+    }
+    .elevator container-tag li span {
+        cursor: pointer;
+        width: 10px;
+        height: 10px;
+        background: white;
+        border-radius: 50%;
+    }
+    .elevator .container-tag input {
+        width: 100px;
+        border:none;
+    }
+    .elevator .container-tag input:focus {
+         outline: none;
+     }
 </style>
 
 <main id="main" class="main">
@@ -108,11 +137,17 @@
         <div class="form-group row">
             <div class="col-md-4">
                 <span class="my-2">Slug</span>
-                <input placeholder="Slug" id="slug" class=" form-control" />
+                 <input placeholder="Slug" id="slug"  class="form-control" />
             </div>
             <div class="col-md-4">
                 <span class="my-2">Tag</span>
-                <input placeholder="Tag" id="tag" class="form-control" />
+                <div class="d-flex form-control container-tag">
+                    <ul class="  d-flex showTag">
+                    </ul>
+                    <input placeholder="" id="tag" />
+                </div>
+              
+               
             </div>
             <div class="col-md-4">
                 <span class="my-2">CregoryId</span>
@@ -131,12 +166,13 @@
         </div>
         <div class="form-group row">
             <div>
-                <button class="btn-success btn-create" onclick="submitDataElevator()" >Create</button>
+                <button class="btn-success btn-create" onclick="submitDataElevator()">Create</button>
             </div>
         </div>
     </div>
 
 </main>
+
 
 @section Scripts {
     <script>
@@ -145,15 +181,49 @@
             "/Content/Elevator/2087630343_Screenshot_8.png",
             "/Content/Elevator/1469137192_take_feedback.png",
         ];
+      
+        
         var arrayDataString = "";
         $(document).ready(function () {
             var image = $('#dataFile').val();
-            console.log(image)
-
             $('.btn-showFile').click(function () {
                 $('#fileElevator').click();
             });
+
+
+            //Tag
+            $('#tag').keypress(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                var dataTag = $('#tag').val();
+                if (keycode == '13') {
+                    tag.push(dataTag);
+                    showTag();
+                    $('#tag').val("")
+                }
+            });
+
+            //Tag
+
         });
+        //tag
+        var tag = ["HTML", "CSS"];
+       
+        function showTag() {
+            $('.showTag').html("");
+            for (var i = 0; i < tag.length; i++) {
+                $('.showTag').append(
+                    `<li>${tag[i]} <span onclick="deleteTag(${i})" >&times;</span></li>`
+                )
+            }
+        }
+
+        function deleteTag(i) {
+            tag.splice(i, 1);
+            showTag()
+        }
+        //tag
+
+
         function showImages() {
             if (arrayData.length != 0) {
                 var htmlString = "";
@@ -179,6 +249,8 @@
             showImages()
         }
 
+
+
         function addFile() {
             var fileUpload = $('#fileElevator').get(0);
             var files = fileUpload.files;
@@ -200,7 +272,7 @@
             });
         }
         function submitDataElevator() {
-            showImages()
+
             var data = {
                 "Name": $('#name').val(),
                 "SKU": $('#sku').val(),
@@ -216,7 +288,7 @@
                 "Tag": $('#tag').val(),
                 "CategoryID": parseInt(140),
             }
-            
+
 
            $.ajax({
                 url: '/Elevators/Create',
@@ -233,6 +305,8 @@
                 }
             });
         }
+
+
 
     </script>
 }

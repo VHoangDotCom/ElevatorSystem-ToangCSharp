@@ -31,7 +31,6 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
         [HttpPost]
         public IHttpActionResult Register(RegisterRequest request)
         {
-
             var user = new ApplicationUser()
             {
                 UserName = request.Username,
@@ -84,7 +83,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             return null;
         }
        
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user")]
         [HttpPut]
         [Route("api/updateProfile")]
         public Object UpdateProfile(ApplicationUser applicationUser)
@@ -101,11 +100,11 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                 user.City = applicationUser.City;
                 user.Country = applicationUser.Country;
                 user.Company = applicationUser.Company;
+                user.PhoneNumber = applicationUser.PhoneNumber;
                 var result = userManager.Update(user);
                 return new
                 {
                     data = result,
-
                 };
 
             }
