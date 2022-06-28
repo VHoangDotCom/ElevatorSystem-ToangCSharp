@@ -183,7 +183,6 @@
                                                        new SelectListItem {Value = "1", Text="Available"},
                                                        new SelectListItem {Value = "2", Text="Upgrading"},
                                                        new SelectListItem { Value = "3", Text = "Out of date" },
-
                                                    },
                                              htmlAttributes: new { @class = "form-select", @id = "floatingStatus" })
                                             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
