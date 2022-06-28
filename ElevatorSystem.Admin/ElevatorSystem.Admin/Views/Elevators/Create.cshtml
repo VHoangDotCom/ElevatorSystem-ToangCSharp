@@ -1,15 +1,8 @@
 ﻿@model ElevatorSystem.Admin.Models.Entity.Elevator
-<<<<<<< HEAD
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-=======
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
->>>>>>> origin
 <style>
     .elevator .showImages {
         width: 400px;
@@ -27,7 +20,7 @@
         margin: 5px;
     }
 
-    .elevator  .showImages {
+    .elevator .showImages {
         display: flex;
         align-items: center;
         width: 400px;
@@ -167,14 +160,14 @@
                                     <div class="col-md-4">
                                         @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
                                         <div class="input-group mb-3">
-                                            @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Capacity" } })
+                                            @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Capacity", @style = "height: 58px;" } })
                                             <span class="input-group-text">lbs</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating">
 
-                                            @Html.EditorFor(model => model.MaxPerson, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Maximum people" } })
+                                            @Html.EditorFor(model => model.MaxPerson, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Maximum people", @style = "height: 58px;" } })
                                             @Html.ValidationMessageFor(model => model.MaxPerson, "", new { @class = "text-danger" })
                                             @Html.LabelFor(model => model.MaxPerson, htmlAttributes: new { @for = "floatingName" })
                                         </div>
@@ -186,7 +179,7 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Speed per time</span>
                                             @*<input type="text" class="form-control" placeholder="Enter Speed" aria-label="Amount (to the nearest dollar)">*@
-                                            @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Speed" } })
+                                            @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Speed", @style = "height: 58px;" } })
                                             <span class="input-group-text">(m/s)</span>
                                         </div>
                                     </div>
@@ -195,50 +188,35 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">$</span>
                                             @*<input type="text" class="form-control" placeholder="Enter Price" aria-label="Amount (to the nearest dollar)">*@
-                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Price" } })
+                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Price", @style = "height: 58px;" } })
                                             <span class="input-group-text">.00</span>
                                         </div>
                                     </div>
 
-                                    @* <div class="col-md-4">
-                                            <div class="form-floating container-tag">
-                                                <ul class="  d-flex showTag">
-                                                </ul>
-                                                @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control ", @id = "floatingName tag", @placeholder = "Tag" } })
-                                                @Html.ValidationMessageFor(model => model.Tag, "", new { @class = "text-danger" })
-                                                @Html.LabelFor(model => model.Tag, htmlAttributes: new { @for = "floatingName" })
-                                            </div>
-                                        </div>*@
                                     <div class="col-md-4">
-                                        <span class="my-2">Tag</span>
-                                        <div class="d-flex form-control container-tag">
-                                            <ul class="  d-flex showTag">
+                                        <div class="form-floating container-tag">
+                                            <ul class="d-flex showTag">
                                             </ul>
-                                            <input placeholder="" id="tag" />
+                                            @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control ", @id = "floatingName tag", @placeholder = "Tag", @style = "height: 58px;" } })
+                                            @Html.ValidationMessageFor(model => model.Tag, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.Tag, htmlAttributes: new { @for = "floatingName" })
                                         </div>
-
-
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
                                     <div class="col-8">
                                         <div class="form-floating">
-
-                                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Elevator Location", @style = "height: 100px;" } })
+                                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Elevator Location", @style = "height: 58px;" } })
                                             @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
                                             @Html.LabelFor(model => model.Location, htmlAttributes: new { @for = "floatingTextarea" })
                                         </div>
                                     </div>
-
-
                                     <div class="col-4">
-                                        <div class="row mb-3">
-                                            <label for="inputNumber" class="row-cols-sm-1 col-form-label">Thumbnails</label>
-                                            <div class="col-sm-10">
-                                                @Html.EditorFor(model => model.Thumbnails, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Thumbnails" } })
-                                                @*<input class="form-control" type="file" name="ThumbnailFile" />*@
-                                            </div>
+                                        <div class="form-floating">
+                                            @Html.EditorFor(model => model.Thumbnails, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Thumbnails", @style = "height: 58px;" } })
+                                            @Html.LabelFor(model => model.Thumbnails, htmlAttributes: new { @for = "floatingTextarea" })
+                                            @*<input class="form-control" type="file" name="ThumbnailFile" />*@
                                         </div>
                                     </div>
                                 </div>
@@ -247,14 +225,14 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">Elevator description</h5>
-                                            @Html.TextAreaFor(model => model.Description, new { @class = "tinymce-editor" })
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Description" } })
                                         </div>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group text-center">
-                                    <button title="Confirm Submit" type="submit" value="Create" class="btn btn-primary">Submit</button>
+                                    <button title="Confirm Submit" type="button" value="Create" onclick="submitDataElevator()" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                     <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Elevators")'">Back to list</button>
                                 </div>
@@ -271,7 +249,8 @@
 
 </main><!-- End #main -->
 
-    <script type="text/javascript">
+@section Scripts {
+    <script>
         var arrayData = [
             "/Content/Elevator/1755437800_Screenshot_6.png",
             "/Content/Elevator/2087630343_Screenshot_8.png",
@@ -281,6 +260,7 @@
 
         var arrayDataString = "";
         $(document).ready(function () {
+            alert(1);
             var image = $('#dataFile').val();
             $('.btn-showFile').click(function () {
                 $('#fileElevator').click();
@@ -303,7 +283,6 @@
         });
         //tag
         var tag = ["HTML", "CSS"];
-
         function showTag() {
             $('.showTag').html("");
             for (var i = 0; i < tag.length; i++) {
@@ -326,7 +305,7 @@
                 $('.showImages').html("")
                 for (var i = 0; i < arrayData.length; i++) {
                     htmlString += '<div class="image-item">'
-                    htmlString += '<div class="btn-delete" onclick="deleteImage(' + i +')"> x'
+                    htmlString += '<div class="btn-delete" onclick="deleteImage(' + i + ')"> x'
                     htmlString += '</div>'
                     htmlString += `<img  style="width: 200px; height: 200px; " src=${arrayData[i]} />`
                     htmlString += '</div>'
@@ -335,69 +314,69 @@
                 }
                 $('#dataFile').val("");
                 $('#dataFile').val(arrayDataString);
-@* $("#dataFile").val(arrDataString);*@}
-        }
-        function deleteImage(i) {
-            arrayData.splice(i, 1);
-            arrDataString = ""
-            showImages()
-        }
 
-
-
-        function addFile() {
-            var fileUpload = $('#fileElevator').get(0);
-            var files = fileUpload.files;
-            var formData = new FormData();
-            formData.append('file', files[0]);
-            $.ajax({
-                url: '/Elevators/UploadImages',
-                type: 'POST',
-                contentType: false,
-                processData: false,
-                data: formData,
-                success: function (response) {
-                    arrayData.push(response)
-                    showImages()
-                },
-                error: function (msg) {
-                    alert("Error: " + msg);
-                }
-            });
-        }
-        function submitDataElevator() {
-            var data = {
-                "Name": $('#name').val(),
-                "SKU": $('#sku').val(),
-                "Status": $('#status').val(),
-                "Description": $('#description').val(),
-                "Thumbnails": $('#dataFile').val(),
-                "Capacity": $('#capacity').val(),
-                "Speed": $('#speed').val(),
-                "Price": $('#price').val(),
-                "MaxPerson": $('#maxPersion').val(),
-                "Location": $('#localtion').val(),
-                "Slug": $('#slug').val(),
-                "Tag": $('#tag').val(),
-                "CategoryID": parseInt(140),
+            }
+            function deleteImage(i) {
+                arrayData.splice(i, 1);
+                arrDataString = ""
+                showImages()
             }
 
-           $.ajax({
-                url: '/Elevators/Create',
-               type: 'POST',
 
-               contentType: "application/json",
-               dataType: 'json',
-               data: JSON.stringify(data),
-                success: function (response) {
-                    console.log(response)
-                },
-                error: function (msg) {
-                    alert("Error: " + msg);
+
+            function addFile() {
+                var fileUpload = $('#fileElevator').get(0);
+                var files = fileUpload.files;
+                var formData = new FormData();
+                formData.append('file', files[0]);
+                $.ajax({
+                    url: '/Elevators/UploadImages',
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+                        arrayData.push(response)
+                        showImages()
+                    },
+                    error: function (msg) {
+                        alert("Error: " + msg);
+                    }
+                });
+            }
+            function submitDataElevator(e) {
+                e.prevetDefault();
+                var data = {
+                    "Name": $('#name').val(),
+                    "SKU": $('#sku').val(),
+                    "Status": $('#status').val(),
+                    "Description": $('#description').val(),
+                    "Thumbnails": $('#dataFile').val(),
+                    "Capacity": $('#capacity').val(),
+                    "Speed": $('#speed').val(),
+                    "Price": $('#price').val(),
+                    "MaxPerson": $('#maxPersion').val(),
+                    "Location": $('#localtion').val(),
+                    "Slug": $('#slug').val(),
+                    "Tag": $('#tag').val(),
+                    "CategoryID": parseInt(140),
                 }
-            });
-        }
 
+                $.ajax({
+                    url: '/Elevators/Create',
+                    type: 'POST',
 
-
+                    contentType: "application/json",
+                    dataType: 'json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    error: function (msg) {
+                        alert("Error: " + msg);
+                    }
+                });
+            }
     </script>
+    }
+    

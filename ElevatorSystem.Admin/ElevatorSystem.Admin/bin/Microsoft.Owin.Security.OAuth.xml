@@ -4,47 +4,6 @@
         <name>Microsoft.Owin.Security.OAuth</name>
     </assembly>
     <members>
-        <member name="T:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestCustomExtension">
-            <summary>
-            Data object used by TokenEndpointRequest which contains parameter information when the "grant_type" is unrecognized.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestCustomExtension.Parameters">
-            <summary>
-            The parameter information when the "grant_type" is unrecognized.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestRefreshToken">
-            <summary>
-            Data object used by TokenEndpointRequest when the "grant_type" parameter is "refresh_token".
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestRefreshToken.RefreshToken">
-            <summary>
-            The value passed to the Token endpoint in the "refresh_token" parameter
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestRefreshToken.Scope">
-            <summary>
-            The value passed to the Token endpoint in the "scope" parameter
-            </summary>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestAuthorizationCode">
-            <summary>
-            Data object used by TokenEndpointRequest when the "grant_type" is "authorization_code".
-            </summary>    
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestAuthorizationCode.Code">
-            <summary>
-            The value passed to the Token endpoint in the "code" parameter
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestAuthorizationCode.RedirectUri">
-            <summary>
-            The value passed to the Token endpoint in the "redirect_uri" parameter. This MUST be provided by the caller
-            if the original visit to the Authorize endpoint contained a "redirect_uri" parameter.
-            </summary>
-        </member>
         <member name="T:Microsoft.Owin.Security.OAuth.Messages.AuthorizeEndpointRequest">
             <summary>
             Data object representing the information contained in the query string of an Authorize endpoint request.
@@ -85,7 +44,7 @@
         </member>
         <member name="P:Microsoft.Owin.Security.OAuth.Messages.AuthorizeEndpointRequest.State">
             <summary>
-            The "scope" query string parameter of the Authorize request. May be absent if the client does not require state to be 
+            The "state" query string parameter of the Authorize request. May be absent if the client does not require state to be 
             included when returning to the RedirectUri.
             </summary>
         </member>
@@ -197,12 +156,53 @@
             See also http://tools.ietf.org/html/rfc6749#section-4.5
             </summary>
         </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestAuthorizationCode">
+            <summary>
+            Data object used by TokenEndpointRequest when the "grant_type" is "authorization_code".
+            </summary>    
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestAuthorizationCode.Code">
+            <summary>
+            The value passed to the Token endpoint in the "code" parameter
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestAuthorizationCode.RedirectUri">
+            <summary>
+            The value passed to the Token endpoint in the "redirect_uri" parameter. This MUST be provided by the caller
+            if the original visit to the Authorize endpoint contained a "redirect_uri" parameter.
+            </summary>
+        </member>
         <member name="T:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestClientCredentials">
             <summary>
             Data object used by TokenEndpointRequest when the "grant_type" is "client_credentials".
             </summary>    
         </member>
         <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestClientCredentials.Scope">
+            <summary>
+            The value passed to the Token endpoint in the "scope" parameter
+            </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestCustomExtension">
+            <summary>
+            Data object used by TokenEndpointRequest which contains parameter information when the "grant_type" is unrecognized.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestCustomExtension.Parameters">
+            <summary>
+            The parameter information when the "grant_type" is unrecognized.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestRefreshToken">
+            <summary>
+            Data object used by TokenEndpointRequest when the "grant_type" parameter is "refresh_token".
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestRefreshToken.RefreshToken">
+            <summary>
+            The value passed to the Token endpoint in the "refresh_token" parameter
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequestRefreshToken.Scope">
             <summary>
             The value passed to the Token endpoint in the "scope" parameter
             </summary>
@@ -226,6 +226,26 @@
             <summary>
             The value passed to the Token endpoint in the "scope" parameter
             </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerMiddleware">
+            <summary>
+            Authorization Server middleware component which is added to an OWIN pipeline. This class is not
+            created by application code directly, instead it is added by calling the the IAppBuilder UseOAuthAuthorizationServer 
+            extension method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions)">
+            <summary>
+            Authorization Server middleware component which is added to an OWIN pipeline. This constructor is not
+            called by application code directly, instead it is added by calling the the IAppBuilder UseOAuthAuthorizationServer 
+            extension method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerMiddleware.CreateHandler">
+            <summary>
+            Called by the AuthenticationMiddleware base class to create a per-request handler. 
+            </summary>
+            <returns>A new instance of the request handler</returns>
         </member>
         <member name="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions">
             <summary>
@@ -342,26 +362,6 @@
             See also, http://openid.net/specs/oauth-v2-form-post-response-mode-1_0.html
             </summary>
         </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerMiddleware">
-            <summary>
-            Authorization Server middleware component which is added to an OWIN pipeline. This class is not
-            created by application code directly, instead it is added by calling the the IAppBuilder UseOAuthAuthorizationServer 
-            extension method.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions)">
-            <summary>
-            Authorization Server middleware component which is added to an OWIN pipeline. This constructor is not
-            called by application code directly, instead it is added by calling the the IAppBuilder UseOAuthAuthorizationServer 
-            extension method.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerMiddleware.CreateHandler">
-            <summary>
-            Called by the AuthenticationMiddleware base class to create a per-request handler. 
-            </summary>
-            <returns>A new instance of the request handler</returns>
-        </member>
         <member name="T:Microsoft.Owin.Security.OAuth.OAuthBearerAuthenticationMiddleware">
             <summary>
             Bearer authentication middleware component which is added to an OWIN pipeline. This class is not
@@ -446,57 +446,6 @@
             Default value for AuthenticationType property in the OAuthBearerAuthenticationOptions and
             OAuthAuthorizationServerOptions.
             </summary>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext">
-            <summary>
-            Provides context information used at the end of a token-endpoint-request.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.AuthenticationTicket,Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequest,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext"/> class
-            </summary>
-            <param name="context"></param>
-            <param name="options"></param>
-            <param name="ticket"></param>
-            <param name="tokenEndpointRequest"></param>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.Identity">
-            <summary>
-            Gets the identity of the resource owner.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.Properties">
-            <summary>
-            Dictionary containing the state of the authentication session.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.AccessToken">
-            <summary>
-            The issued Access-Token
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.TokenEndpointRequest">
-            <summary>
-            Gets information about the token endpoint request. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.TokenIssued">
-            <summary>
-            Gets whether or not the token should be issued.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.AdditionalResponseParameters">
-            <summary>
-            Enables additional values to be appended to the token response.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.Issue(System.Security.Claims.ClaimsIdentity,Microsoft.Owin.Security.AuthenticationProperties)">
-            <summary>
-            Issues the token.
-            </summary>
-            <param name="identity"></param>
-            <param name="properties"></param>
         </member>
         <member name="T:Microsoft.Owin.Security.OAuth.BaseValidatingClientContext">
             <summary>
@@ -619,66 +568,6 @@
             </summary>
             <param name="identity">Assigned to the Ticket.Identity property</param>
             <returns>True if the validation has taken effect.</returns>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext">
-            <summary>
-            Provides context information when processing an Authorization Response
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.AuthenticationTicket,Microsoft.Owin.Security.OAuth.Messages.AuthorizeEndpointRequest,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext"/> class
-            </summary>
-            <param name="context"></param>
-            <param name="options"></param>
-            <param name="ticket"></param>
-            <param name="tokenEndpointRequest"></param>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.Identity">
-            <summary>
-            Gets the identity of the resource owner.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.Properties">
-            <summary>
-            Dictionary containing the state of the authentication session.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.AuthorizeEndpointRequest">
-            <summary>
-            Gets information about the authorize endpoint request. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.AdditionalResponseParameters">
-            <summary>
-            Enables additional values to be appended to the token response.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.AccessToken">
-            <summary>
-            The serialized Access-Token. Depending on the flow, it can be null.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.AuthorizationCode">
-            <summary>
-            The created Authorization-Code. Depending on the flow, it can be null.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizeEndpointContext">
-            <summary>
-            An event raised after the Authorization Server has processed the request, but before it is passed on to the web application.
-            Calling RequestCompleted will prevent the request from passing on to the web application.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizeEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.OAuth.Messages.AuthorizeEndpointRequest)">
-            <summary>
-            Creates an instance of this context
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizeEndpointContext.AuthorizeRequest">
-            <summary>
-            Gets OAuth authorization request data.
-            </summary>
         </member>
         <member name="T:Microsoft.Owin.Security.OAuth.IOAuthAuthorizationServerProvider">
             <summary>
@@ -845,6 +734,35 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider">
+            <summary>
+            Specifies callback methods which the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthBearerAuthenticationMiddleware"></see> invokes to enable developer control over the authentication process. />
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider.RequestToken(Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext)">
+            <summary>
+            Invoked before the <see cref="T:System.Security.Claims.ClaimsIdentity"/> is created. Gives the application an 
+            opportunity to find the identity from a different location, adjust, or reject the token.
+            </summary>
+            <param name="context">Contains the token string.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the completed operation.</returns>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider.ValidateIdentity(Microsoft.Owin.Security.OAuth.OAuthValidateIdentityContext)">
+            <summary>
+            Called each time a request identity has been validated by the middleware. By implementing this method the
+            application may alter or reject the identity which has arrived with the request.
+            </summary>
+            <param name="context">Contains information about the login session as well as the user <see cref="T:System.Security.Claims.ClaimsIdentity"/>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the completed operation.</returns>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider.ApplyChallenge(Microsoft.Owin.Security.OAuth.OAuthChallengeContext)">
+            <summary>
+            Called each time a challenge is being sent to the client. By implementing this method the application
+            may modify the challenge as needed.
+            </summary>
+            <param name="context">Contains the default challenge.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the completed operation.</returns>
+        </member>
         <member name="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerProvider">
             <summary>
             Default implementation of IOAuthAuthorizationServerProvider used by Authorization
@@ -983,14 +901,12 @@
             to issue access or refresh tokens. This call may also be used in order to add additional 
             response parameters to the authorization endpoint's response.
             </summary>
-            <param name="context">The context of the event carries information in and results out.</param>
             <returns>Task to enable asynchronous execution</returns>
         </member>
         <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerProvider.OnTokenEndpointResponse">
             <summary>
             Called before the TokenEndpoint redirects its response to the caller. 
             </summary>
-            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerProvider.MatchEndpoint(Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext)">
@@ -1152,6 +1068,62 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizeEndpointContext">
+            <summary>
+            An event raised after the Authorization Server has processed the request, but before it is passed on to the web application.
+            Calling RequestCompleted will prevent the request from passing on to the web application.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizeEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.OAuth.Messages.AuthorizeEndpointRequest)">
+            <summary>
+            Creates an instance of this context
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizeEndpointContext.AuthorizeRequest">
+            <summary>
+            Gets OAuth authorization request data.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext">
+            <summary>
+            Provides context information when processing an Authorization Response
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.AuthenticationTicket,Microsoft.Owin.Security.OAuth.Messages.AuthorizeEndpointRequest,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext"/> class
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.Identity">
+            <summary>
+            Gets the identity of the resource owner.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.Properties">
+            <summary>
+            Dictionary containing the state of the authentication session.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.AuthorizeEndpointRequest">
+            <summary>
+            Gets information about the authorize endpoint request. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.AdditionalResponseParameters">
+            <summary>
+            Enables additional values to be appended to the token response.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.AccessToken">
+            <summary>
+            The serialized Access-Token. Depending on the flow, it can be null.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthAuthorizationEndpointResponseContext.AuthorizationCode">
+            <summary>
+            The created Authorization-Code. Depending on the flow, it can be null.
+            </summary>
+        </member>
         <member name="T:Microsoft.Owin.Security.OAuth.OAuthBearerAuthenticationProvider">
             <summary>
             OAuth bearer token middleware provider
@@ -1228,166 +1200,6 @@
             <param name="options"></param>
             <param name="ticket"></param>
         </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext">
-            <summary>
-            Provides context information used when granting an OAuth refresh token.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.AuthenticationTicket,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext"/> class
-            </summary>
-            <param name="context"></param>
-            <param name="options"></param>
-            <param name="ticket"></param>
-            <param name="clientId"></param>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext.ClientId">
-            <summary>
-            The OAuth client id.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext">
-            <summary>
-            Specifies the HTTP request header for the bearer authentication scheme.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext.#ctor(Microsoft.Owin.IOwinContext,System.String)">
-            <summary>
-            Initializes a new <see cref="T:Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext"/>
-            </summary>
-            <param name="context">OWIN environment</param>
-            <param name="token">The authorization header value.</param>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext.Token">
-            <summary>
-            The authorization header value
-            </summary>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext">
-            <summary>
-            Contains information about the client credentials.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.IReadableStringCollection)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext"/> class
-            </summary>
-            <param name="context"></param>
-            <param name="options"></param>
-            <param name="parameters"></param>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.Parameters">
-            <summary>
-            Gets the set of form parameters from the request.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.Validated(System.String)">
-            <summary>
-            Sets the client id and marks the context as validated by the application.
-            </summary>
-            <param name="clientId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.TryGetBasicCredentials(System.String@,System.String@)">
-            <summary>
-            Extracts HTTP basic authentication credentials from the HTTP authenticate header.
-            </summary>
-            <param name="clientId"></param>
-            <param name="clientSecret"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.TryGetFormCredentials(System.String@,System.String@)">
-            <summary>
-            Extracts forms authentication credentials from the HTTP request body.
-            </summary>
-            <param name="clientId"></param>
-            <param name="clientSecret"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext">
-            <summary>
-            Provides context information used when determining the OAuth flow type based on the request.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext"/> class
-            </summary>
-            <param name="context"></param>
-            <param name="options"></param>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.IsAuthorizeEndpoint">
-            <summary>
-            Gets whether or not the endpoint is an OAuth authorize endpoint.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.IsTokenEndpoint">
-            <summary>
-            Gets whether or not the endpoint is an OAuth token endpoint.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.MatchesAuthorizeEndpoint">
-            <summary>
-            Sets the endpoint type to authorize endpoint.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.MatchesTokenEndpoint">
-            <summary>
-            Sets the endpoint type to token endpoint.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.MatchesNothing">
-            <summary>
-            Sets the endpoint type to neither authorize nor token.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext">
-            <summary>
-            Provides context information used when processing an OAuth token request.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.AuthenticationTicket,Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequest)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext"/> class
-            </summary>
-            <param name="context"></param>
-            <param name="options"></param>
-            <param name="ticket"></param>
-            <param name="tokenEndpointRequest"></param>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.Identity">
-            <summary>
-            Gets the identity of the resource owner.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.Properties">
-            <summary>
-            Dictionary containing the state of the authentication session.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.TokenEndpointRequest">
-            <summary>
-            Gets information about the token endpoint request. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.TokenIssued">
-            <summary>
-            Gets whether or not the token should be issued.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.AdditionalResponseParameters">
-            <summary>
-            Enables additional values to be appended to the token response.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.Issue(System.Security.Claims.ClaimsIdentity,Microsoft.Owin.Security.AuthenticationProperties)">
-            <summary>
-            Issues the token.
-            </summary>
-            <param name="identity"></param>
-            <param name="properties"></param>
-        </member>
         <member name="T:Microsoft.Owin.Security.OAuth.OAuthGrantClientCredentialsContext">
             <summary>
             Provides context information used in handling an OAuth client credentials grant.
@@ -1442,6 +1254,208 @@
             Gets a list of additional parameters from the token request.
             </summary>
         </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext">
+            <summary>
+            Provides context information used when granting an OAuth refresh token.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.AuthenticationTicket,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext"/> class
+            </summary>
+            <param name="context"></param>
+            <param name="options"></param>
+            <param name="ticket"></param>
+            <param name="clientId"></param>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext.ClientId">
+            <summary>
+            The OAuth client id.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext">
+            <summary>
+            Provides context information used in handling an OAuth resource owner grant.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,System.String,System.String,System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext"/> class
+            </summary>
+            <param name="context"></param>
+            <param name="options"></param>
+            <param name="clientId"></param>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <param name="scope"></param>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.ClientId">
+            <summary>
+            OAuth client id.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.UserName">
+            <summary>
+            Resource owner username.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.Password">
+            <summary>
+            Resource owner password.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.Scope">
+            <summary>
+            List of scopes allowed by the resource owner.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext">
+            <summary>
+            Provides context information used when determining the OAuth flow type based on the request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext"/> class
+            </summary>
+            <param name="context"></param>
+            <param name="options"></param>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.IsAuthorizeEndpoint">
+            <summary>
+            Gets whether or not the endpoint is an OAuth authorize endpoint.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.IsTokenEndpoint">
+            <summary>
+            Gets whether or not the endpoint is an OAuth token endpoint.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.MatchesAuthorizeEndpoint">
+            <summary>
+            Sets the endpoint type to authorize endpoint.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.MatchesTokenEndpoint">
+            <summary>
+            Sets the endpoint type to token endpoint.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthMatchEndpointContext.MatchesNothing">
+            <summary>
+            Sets the endpoint type to neither authorize nor token.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext">
+            <summary>
+            Specifies the HTTP request header for the bearer authentication scheme.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext.#ctor(Microsoft.Owin.IOwinContext,System.String)">
+            <summary>
+            Initializes a new <see cref="T:Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext"/>
+            </summary>
+            <param name="context">OWIN environment</param>
+            <param name="token">The authorization header value.</param>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext.Token">
+            <summary>
+            The authorization header value
+            </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext">
+            <summary>
+            Provides context information used when processing an OAuth token request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.AuthenticationTicket,Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext"/> class
+            </summary>
+            <param name="context"></param>
+            <param name="options"></param>
+            <param name="ticket"></param>
+            <param name="tokenEndpointRequest"></param>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.Identity">
+            <summary>
+            Gets the identity of the resource owner.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.Properties">
+            <summary>
+            Dictionary containing the state of the authentication session.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.TokenEndpointRequest">
+            <summary>
+            Gets information about the token endpoint request. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.TokenIssued">
+            <summary>
+            Gets whether or not the token should be issued.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.AdditionalResponseParameters">
+            <summary>
+            Enables additional values to be appended to the token response.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext.Issue(System.Security.Claims.ClaimsIdentity,Microsoft.Owin.Security.AuthenticationProperties)">
+            <summary>
+            Issues the token.
+            </summary>
+            <param name="identity"></param>
+            <param name="properties"></param>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext">
+            <summary>
+            Provides context information used at the end of a token-endpoint-request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.Security.AuthenticationTicket,Microsoft.Owin.Security.OAuth.Messages.TokenEndpointRequest,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext"/> class
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.Identity">
+            <summary>
+            Gets the identity of the resource owner.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.Properties">
+            <summary>
+            Dictionary containing the state of the authentication session.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.AccessToken">
+            <summary>
+            The issued Access-Token
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.TokenEndpointRequest">
+            <summary>
+            Gets information about the token endpoint request. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.TokenIssued">
+            <summary>
+            Gets whether or not the token should be issued.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.AdditionalResponseParameters">
+            <summary>
+            Enables additional values to be appended to the token response.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext.Issue(System.Security.Claims.ClaimsIdentity,Microsoft.Owin.Security.AuthenticationProperties)">
+            <summary>
+            Issues the token.
+            </summary>
+            <param name="identity"></param>
+            <param name="properties"></param>
+        </member>
         <member name="T:Microsoft.Owin.Security.OAuth.OAuthValidateAuthorizeRequestContext">
             <summary>
             Provides context information used in validating an OAuth authorization request.
@@ -1465,6 +1479,47 @@
             <summary>
             Gets data about the OAuth client. 
             </summary>
+        </member>
+        <member name="T:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext">
+            <summary>
+            Contains information about the client credentials.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,Microsoft.Owin.IReadableStringCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext"/> class
+            </summary>
+            <param name="context"></param>
+            <param name="options"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="P:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.Parameters">
+            <summary>
+            Gets the set of form parameters from the request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.Validated(System.String)">
+            <summary>
+            Sets the client id and marks the context as validated by the application.
+            </summary>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.TryGetBasicCredentials(System.String@,System.String@)">
+            <summary>
+            Extracts HTTP basic authentication credentials from the HTTP authenticate header.
+            </summary>
+            <param name="clientId"></param>
+            <param name="clientSecret"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext.TryGetFormCredentials(System.String@,System.String@)">
+            <summary>
+            Extracts forms authentication credentials from the HTTP request body.
+            </summary>
+            <param name="clientId"></param>
+            <param name="clientSecret"></param>
+            <returns></returns>
         </member>
         <member name="T:Microsoft.Owin.Security.OAuth.OAuthValidateClientRedirectUriContext">
             <summary>
@@ -1510,71 +1565,6 @@
             <param name="context"></param>
             <param name="options"></param>
             <param name="ticket"></param>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider">
-            <summary>
-            Specifies callback methods which the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthBearerAuthenticationMiddleware"></see> invokes to enable developer control over the authentication process. />
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider.RequestToken(Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext)">
-            <summary>
-            Invoked before the <see cref="T:System.Security.Claims.ClaimsIdentity"/> is created. Gives the application an 
-            opportunity to find the identity from a different location, adjust, or reject the token.
-            </summary>
-            <param name="context">Contains the token string.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the completed operation.</returns>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider.ValidateIdentity(Microsoft.Owin.Security.OAuth.OAuthValidateIdentityContext)">
-            <summary>
-            Called each time a request identity has been validated by the middleware. By implementing this method the
-            application may alter or reject the identity which has arrived with the request.
-            </summary>
-            <param name="context">Contains information about the login session as well as the user <see cref="T:System.Security.Claims.ClaimsIdentity"/>.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the completed operation.</returns>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider.ApplyChallenge(Microsoft.Owin.Security.OAuth.OAuthChallengeContext)">
-            <summary>
-            Called each time a challenge is being sent to the client. By implementing this method the application
-            may modify the challenge as needed.
-            </summary>
-            <param name="context">Contains the default challenge.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the completed operation.</returns>
-        </member>
-        <member name="T:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext">
-            <summary>
-            Provides context information used in handling an OAuth resource owner grant.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions,System.String,System.String,System.String,System.Collections.Generic.IList{System.String})">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext"/> class
-            </summary>
-            <param name="context"></param>
-            <param name="options"></param>
-            <param name="clientId"></param>
-            <param name="userName"></param>
-            <param name="password"></param>
-            <param name="scope"></param>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.ClientId">
-            <summary>
-            OAuth client id.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.UserName">
-            <summary>
-            Resource owner username.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.Password">
-            <summary>
-            Resource owner password.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext.Scope">
-            <summary>
-            List of scopes allowed by the resource owner.
-            </summary>
         </member>
         <member name="T:Microsoft.Owin.Security.OAuth.OAuthValidateTokenRequestContext">
             <summary>

@@ -10,6 +10,8 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ElevatorSystem.Admin.Controllers.APIClient
 {
@@ -27,11 +29,10 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             roleManager = new RoleManager<IdentityRole>(roleStore);
         }
 
-        [Route("api/Register")]
-        [HttpPost]
+        [System.Web.Http.Route("api/Register")]
+        [System.Web.Http.HttpPost]
         public IHttpActionResult Register(RegisterRequest request)
         {
-
             var user = new ApplicationUser()
             {
                 UserName = request.Username,
@@ -46,8 +47,8 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             return Ok(result);
         }
 
-        [Route("api/Login")]
-        [HttpPost]
+        [System.Web.Http.Route("api/Login")]
+        [System.Web.Http.HttpPost]
         public IHttpActionResult Login(LoginRequest request)
         {
             var result = userManager.Find(request.UserName, request.Password);
@@ -63,9 +64,9 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
         }
 
 
-        [Authorize(Roles = "user")]
-        [HttpPost]
-        [Route("api/Profile")]
+        [System.Web.Http.Authorize(Roles = "user")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/Profile")]
         public Object GetName2()
         {
             var identity = User.Identity as ClaimsIdentity;
@@ -84,9 +85,9 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             return null;
         }
        
-        [Authorize(Roles = "admin")]
-        [HttpPut]
-        [Route("api/updateProfile")]
+        [System.Web.Http.Authorize(Roles = "user")]
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.Route("api/updateProfile")]
         public Object UpdateProfile(ApplicationUser applicationUser)
         {
             var identity = User.Identity as ClaimsIdentity;
@@ -101,11 +102,11 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                 user.City = applicationUser.City;
                 user.Country = applicationUser.Country;
                 user.Company = applicationUser.Company;
+                user.PhoneNumber = applicationUser.PhoneNumber;
                 var result = userManager.Update(user);
                 return new
                 {
                     data = result,
-
                 };
 
             }
