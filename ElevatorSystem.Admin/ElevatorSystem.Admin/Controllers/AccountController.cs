@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ElevatorSystem.Admin.Models;
-
+a
 namespace ElevatorSystem.Admin.Controllers
 {
     [Authorize]
