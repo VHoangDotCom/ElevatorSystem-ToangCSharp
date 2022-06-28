@@ -672,6 +672,7 @@
     <Content Include="Content\assets\vendor\tinymce\README.md" />
     <Content Include="Content\assets\vendor\tinymce\skins\ui\oxide-dark\fonts\tinymce-mobile.woff" />
     <Content Include="Content\assets\vendor\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff" />
+    <None Include="Properties\PublishProfiles\ElevatorSystemDashboard - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
