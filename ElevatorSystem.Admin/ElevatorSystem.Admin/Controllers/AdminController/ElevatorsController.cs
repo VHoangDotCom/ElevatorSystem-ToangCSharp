@@ -73,24 +73,41 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         // POST: Elevators/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /* [HttpPost]
+         [ValidateAntiForgeryToken]
+         public ActionResult Create([Bind(Include = "ID,Name,SKU,Status,Description,Thumbnails,Capacity,Speed,Price,MaxPerson,Location,Slug,Tag,CreatedAt,UpdatedAt,DeletedAt,CategoryID")] Elevator elevator)
+         {
+
+             if (ModelState.IsValid)
+             {
+                 Random rd = new Random();
+                 elevator.SKU = "ELEVATOR00" + rd.Next(1,1000).ToString();
+                 elevator.CreatedAt = DateTime.Today;
+                 db.Elevators.Add(elevator);
+                 db.SaveChanges();
+                 TempData["CreateMessage"] = "Elevator { #" + elevator.ID + "." + elevator.Name + " } has been added to the list !";
+                 return RedirectToAction("Index");
+             }
+
+             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", elevator.CategoryID);
+             return View(elevator);
+         }*/
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,SKU,Status,Description,Thumbnails,Capacity,Speed,Price,MaxPerson,Location,Slug,Tag,CreatedAt,UpdatedAt,DeletedAt,CategoryID")] Elevator elevator)
+        public JsonResult Create(Elevator elevator)
         {
-           
+
             if (ModelState.IsValid)
             {
                 Random rd = new Random();
-                elevator.SKU = "ELEVATOR00" + rd.Next(1,1000).ToString();
-                elevator.CreatedAt = DateTime.Today;
+                elevator.SKU = "ELEVATOR00" + rd.Next(1, 1000).ToString();
+                elevator.CreatedAt = DateTime.Now;
                 db.Elevators.Add(elevator);
                 db.SaveChanges();
-                TempData["CreateMessage"] = "Elevator { #" + elevator.ID + "." + elevator.Name + " } has been added to the list !";
-                return RedirectToAction("Index");
+                return Json(elevator, JsonRequestBehavior.AllowGet);
             }
-
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", elevator.CategoryID);
-            return View(elevator);
+           
+            return Json(elevator, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Elevators/Edit/5
@@ -208,6 +225,15 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 return View(elevator);
             }
           
+        }
+        [HttpPost]
+        public string UploadImages(HttpPostedFileBase file)
+        {
+            Random r = new Random();
+            int num = r.Next();
+
+            file.SaveAs(Server.MapPath("~/Content/Elevator/") + num + "_" + file.FileName);
+            return "/Content/Elevator/" + num + "_" + file.FileName;
         }
 
         protected override void Dispose(bool disposing)

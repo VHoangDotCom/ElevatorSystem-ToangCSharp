@@ -4,16 +4,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    .elevator .showImages {
-        width: 400px;
-        height: 250px;
-        border: 1px solid black;
-        overflow: auto;
+    .elevator {
+        position: absolute;
+        display: none;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.3);
+        width:100%;
+        height: 80vh;
+        top: 0;
+        right: 0;
     }
+        .elevator .showImages {
+            width: 400px;
+            height: 320px;
+            border: 1px solid black;
+         
+            background: white;
+            overflow: auto;
+        }
 
-    .elevator .container-image {
-        position: relative;
-    }
+        .elevator .position-image {
+            width: 400px;
+            height: 250px;
+            position: relative;
+        }
+
+        .elevator .btn-showFile {
+            position: absolute;
+            background: white;
+            padding: 5px;
+            border: 1px solid black;
+            bottom: 10px;
+            right: 10px;
+            z-index: 200;
+        }
+
+        .elevator .container-image {
+            position: relative;
+            margin: 10% 27%;
+        }
 
     .elevator .image-item {
         position: relative;
@@ -42,12 +71,23 @@
         right: -5px;
     }
 
-    .elevator .btn-create {
-        border: none;
-        padding: 5px;
-    }
+        .elevator .btn-closeformFile {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 7px;
+            cursor: pointer;
+            background: white;
+            border: 1px solid black;
+            color: black;
+        }
 
-    .elevator li {
+        .elevator .btn-create {
+            border: none;
+            padding: 5px;
+        }
+
+    .elevator1 li {
         list-style: none;
         background: #ccc;
         border-radius: 2px;
@@ -62,7 +102,7 @@
         padding: 0;
     }
 
-    .elevator container-tag li span {
+    .elevator1 container-tag li span {
         cursor: pointer;
         width: 10px;
         height: 10px;
@@ -70,12 +110,12 @@
         border-radius: 50%;
     }
 
-    .elevator .container-tag input {
+    .elevator1 .container-tag input {
         width: 100px;
         border: none;
     }
 
-        .elevator .container-tag input:focus {
+        .elevator1 .container-tag input:focus {
             outline: none;
         }
 </style>
@@ -109,7 +149,6 @@
                                 <div class="form-group col-sm-12 d-flex">
                                     <div class="col-md-4 ">
                                         <div class="form-floating">
-
                                             @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
                                             @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
                                             <label for="floatingSelect">Category</label>
@@ -118,7 +157,6 @@
 
                                     <div class="col-md-4 ">
                                         <div class="form-floating">
-
                                             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Elevator name" } })
                                             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                             @Html.LabelFor(model => model.Name, htmlAttributes: new { @for = "floatingName" })
@@ -127,7 +165,7 @@
 
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Slug" } })
+                                            @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", @id = "floatingSlug", @placeholder = "Slug" } })
                                             @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
                                             @Html.LabelFor(model => model.Slug, htmlAttributes: new { @for = "floatingName" })
                                         </div>
@@ -138,9 +176,7 @@
                                 <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
                                     <div class="col-md-4">
                                         <div class="form-floating">
-
                                             @Html.DropDownListFor(model => model.Status,
-
                                                    new List<SelectListItem>
                                                    {
                                                        new SelectListItem {Value = "0", Text="Pending"},
@@ -149,25 +185,21 @@
                                                        new SelectListItem { Value = "3", Text = "Out of date" },
 
                                                    },
-
-                                             htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
+                                             htmlAttributes: new { @class = "form-select", @id = "floatingStatus" })
                                             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                                             <label for="floatingSelect">Status</label>
                                         </div>
                                     </div>
-
-
                                     <div class="col-md-4">
                                         @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
                                         <div class="input-group mb-3">
-                                            @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Capacity", @style = "height: 58px;" } })
+                                            @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", @id = "floatingCapacity", @placeholder = "Enter Capacity", @style = "height: 58px;" } })
                                             <span class="input-group-text">lbs</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating">
-
-                                            @Html.EditorFor(model => model.MaxPerson, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Maximum people", @style = "height: 58px;" } })
+                                            @Html.EditorFor(model => model.MaxPerson, new { htmlAttributes = new { @class = "form-control", @id = "floatingMaxPerson", @placeholder = "Maximum people", @style = "height: 58px;" } })
                                             @Html.ValidationMessageFor(model => model.MaxPerson, "", new { @class = "text-danger" })
                                             @Html.LabelFor(model => model.MaxPerson, htmlAttributes: new { @for = "floatingName" })
                                         </div>
@@ -179,7 +211,7 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Speed per time</span>
                                             @*<input type="text" class="form-control" placeholder="Enter Speed" aria-label="Amount (to the nearest dollar)">*@
-                                            @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Speed", @style = "height: 58px;" } })
+                                            @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control", @id = "floatingSpeed", @placeholder = "Enter Speed", @style = "height: 58px;" } })
                                             <span class="input-group-text">(m/s)</span>
                                         </div>
                                     </div>
@@ -188,18 +220,20 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">$</span>
                                             @*<input type="text" class="form-control" placeholder="Enter Price" aria-label="Amount (to the nearest dollar)">*@
-                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Price", @style = "height: 58px;" } })
+                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id = "floatingPrice", @placeholder = "Enter Price", @style = "height: 58px;" } })
                                             <span class="input-group-text">.00</span>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 ">
                                         <div class="form-floating container-tag">
-                                            <ul class="d-flex showTag">
-                                            </ul>
-                                            @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control ", @id = "floatingName tag", @placeholder = "Tag", @style = "height: 58px;" } })
+                                            @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control Tag ", @id = "floatingTag", @placeholder = "Tag", @style = "height: 58px;" } })
                                             @Html.ValidationMessageFor(model => model.Tag, "", new { @class = "text-danger" })
                                             @Html.LabelFor(model => model.Tag, htmlAttributes: new { @for = "floatingName" })
+                                               <div class="elevator1">
+                                                   <ul class="d-flex showTag">
+                                                   </ul>
+                                               </div>
                                         </div>
                                     </div>
                                 </div>
@@ -207,27 +241,32 @@
                                 <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
                                     <div class="col-8">
                                         <div class="form-floating">
-                                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Elevator Location", @style = "height: 58px;" } })
+                                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @id = "floatingLocation", @placeholder = "Elevator Location", @style = "height: 58px;" } })
                                             @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
                                             @Html.LabelFor(model => model.Location, htmlAttributes: new { @for = "floatingTextarea" })
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="form-floating">
-                                            @Html.EditorFor(model => model.Thumbnails, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Thumbnails", @style = "height: 58px;" } })
+                                        <div class="form-floating input-group">
+                                            @Html.EditorFor(model => model.Thumbnails, new { htmlAttributes = new { @class = "form-control", @id = "floatingThumbnails", @placeholder = "Thumbnails", @style = "height: 58px;" } })
                                             @Html.LabelFor(model => model.Thumbnails, htmlAttributes: new { @for = "floatingTextarea" })
+                                            <span class="input-group-text btn-showFormFile">
+                                                <i class="bi bi-file-code"></i>
+                                            </span>
                                             @*<input class="form-control" type="file" name="ThumbnailFile" />*@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group col-sm-12 m-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Elevator description</h5>
-                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Description" } })
+                                  
+                                <div class="form-group col-sm-12">
+                                    <div class="col-8">
+                                        <div class="form-floating input-group">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "floatingDescription", @placeholder = "Elevator Location", @style = "height: 58px;" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @for = "floatingTextarea" })
                                         </div>
-                                    </div>
+                                   </div>
+                                   
                                 </div>
 
 
@@ -238,145 +277,156 @@
                                 </div>
 
                             </form><!-- End floating Labels Form -->
+                            <div class="elevator">
 
+                               <div>
+                                   <div class="container-image">
+                                       <input type="file" id="fileElevator" onchange="addFile()" style="display:none;" />
+                                       <div class="position-image">
+                                           <div class="showImages">
+
+                                           </div>
+                                           <span class="btn-showFile"><i class="bi bi-file-code"></i></span>
+                                           <span class="btn-closeformFile">x</span>
+                                       </div>
+                                       
+                                   </div>
+                                   </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </section>
-    }
+            </section>
+        }
 
-</main><!-- End #main -->
+    </main><!-- End #main -->
 
-@section Scripts {
-    <script>
-        var arrayData = [
-            "/Content/Elevator/1755437800_Screenshot_6.png",
-            "/Content/Elevator/2087630343_Screenshot_8.png",
-            "/Content/Elevator/1469137192_take_feedback.png",
-        ];
+ @section Scripts {
+     <script>
+          var arrayData = [];
+         var arrayDataString = "";
+         var tag = [];
+         var tagString = "";
+          $(document).ready(function () {
+              $('.btn-showFile').click(function () {
+                  $('#fileElevator').click();
+              });
 
+              $('.btn-closeformFile').click(function () {
+                  $('.elevator').hide();
+              });
 
-        var arrayDataString = "";
-        $(document).ready(function () {
-            alert(1);
-            var image = $('#dataFile').val();
-            $('.btn-showFile').click(function () {
-                $('#fileElevator').click();
-            });
-
-
-            //Tag
-            $('#tag').keypress(function (event) {
+              $('.btn-showFormFile').click(function () {
+                  $('.elevator').show();
+              });
+               //Tag
+             $('.Tag').keypress(function (event) {
                 var keycode = (event.keyCode ? event.keyCode : event.which);
-                var dataTag = $('#tag').val();
+                var dataTag = $('.Tag').val();
                 if (keycode == '13') {
                     tag.push(dataTag);
                     showTag();
-                    $('#tag').val("")
+                    $('.Tag').val("")
                 }
+              });
+               //Tag
             });
 
-            //Tag
+          
+           function showTag() {
+                $('.showTag').html("");
+               for (var i = 0; i < tag.length; i++) {
 
-        });
-        //tag
-        var tag = ["HTML", "CSS"];
-        function showTag() {
-            $('.showTag').html("");
-            for (var i = 0; i < tag.length; i++) {
-                $('.showTag').append(
-                    `<li>${tag[i]} <span onclick="deleteTag(${i})" >&times;</span></li>`
-                )
-            }
-        }
-
-        function deleteTag(i) {
-            tag.splice(i, 1);
-            showTag()
-        }
-        //tag
-
-
-        function showImages() {
-            if (arrayData.length != 0) {
-                var htmlString = "";
-                $('.showImages').html("")
-                for (var i = 0; i < arrayData.length; i++) {
-                    htmlString += '<div class="image-item">'
-                    htmlString += '<div class="btn-delete" onclick="deleteImage(' + i + ')"> x'
-                    htmlString += '</div>'
-                    htmlString += `<img  style="width: 200px; height: 200px; " src=${arrayData[i]} />`
-                    htmlString += '</div>'
-                    $('.showImages').html(htmlString);
-                    arrayDataString += arrayData[i] + ','
+                   $('.showTag').append(
+                    `<li>${tag[i]} <span onclick="deleteTag(${i})" >&times;</span></li>`)
+                   tagString += tag[i]  + ","
                 }
-                $('#dataFile').val("");
-                $('#dataFile').val(arrayDataString);
+           }
 
-            }
-            function deleteImage(i) {
-                arrayData.splice(i, 1);
-                arrDataString = ""
-                showImages()
+           function deleteTag(i) {
+               tag.splice(i, 1);
+               tagString=""
+               showTag()
             }
 
+         function showImages() {
+             if (arrayData.length != 0) {
+                 var htmlString = "";
+                 $('.showImages').html("")
+                 for (var i = 0; i < arrayData.length; i++) {
+                     htmlString += '<div class="image-item">'
+                     htmlString += '<div class="btn-delete" onclick="deleteImage(' + i + ')"> x'
+                     htmlString += '</div>'
+                     htmlString += `<img  style="width: 200px; height: 200px; " src=${arrayData[i]} />`
+                     htmlString += '</div>'
+                     $('.showImages').html(htmlString);
+                     arrayDataString += arrayData[i] + ','
+                 }
+                 $('#floatingThumbnails').val("");
+              //   $('#floatingThumbnails').val(arrayDataString);
 
+             }
+         }
+         function deleteImage(i) {
+             arrayData.splice(i, 1);
+             arrDataString = ""
+             $('#floatingThumbnails').val("");
+             showImages()
+         }
+         function addFile() {
+             var fileUpload = $('#fileElevator').get(0);
+             var files = fileUpload.files;
+             var formData = new FormData();
+             formData.append('file', files[0]);
+             $.ajax({
+                 url: '/Elevators/UploadImages',
+                 type: 'POST',
+                 contentType: false,
+                 processData: false,
+                 data: formData,
+                 success: function (response) {
+                     arrayData.push(response)
+                     showImages()
+                 },
+                 error: function (msg) {
+                     alert("Error: " + msg);
+                 }
+             });
+         }
+         function submitDataElevator() {
+             var data = {
+                 "Name": $('#floatingName').val(),
+                 "SKU": $('#sku').val(),
+                 "Status": parseInt($('#floatingStatus').val()),
+                 "Description": $('#floatingDescription').val(),
+                 "Thumbnails": $('#floatingThumbnails').val(),
+                 "Capacity": $('#floatingCapacity').val(),
+                 "Speed": $('#floatingSpeed').val(),
+                 "Price": $('#floatingPrice').val(),
+                 "MaxPerson": $('#floatingMaxPerson').val(),
+                 "Location": $('#floatingLocation').val(),
+                 "Slug": $('#floatingSlug').val(),
+                 "Tag": tagString,
+                 "CategoryID": parseInt($('#floatingSelect').val()),
+             }
+             $.ajax({
+                 url: '/Elevators/Create',
+                 type: 'POST',
 
-            function addFile() {
-                var fileUpload = $('#fileElevator').get(0);
-                var files = fileUpload.files;
-                var formData = new FormData();
-                formData.append('file', files[0]);
-                $.ajax({
-                    url: '/Elevators/UploadImages',
-                    type: 'POST',
-                    contentType: false,
-                    processData: false,
-                    data: formData,
-                    success: function (response) {
-                        arrayData.push(response)
-                        showImages()
-                    },
-                    error: function (msg) {
-                        alert("Error: " + msg);
-                    }
-                });
-            }
-            function submitDataElevator(e) {
-                e.prevetDefault();
-                var data = {
-                    "Name": $('#name').val(),
-                    "SKU": $('#sku').val(),
-                    "Status": $('#status').val(),
-                    "Description": $('#description').val(),
-                    "Thumbnails": $('#dataFile').val(),
-                    "Capacity": $('#capacity').val(),
-                    "Speed": $('#speed').val(),
-                    "Price": $('#price').val(),
-                    "MaxPerson": $('#maxPersion').val(),
-                    "Location": $('#localtion').val(),
-                    "Slug": $('#slug').val(),
-                    "Tag": $('#tag').val(),
-                    "CategoryID": parseInt(140),
-                }
+                 contentType: "application/json",
+                 dataType: 'json',
+                 data: JSON.stringify(data),
+                 success: function (response) {
+                     alert("success");
+                 },
+                 error: function (msg) {
+                     console.log(msg)
+                     alert("Error: " + msg);
+                 }
+             });
+         }
+     </script>
+}
 
-                $.ajax({
-                    url: '/Elevators/Create',
-                    type: 'POST',
-
-                    contentType: "application/json",
-                    dataType: 'json',
-                    data: JSON.stringify(data),
-                    success: function (response) {
-                        console.log(response)
-                    },
-                    error: function (msg) {
-                        alert("Error: " + msg);
-                    }
-                });
-            }
-    </script>
-    }
-    
