@@ -11,11 +11,16 @@ namespace ElevatorSystem.Admin.Models.Entity
         [Key]
         public int ID { get; set; }
         public double Total { get; set; }
-        [Required(ErrorMessage = "Please enter Shipping fee !")]
+        public string FullName { get; set; }
+        public string SKU { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public string Description  { get; set; }
+       
         public double ShippingFee { get; set; }
-        [Required(ErrorMessage = "Please enter Tax field !")]
+       
         public float Tax { get; set; }
-        [Required(ErrorMessage = "Please enter an Order email !")]
+       
         public string OrderEmail { get; set; }
         public int OrderStatus { get; set; }
         public int ShipStatus { get; set; }
@@ -29,8 +34,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         //Foreign key
         //public int ApplicationUser_Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-        public int PaymentID { get; set; }
-        public virtual Payment_Detail Payment_Detail { get; set; }
+       
         public ICollection<Order_Items> Order_Items { get; set; }
         public ICollection<Complaint> Complaints { get; set; }
 

@@ -34,8 +34,8 @@ namespace ElevatorSystem.Admin.Models.Entity
         public Project()
         {
             this.Status = 1;
-            this.CreatedAt = DateTime.Now;
-            this.UpdatedAt = DateTime.Now;
+            //this.CreatedAt = DateTime.Now;
+            //this.UpdatedAt = DateTime.Now;
         }
     }
 }

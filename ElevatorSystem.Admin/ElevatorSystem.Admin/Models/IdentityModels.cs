@@ -58,7 +58,7 @@ namespace ElevatorSystem.Admin.Models
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Order_Items> Order_Items { get; set; }
-        public DbSet<Payment_Detail> Payment_Details { get; set; }
+      
         public DbSet<Project> Projects { get; set; }
         public DbSet<Tag> Tags { get; set; }
       

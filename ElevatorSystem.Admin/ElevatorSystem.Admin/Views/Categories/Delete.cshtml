@@ -4,61 +4,103 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Category</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<main id="main" class="main">
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <div class="pagetitle">
+        <h1>Category Management</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
+                <li class="breadcrumb-item">Categories</li>
+                <li class="breadcrumb-item active">Delete category</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="row g-3">
+                            <h5 class="card-title m-5">Are you sure you want to delete category <code style="font-size: 30px">@Html.DisplayFor(model => model.Name)</code> ?</h5>
+                            @if (@ViewData["InvalidRemove"] != null)
+                            {
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    <strong>Warning !</strong> @ViewData["InvalidRemove"]  <strong>Elevators List !</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            }
+                            <!-- Floating Labels Form -->
+                            <div class="row mb-3">
+                                <label class="col-sm-4 col-form-label">Category name</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.Name)" disabled>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                                </div>
+                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
+                            <div class="row mb-3">
+                                <label class="col-sm-4 col-form-label">Category description</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" placeholder=" @Html.DisplayFor(model => model.Description)" disabled id="floatingTextarea" style="height: 100px;"></textarea>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
+                                </div>
+                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedAt)
-        </dt>
+                            <div class="row mb-3">
+                                <div class="row mb-3">
+                                    <label for="inputDate" class="col-sm-4  col-form-label">Created date</label>
+                                    <div class="col-sm-6 m-1">
+                                        @Html.DisplayFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputDate" class="col-sm-4  col-form-label">Modified date</label>
+                                    <div class="col-sm-6 m-1">
+                                        @Html.DisplayFor(model => model.ModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedAt)
-        </dd>
+                            </div>
+                        </form>
+                        <!-- End floating Labels Form -->
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                    <div class="form-actions no-color text-center">
+                        <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#exampleModalCenter">Delete </button>
+                        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Categories")'"><i class="bi arrow-left-circle">Back to list</i></button>
+                    </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Are you absolutely sure about this?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div  class="modal-body text-center">
+                                            <p onmousedown="return false;" onselect="return false;">Please type <strong>@Html.DisplayFor(model => model.Name)</strong> to confirm.</p>
+                                            <input on type="text" class="form-control input-block" id="verify" name="verify" pattern="@Html.DisplayFor(model => model.Name)" required />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" value="Comfirm Delete Category" id="submitDelete" disabled class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-    }
-</div>
+    </section>
+
+
+</main>

@@ -269,6 +269,8 @@
     <Compile Include="Controllers\AdminController\BlogsController.cs" />
     <Compile Include="Controllers\AdminController\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController\ElevatorsController.cs" />
+    <Compile Include="Controllers\AdminController\OrdersController.cs" />
+    <Compile Include="Controllers\AdminController\Order_ItemsController.cs" />
     <Compile Include="Controllers\AdminController\TagsController.cs" />
     <Compile Include="Controllers\APIClient\AuthController.cs" />
     <Compile Include="Controllers\APIClient\BlogsController.cs" />
@@ -283,13 +285,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202206171109166_InitDB.cs" />
-    <Compile Include="Migrations\202206171109166_InitDB.Designer.cs">
-      <DependentUpon>202206171109166_InitDB.cs</DependentUpon>
+    <Compile Include="Migrations\202206261627213_DBInit.cs" />
+    <Compile Include="Migrations\202206261627213_DBInit.Designer.cs">
+      <DependentUpon>202206261627213_DBInit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202206191704362_DateTag3.cs" />
-    <Compile Include="Migrations\202206191704362_DateTag3.Designer.cs">
-      <DependentUpon>202206191704362_DateTag3.cs</DependentUpon>
+    <Compile Include="Migrations\202206270158292_Add SKU Order.cs" />
+    <Compile Include="Migrations\202206270158292_Add SKU Order.Designer.cs">
+      <DependentUpon>202206270158292_Add SKU Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206270847580_Update required Order.cs" />
+    <Compile Include="Migrations\202206270847580_Update required Order.Designer.cs">
+      <DependentUpon>202206270847580_Update required Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206270849386_Update required Order1.cs" />
+    <Compile Include="Migrations\202206270849386_Update required Order1.Designer.cs">
+      <DependentUpon>202206270849386_Update required Order1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -301,12 +311,13 @@
     <Compile Include="Models\Entity\Feedback.cs" />
     <Compile Include="Models\Entity\Order.cs" />
     <Compile Include="Models\Entity\Order_Items.cs" />
-    <Compile Include="Models\Entity\Payment_Detail.cs" />
     <Compile Include="Models\Entity\Project.cs" />
     <Compile Include="Models\Entity\Tag.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\BlogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BlogRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Validators\LoginRequest.cs" />
     <Compile Include="Validators\RegisterRequest.cs" />
@@ -731,10 +742,23 @@
     <Content Include="Views\Elevators\Details.cshtml" />
     <Content Include="Views\Elevators\Edit.cshtml" />
     <Content Include="Views\Elevators\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Shared\_HeadPartialOrder.cshtml" />
+    <Content Include="Views\Order_Items\Create.cshtml" />
+    <Content Include="Views\Order_Items\Delete.cshtml" />
+    <Content Include="Views\Order_Items\Details.cshtml" />
+    <Content Include="Views\Order_Items\Edit.cshtml" />
+    <Content Include="Views\Order_Items\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Elevator\" />
+    <Folder Include="Content\Blogs\" />
+    <Folder Include="Content\images\" />
+    <Folder Include="Image\Blogs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -756,11 +780,17 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202206171109166_InitDB.resx">
-      <DependentUpon>202206171109166_InitDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206261627213_DBInit.resx">
+      <DependentUpon>202206261627213_DBInit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206191704362_DateTag3.resx">
-      <DependentUpon>202206191704362_DateTag3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206270158292_Add SKU Order.resx">
+      <DependentUpon>202206270158292_Add SKU Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206270847580_Update required Order.resx">
+      <DependentUpon>202206270847580_Update required Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206270849386_Update required Order1.resx">
+      <DependentUpon>202206270849386_Update required Order1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

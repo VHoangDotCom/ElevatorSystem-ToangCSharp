@@ -4,7 +4,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="@Url.Action("Index")">
+            <a class="nav-link " href="@Url.Action("Index","Home")">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -12,45 +12,48 @@
 
         <li class="nav-item">
             <a class="nav-link " href="@Url.Action("Index", "Tags")">
-                <i class="bx bxs-edit-location"></i>
+                <i class="bi bi-tags"></i>
                 <span>Tags</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link " href="@Url.Action("Login", "AccountController")">
-                <i class="bi bi-menu-button-wide"></i>
+            <a class="nav-link " href="@Url.Action("Index", "Blogs")">
+                <i class="ri-article-line"></i>
+                <span>Blog</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("Index", "Categories")">
+                <i class=" bx bx-category-alt"></i>
                 <span>Category</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
             <a class="nav-link " href="@Url.Action("Index", "Elevators")">
-                <i class="bi bi-circle"></i>
+                <i class="bi bi-ladder"></i>
                 <span>Elevator</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
-                <i class="bi bi-grid"></i>
+            <a class="nav-link " href="@Url.Action("Index", "Orders")">
+                <i class="bi bi-basket2"></i>
                 <span>Order</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
-                <i class="bi bi-grid"></i>
+            <a class="nav-link " href="@Url.Action("Index", "Projects")">
+                <i class="ri-hand-coin-line"></i>
+                
                 <span>Project</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link " href="index.html">
-                <i class="bi bi-grid"></i>
-                <span>Blog</span>
-            </a>
-        </li><!-- End Dashboard Nav -->
+
 
         <li class="nav-item">
             <a class="nav-link " href="index.html">

@@ -2,139 +2,250 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SKU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Thumbnails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Speed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Slug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SKU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thumbnails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPerson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedAt)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+*@
+
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Category Management</h1>
+        <h1>Elevator Management</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item">Elevator</li>
-                <li class="breadcrumb-item active">List Elevator</li>
+                <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
+                <li class="breadcrumb-item">Elevators</li>
+                <li class="breadcrumb-item active">Index</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
+
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
+
                 <div class="card">
                     <div class="card-body">
-                        @{
-                            if (@TempData["success"] != null)
-                            {
-                                <div class="alert alert-success alert-dismissible fade show" id="show" role="alert">
-                                    <i class="bi bi-check-circle me-1"></i>
-                                    <strong>Success !</strong>  @TempData["success"]
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            }
+                        <h5 class="card-title">List Elevators</h5>
+                        <p>Elevator is the core product line of the company. All areas of <code>business</code>, <code>commerce</code> or <code>service</code> revolve around Elevators.</p>
+
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <h4 class="alert-heading">Some Explanation about Elevator Status</h4>
+                            <p>@TempData["0"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["1"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["2"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["3"]</p>
+                            <hr>
+                            <p class="mb-0">@TempData["n"]</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        @if (@TempData["CreateMessage"] != null)
+                        {
+
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="bi bi-check-circle me-1"></i>
+                                <strong>Success !</strong>  @TempData["CreateMessage"]
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+                        @if (@TempData["UpdateMessage"] != null)
+                        {
+
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <i class="bi bi-info-circle me-1"></i>
+                                <strong>Success !</strong>  @TempData["UpdateMessage"]
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+                        @if (@TempData["DeleteMessage"] != null)
+                        {
+
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <i class="bi bi-trash me-1"></i>
+                                <strong>Success !</strong>  @TempData["DeleteMessage"]
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                         }
 
-                        <h5 class="card-title"> Categories List</h5>
 
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <div class="dataTable-top" style="float: right">
-                                <button type="button" class="btn btn-success" data-toggle="modal">
-                                    <a class="nav-link " href="@Url.Action("Create", "Elevators")">
-                                        Add
-                                    </a>
-                                </button>
-                            </div>
+                        <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Elevators")'"><i class="bi bi-plus-lg"> Add new</i></button>
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable table-striped">
+                            <thead>
+                                <tr>
 
-                            <!-- Table with stripped rows -->
-                            <div>
-                                <table class="table datatable">
-                                    <thead>
-                                        <tr>
-                                           
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.Name)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.SKU)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.Price)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.CreatedAt)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.UpdatedAt)
-                                            </th>
-                                            <th>
-                                                Action
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Name)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.SKU)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Price)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CreatedAt)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.UpdatedAt)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                                            </td>
-                                        </tr>
-                                    }
-                                </table>
-                            </div>
-                        </div>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Capacity(lbs) </th>
+                                    <th scope="col">Maximum People </th>
+                                    <th scope="col">Speed(m/s) </th>
+                                    <th scope="col">Price($) </th>
+                                    <th scope="col">Created Date</th>
+                                    <th scope="col">Modified Date</th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
+                                        <td> @Html.DisplayFor(modelItem => item.Category.Name)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Name)</td>
+                                        @* <td>  @ViewBag.Status</td>*@
+                                        <td> @Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Capacity)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.MaxPerson)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Speed)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Price)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.CreatedAt)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.UpdatedAt)</td>
+
+                                        <td class="col-3">
+
+                                            <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Elevators",new { id = item.ID })'"><i class="bi bi-pen"></i></button>
+                                            <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Elevators",new { id = item.ID })'"><i class="bi bi-info-circle-fill"></i></button>
+                                            <button type="button" class="btn btn-danger m-1" title="Delete" onclick="location.href='@Url.Action("Delete", "Elevators",new { id = item.ID })'"><i class="bi bi-trash"></i></button>
+
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+
+                        </table>
+                        <!-- End Table with stripped rows -->
+
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
 </main><!-- End #main -->
-<!-- Modal -->
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createCategory" }))
-{
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="padding: 50px">
-                @*@{Html.RenderAction("Create", "Elevators");}*@
-                @Html.Action("Create", "Elevators")
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="document.getElementById('createCategory').submit();">Create</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-}
-
-<script>
-    window.onload = function () {
-
-        if ($("#show").hasClass("show")) {
-            window.location.reload();
-        }
-    }
-
-</script>
-
-
-
-
-

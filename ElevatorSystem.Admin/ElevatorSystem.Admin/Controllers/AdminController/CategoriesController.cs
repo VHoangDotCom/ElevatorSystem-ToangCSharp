@@ -51,8 +51,10 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         {
             if (ModelState.IsValid)
             {
+                category.CreatedAt = DateTime.Today;
                 db.Categories.Add(category);
                 db.SaveChanges();
+                TempData["CreateMessage"] = "Category { #" + category.ID + "." + category.Name + " } has been added to the list !";
                 return RedirectToAction("Index");
             }
 
@@ -83,8 +85,10 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         {
             if (ModelState.IsValid)
             {
+                category.ModifiedAt = DateTime.Today;
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["UpdateMessage"] = "Category { #" + category.ID + "." + category.Name + " } has been updated !";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -98,6 +102,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Category category = db.Categories.Find(id);
+           
             if (category == null)
             {
                 return HttpNotFound();
@@ -110,10 +115,34 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+           
             Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            category.DeletedAt = DateTime.Today;
+
+            //Check Product List
+            IEnumerable<Elevator> elevatorList = db.Elevators.ToList();
+            var result = elevatorList.GroupBy(x => x.Category)
+                                     .Where(x => x.Count() >= 1)
+                                     .Select(y => new { category = y.Key, Count = y.Count() });
+
+            var result1 = from product1 in db.Elevators
+                         where (product1.CategoryID == id)
+                          select new { product1};
+
+            if(result1.Count() < 1)
+            {
+                db.Categories.Remove(category);
+                db.SaveChanges();
+                TempData["DeleteMessage"] = "Category { #" + category.ID + "." + category.Name + " } has been removed from the list !";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewData["InvalidRemove"] = "Cannot remove category { #" + category.ID + "." + category.Name + " } because it has ";
+                return View(category);
+            }
+            
+         
         }
 
         protected override void Dispose(bool disposing)
