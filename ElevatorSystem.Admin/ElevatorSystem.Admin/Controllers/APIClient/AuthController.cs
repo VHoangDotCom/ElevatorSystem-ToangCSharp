@@ -65,7 +65,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
 
 
         [System.Web.Http.Authorize(Roles = "user")]
-        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/Profile")]
         public Object GetName2()
         {
@@ -96,13 +96,16 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                 IEnumerable<Claim> claims = identity.Claims;
 
                 var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
-                var user = userManager.FindById(id);
+                var user = userManager.FindById(id)
+;
                 user.AddressLine1 = applicationUser.AddressLine1;
                 user.AddressLine2 = applicationUser.AddressLine2;
                 user.City = applicationUser.City;
                 user.Country = applicationUser.Country;
                 user.Company = applicationUser.Company;
                 user.PhoneNumber = applicationUser.PhoneNumber;
+                user.Email = applicationUser.Email;
+                user.UserName = applicationUser.UserName;
                 var result = userManager.Update(user);
                 return new
                 {

@@ -53,12 +53,12 @@
                                         @Html.LabelFor(model => model.Slug, htmlAttributes: new { @for = "floatingName" })
                                     </div>
                                 </div>
-                                <div class="col-md-6 ">
-                                   @* <label for="inputDate" class="col-sm-2 col-form-label">Published date</label>*@
-                                    <div class="col-sm-4">
+                                <div class="row mb-3 m-3 col-md-6">
+                                    <label for="inputDate" class="col-sm-4 col-form-label">Published date</label>
+                                    <div class="col-sm-8">
                                         @Html.ValidationMessageFor(model => model.PublishedAt, "", new { @class = "text-danger" })
                                         @Html.EditorFor(model => model.PublishedAt, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.LabelFor(model => model.PublishedAt, htmlAttributes: new { @for = "floatingName" })
+
                                     </div>
                                 </div>
                             </div>
@@ -72,22 +72,14 @@
                                     </div>
                                 </div>
 
-                                    <div class="row mb-3 m-4">
-                                        @*<label for="inputNumber" class="col-sm-2 col-form-label">Thumbnail</label>*@
-                                        <div class="col-sm-8 container-image">
-                                            @Html.LabelFor(model => model.Thumbnail, htmlAttributes: new { @for = "floatingName" })
-                                        </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-floating">
+                                        @Html.EditorFor(model => model.Thumbnail, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "Please enter link image" } })
+                                        @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
+                                        @Html.LabelFor(model => model.Thumbnail, htmlAttributes: new { @for = "floatingName", @placeholder = "Please enter link image" })
                                     </div>
-
                                 </div>
 
-
-                                <div class="col-10 m-3">
-                                    <div class="form-floating">
-                                        @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Summary", @style = "height: 100px;" } })
-                                        @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
-                                        @Html.LabelFor(model => model.Summary, htmlAttributes: new { @for = "floatingTextarea" })
-                                    </div>
                                 </div>
 
                                 <div class="col-sm-12 m-3">

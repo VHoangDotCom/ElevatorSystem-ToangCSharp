@@ -71,10 +71,10 @@
 
                                     <th scope="col">#</th>
                                     <th scope="col">Title</th>
-                                    <th scope="col">Description</th>
+                                  @*  <th scope="col">Description</th>*@
                                     <th scope="col">Publish status</th>
-                                    <th scope="col">Created Date</th>
-                                    <th scope="col">Modified Date</th>
+                                  @*  <th scope="col">Created Date</th>
+                                    <th scope="col">Modified Date</th>*@
                                     <th scope="col">Published Date</th>
                                     <th></th>
                                 </tr>
@@ -85,10 +85,10 @@
                                     <tr>
                                         <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
                                         <td> @Html.DisplayFor(modelItem => item.Title)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Description)</td>
+                                      @*  <td> @Html.DisplayFor(modelItem => item.Description)</td>*@
                                         <td> @Html.DisplayFor(modelItem => item.IsPublished)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.CreatedAt)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.ModifiedAt)</td>
+                                        @*<td> @Html.DisplayFor(modelItem => item.CreatedAt)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.ModifiedAt)</td>*@
                                         <td> @Html.DisplayFor(modelItem => item.PublishedAt)</td>
                                         <td class="col-3">
                                             @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@

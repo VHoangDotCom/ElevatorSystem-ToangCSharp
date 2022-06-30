@@ -1,0 +1,114 @@
+﻿.elevator {
+    position: absolute;
+    display: none;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 80vh;
+    top: 0;
+    right: 0;
+}
+
+    .elevator .showImages {
+        width: 400px;
+        height: 320px;
+        border: 1px solid black;
+        background: white;
+        overflow: auto;
+    }
+
+    .elevator .position-image {
+        width: 400px;
+        height: 250px;
+        position: relative;
+    }
+
+    .elevator .btn-showFile {
+        position: absolute;
+        background: white;
+        padding: 5px;
+        border: 1px solid black;
+        bottom: 10px;
+        right: 10px;
+        z-index: 200;
+    }
+
+    .elevator .container-image {
+        position: relative;
+        margin: 10% 27%;
+    }
+
+    .elevator .image-item {
+        position: relative;
+        margin: 5px;
+    }
+
+    .elevator .showImages {
+        display: flex;
+        align-items: center;
+        width: 400px;
+        height: 250px;
+    }
+
+    .elevator .btn-delete {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        background: black;
+        text-align: center;
+        color: white;
+        line-height: 20px;
+        font-size: 20px;
+        top: -5px;
+        right: -5px;
+    }
+
+    .elevator .btn-closeformFile {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 7px;
+        cursor: pointer;
+        background: white;
+        border: 1px solid black;
+        color: black;
+    }
+
+    .elevator .btn-create {
+        border: none;
+        padding: 5px;
+    }
+
+.elevator1 li {
+    list-style: none;
+    background: #ccc;
+    border-radius: 2px;
+    font-size: 13px;
+    margin: 2px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.container-tag * {
+    margin: 0;
+    padding: 0;
+}
+
+.elevator1 container-tag li span {
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+}
+
+.elevator1 .container-tag input {
+    width: 100px;
+    border: none;
+}
+
+    .elevator1 .container-tag input:focus {
+        outline: none;
+    }

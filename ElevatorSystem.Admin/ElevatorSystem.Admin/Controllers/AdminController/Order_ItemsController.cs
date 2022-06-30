@@ -41,7 +41,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         public ActionResult Create()
         {
             ViewBag.ElevatorID = new SelectList(db.Elevators, "ID", "Name");
-            ViewBag.OrderID = new SelectList(db.Orders, "ID", "FullName");
+            ViewBag.OrderID = new SelectList(db.Orders, "ID", "SKU");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             }
 
             ViewBag.ElevatorID = new SelectList(db.Elevators, "ID", "Name", order_Items.ElevatorID);
-            ViewBag.OrderID = new SelectList(db.Orders, "ID", "FullName", order_Items.OrderID);
+            ViewBag.OrderID = new SelectList(db.Orders, "ID", "SKU", order_Items.OrderID);
             return View(order_Items);
         }
 

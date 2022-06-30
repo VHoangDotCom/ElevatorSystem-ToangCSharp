@@ -25,7 +25,7 @@
                         <form class="row g-3">
                             <div class="form-group col-sm-12 d-flex">
                                 <h5 class="card-title m-5">Order <code style="font-size: 30px">#@Html.DisplayFor(model => model.ID). @Html.DisplayFor(model => model.SKU)</code> </h5>
-                                <button type="button" style="margin-left:300px;" class="btn btn-info rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Order_Items")'"><i class="bi bi-info-circle"> Detail Order Items</i></button>
+                              
                             </div>
                             @if (@ViewData["InvalidStatus"] != null)
                             {

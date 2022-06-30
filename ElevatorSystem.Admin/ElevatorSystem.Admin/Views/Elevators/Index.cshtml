@@ -3,126 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@*
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SKU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Thumbnails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Speed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaxPerson)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Slug)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tag)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SKU)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thumbnails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Speed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxPerson)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Slug)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeletedAt)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-
-</table>
-*@
 
 <main id="main" class="main">
 
@@ -146,7 +27,7 @@
                         <h5 class="card-title">List Elevators</h5>
                         <p>Elevator is the core product line of the company. All areas of <code>business</code>, <code>commerce</code> or <code>service</code> revolve around Elevators.</p>
 
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                      @*  <div class="alert alert-primary alert-dismissible fade show" role="alert">
                             <h4 class="alert-heading">Some Explanation about Elevator Status</h4>
                             <p>@TempData["0"]</p>
                             <hr>
@@ -158,7 +39,7 @@
                             <hr>
                             <p class="mb-0">@TempData["n"]</p>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                        </div>*@
 
                         @if (@TempData["CreateMessage"] != null)
                         {
@@ -198,13 +79,8 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">Capacity(lbs) </th>
                                     <th scope="col">Maximum People </th>
-                                    <th scope="col">Speed(m/s) </th>
-                                    <th scope="col">Price($) </th>
-                                    <th scope="col">Created Date</th>
-                                    <th scope="col">Modified Date</th>
 
                                     <th></th>
                                 </tr>
@@ -218,13 +94,8 @@
                                         <td> @Html.DisplayFor(modelItem => item.Category.Name)</td>
                                         <td> @Html.DisplayFor(modelItem => item.Name)</td>
                                         @* <td>  @ViewBag.Status</td>*@
-                                        <td> @Html.DisplayFor(modelItem => item.Status)</td>
                                         <td> @Html.DisplayFor(modelItem => item.Capacity)</td>
                                         <td> @Html.DisplayFor(modelItem => item.MaxPerson)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Speed)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Price)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.CreatedAt)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.UpdatedAt)</td>
 
                                         <td class="col-3">
 

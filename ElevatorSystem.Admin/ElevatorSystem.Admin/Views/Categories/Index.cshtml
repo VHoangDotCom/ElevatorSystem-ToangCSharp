@@ -70,11 +70,11 @@
 
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
+                                   
                                     
                                     <th scope="col">Created Date</th>
                                     <th scope="col">Modified Date</th>
-                                    <th scope="col">Deleted Date</th>
+                                  
                                     <th></th>
                                 </tr>
                             </thead>
@@ -84,11 +84,11 @@
                                     <tr>
                                         <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
                                         <td> @Html.DisplayFor(modelItem => item.Name)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Description)</td>
+                                       
                                       
                                         <td> @Html.DisplayFor(modelItem => item.CreatedAt)</td>
                                         <td> @Html.DisplayFor(modelItem => item.ModifiedAt)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.DeletedAt)</td>
+                                       
                                         <td class="col-3">
                                            
                                             <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Categories",new { id = item.ID })'"><i class="bi bi-pen"></i></button>

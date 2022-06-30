@@ -271,6 +271,7 @@
     <Compile Include="Controllers\AdminController\ElevatorsController.cs" />
     <Compile Include="Controllers\AdminController\OrdersController.cs" />
     <Compile Include="Controllers\AdminController\Order_ItemsController.cs" />
+    <Compile Include="Controllers\AdminController\ProjectsController.cs" />
     <Compile Include="Controllers\AdminController\TagsController.cs" />
     <Compile Include="Controllers\APIClient\AuthController.cs" />
     <Compile Include="Controllers\APIClient\BlogsController.cs" />
@@ -300,6 +301,10 @@
     <Compile Include="Migrations\202206270849386_Update required Order1.Designer.cs">
       <DependentUpon>202206270849386_Update required Order1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206300819545_UpdateProject23.cs" />
+    <Compile Include="Migrations\202206300819545_UpdateProject23.Designer.cs">
+      <DependentUpon>202206300819545_UpdateProject23.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AuthModel\Credentials.cs" />
@@ -322,6 +327,8 @@
     <Compile Include="Validators\RegisterRequest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\elevator-edit.css" />
+    <Content Include="Content\assets\css\elevator.css" />
     <Content Include="Content\assets\css\style.css" />
     <Content Include="Content\assets\img\apple-touch-icon.png" />
     <Content Include="Content\assets\img\card.jpg" />
@@ -584,6 +591,29 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Elevator\1007286881_product_l27.jpg" />
+    <Content Include="Content\Elevator\1341548516_news-2.jpg" />
+    <Content Include="Content\Elevator\1377064510_product_l12.jpg" />
+    <Content Include="Content\Elevator\1405546780_product_l14.jpg" />
+    <Content Include="Content\Elevator\1454510859_product_l23.jpg" />
+    <Content Include="Content\Elevator\1510434875_product_l7.jpg" />
+    <Content Include="Content\Elevator\1631916735_news-3.jpg" />
+    <Content Include="Content\Elevator\1651068406_messages-1.jpg" />
+    <Content Include="Content\Elevator\1653807538_product_l29.jpg" />
+    <Content Include="Content\Elevator\1708136265_DSC_0594.jfif" />
+    <Content Include="Content\Elevator\1708389013_messages-1.jpg" />
+    <Content Include="Content\Elevator\1756295794_product_l8.jpg" />
+    <Content Include="Content\Elevator\180326729_product_l21.jpg" />
+    <Content Include="Content\Elevator\2062924160_product_l3.jpg" />
+    <Content Include="Content\Elevator\243324653_profile-img.jpg" />
+    <Content Include="Content\Elevator\410347254_slides-3.jpg" />
+    <Content Include="Content\Elevator\451681001_product_l2.jpg" />
+    <Content Include="Content\Elevator\554583586_product_l1.jpg" />
+    <Content Include="Content\Elevator\579734487_news-2.jpg" />
+    <Content Include="Content\Elevator\627719622_profile-img.jpg" />
+    <Content Include="Content\Elevator\778364089_DSC_0593.jfif" />
+    <Content Include="Content\Elevator\88625835_messages-1.jpg" />
+    <Content Include="Content\Elevator\941737779_product_l28.jpg" />
     <Content Include="Content\forms\contact.php" />
     <Content Include="Content\forms\Readme.txt" />
     <Content Include="favicon.ico" />
@@ -684,6 +714,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Views\create-elevator.js" />
+    <Content Include="Scripts\Views\detail-elevator.js" />
+    <Content Include="Scripts\Views\edit-elevator.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -753,6 +786,13 @@
     <Content Include="Views\Order_Items\Details.cshtml" />
     <Content Include="Views\Order_Items\Edit.cshtml" />
     <Content Include="Views\Order_Items\Index.cshtml" />
+    <Content Include="Views\Orders\GetListItems.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Orders\CreateProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -791,6 +831,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206270849386_Update required Order1.resx">
       <DependentUpon>202206270849386_Update required Order1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206300819545_UpdateProject23.resx">
+      <DependentUpon>202206300819545_UpdateProject23.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

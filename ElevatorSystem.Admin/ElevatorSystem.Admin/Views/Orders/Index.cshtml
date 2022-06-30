@@ -31,7 +31,7 @@
                             through the entire fulfillment process, to the point a customer <code>receives their goods</code>.
                         </p>
 
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                       @* <div class="alert alert-primary alert-dismissible fade show" role="alert">
                             <h4 class="alert-heading">Some Explanation about Order Status</h4>
                             <p>@TempData["orderStatus0"]</p>
                             <hr>
@@ -58,7 +58,7 @@
                             <hr>
                             <p class="mb-0">@TempData["n"]</p>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                        </div>*@
 
                         @if (@TempData["UpdateMessage"] != null)
                         {
@@ -78,17 +78,14 @@
                                 <tr>
 
                                     <th scope="col">#</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Phonenumber</th>
+                                  
                                     <th scope="col">SKU</th>
-                                    <th scope="col">Order Status</th>
+                                  
                                     <th scope="col">Total($)</th>
-                                    <th scope="col">Shipping Fee </th>
-                                    <th scope="col">Shipping Status</th>
+                                   
+                                   
                                     <th scope="col">Order Date</th>
-                                    <th scope="col">Created Date</th>
-                                    <th scope="col">Modified Date</th>
-
+                                   
                                     <th></th>
                                 </tr>
                             </thead>
@@ -98,23 +95,20 @@
                                 {
                                     <tr>
                                         <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
-                                        <td> @Html.DisplayFor(modelItem => item.FullName)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                       
                                         <td> @Html.DisplayFor(modelItem => item.SKU)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                                       
                                         <td> @Html.DisplayFor(modelItem => item.Total)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.ShippingFee)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.ShipStatus)</td>
+                                       
                                         <td> @Html.DisplayFor(modelItem => item.OrderDate)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.CreatedAt)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.ModifiedAt)</td>
+                                      
 
-                                        <td class="col-3">
+                                        <td class="col-4">
 
-                                            <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Orders",new { id = item.ID })'"><i class="bi bi-pen"></i></button>
-                                            <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Orders",new { id = item.ID })'"><i class="bi bi-info-circle-fill"></i></button>
-                                            @*<button type="button" class="btn btn-danger m-1" title="Delete" onclick="location.href='@Url.Action("Delete", "Orders",new { id = item.ID })'"><i class="bi bi-trash"></i></button>*@
-
+                                            <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Orders",new { id = item.ID })'"><i class='bx bx-edit-alt'> Edit</i></button>
+                                            <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Orders",new { id = item.ID })'"><i class='bx bx-info-circle'> Detail</i></button>
+                                            <button type="button" class="btn btn-warning m-1" title="Order list " onclick="location.href='@Url.Action("GetListItems", "Orders",new { id = item.ID })'"><i class='bx bx-list-ol'> List Items</i></button>
+                                            <button type="button" class="btn btn-warning m-1" title="Create Project " onclick="location.href='@Url.Action("CreateProject", "Orders",new { id = item.ID })'"><i class='bx bxl-product-hunt'> Create Project</i></button>
                                         </td>
                                     </tr>
 

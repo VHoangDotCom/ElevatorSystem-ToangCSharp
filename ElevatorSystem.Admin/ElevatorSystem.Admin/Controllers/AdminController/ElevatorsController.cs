@@ -55,11 +55,18 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             {
                 ViewData["elevatorStatus"] = "Status is undefined";
             }
+
             if (elevator == null)
             {
                 return HttpNotFound();
             }
             return View(elevator);
+        }
+
+        public JsonResult getById(int? id)
+        {
+            Elevator elevator = db.Elevators.Find(id);
+            return Json(elevator, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Elevators/Create
@@ -104,6 +111,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 elevator.CreatedAt = DateTime.Now;
                 db.Elevators.Add(elevator);
                 db.SaveChanges();
+                TempData["CreateMessage"] = "Elevator { #" + elevator.ID + "." + elevator.Name + " } has been added to the list !";
                 return Json(elevator, JsonRequestBehavior.AllowGet);
             }
            
@@ -126,10 +134,26 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             return View(elevator);
         }
 
+        [HttpPost]
+        public JsonResult Edit(Elevator elevator)
+        {
+
+            if (ModelState.IsValid)
+            {
+                elevator.UpdatedAt = DateTime.Today;
+                db.Entry(elevator).State = EntityState.Modified;
+                db.SaveChanges();
+                TempData["UpdateMessage"] = "Elevator { #" + elevator.ID + "." + elevator.Name + " } has been updated !";
+                return Json(elevator, JsonRequestBehavior.AllowGet);
+            }
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", elevator.CategoryID);
+            return Json(elevator, JsonRequestBehavior.AllowGet);
+        }
+
         // POST: Elevators/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+       /* [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,SKU,Status,Description,Thumbnails,Capacity,Speed,Price,MaxPerson,Location,Slug,Tag,CreatedAt,UpdatedAt,DeletedAt,CategoryID")] Elevator elevator)
         {
@@ -144,7 +168,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             }
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", elevator.CategoryID);
             return View(elevator);
-        }
+        }*/
 
         // GET: Elevators/Delete/5
         public ActionResult Delete(int? id)
@@ -180,6 +204,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             {
                 return HttpNotFound();
             }
+           
             return View(elevator);
         }
 

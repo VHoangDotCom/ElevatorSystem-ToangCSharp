@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElevatorSystem.Admin.Models;
@@ -107,6 +109,17 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         // GET: Orders/Create
         public ActionResult Create()
         {
+            TempData["orderStatus0"] = " 0 - Pending - This status means no invoice and shipments have been submitted.";
+            TempData["orderStatus1"] = " 1 - Processing - In this state, the Order is being processed and prepared for packaging and shipping.";
+            TempData["orderStatus2"] = " 2 - Completed - complete - This status means that the order is created, paid, and shipped to the customer.";
+            TempData["orderStatus3"] = " 3 - Canceled - This status is assigned manually in the Admin or for some customers who want to cancel their order.";
+            TempData["orderStatus4"] = " 4 - Refund - This status indicates that the Customer wants to return the product and wants a refund.";
+            TempData["orderStatus5"] = " 5 - Complaint - This status indicates that the customer has submitted a complaint or review about the product.";
+            TempData["n"] = "Status : n - Status is undefined";
+
+            TempData["shippingStatus0"] = "0 - Packaging";
+            TempData["shippingStatus1"] = "1 - Delivering";
+            TempData["shippingStatus2"] = "2 - Received";
             return View();
         }
 
@@ -127,6 +140,20 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
 
             return View(order);
         }
+
+
+        // GET: Projects/Create
+        public ActionResult CreateProject(int id)
+        {
+           
+            TempData["ID"] = id;
+            return new RedirectResult("/Projects/Create");
+
+           
+        }
+
+       
+
 
         // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
@@ -159,6 +186,41 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 return RedirectToAction("Index");
             }
             return View(order);
+        }
+
+        //GET: Orders/Details/5/Order_Items
+        public  ActionResult GetListItems(int? id)
+        {
+            /* List<Order> orders = db.Orders.ToList();
+             List<Order_Items> order_Items = db.Order_Items.ToList();
+             var listItems = from e in order_Items
+                             join d in orders on e.OrderID equals d.ID
+                             where d.ID == id
+                             select order_Items.FirstOrDefault();*/
+
+            var listOrderItems = db.Order_Items.Where(ot => ot.OrderID == id).ToList();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var order = db.Orders.Find(id ?? 1);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = id;
+            ViewBag.sku = order.SKU;
+            //Get list Order Items by OrderID
+            // Order order = db.Orders.Find(id);
+            // var model = order.Order_Items;
+/*
+            IEnumerable<Order> listItem = await db.Orders.Where(o => o.ID == id)
+               .Join(db.Order_Items, o => o.ID, ot => ot.OrderID, (o, ot) => new
+               { Order_Items = o.Order_Items }).;*/
+            
+
+            return View(listOrderItems);
         }
 
         // GET: Orders/Delete/5
