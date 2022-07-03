@@ -47,11 +47,13 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Status,StartDate,EndDate,Description,Partner,Term,Images,ContractDocument,CreatedAt,UpdatedAt,DeletedAt,OrderID")] Project project)
+        public ActionResult Create([Bind(Include = "ID,Name,Title,Status,StartDate,EndDate,Description,Partner,Term,Images,ContractDocument,CreatedAt,UpdatedAt,OrderID,DeletedAt")] Project project)
         {
             if (ModelState.IsValid)
             {
                 project.CreatedAt = DateTime.Today;
+                project.OrderID = Convert.ToInt32(TempData["ID"]);
+              
                 db.Projects.Add(project);
                 db.SaveChanges();
                 TempData["CreateMessage"] = "Project { #" + project.ID + "." + project.Name + " } has been added to the list !";
@@ -69,6 +71,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Project project = db.Projects.Find(id);
+            
             if (project == null)
             {
                 return HttpNotFound();
@@ -81,7 +84,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Status,StartDate,EndDate,Description,Partner,Term,Images,ContractDocument,CreatedAt,UpdatedAt,DeletedAt,OrderID")] Project project)
+        public ActionResult Edit([Bind(Include = "ID,Name,Title,Status,StartDate,EndDate,Description,Partner,Term,Images,ContractDocument,CreatedAt,UpdatedAt,DeletedAt,OrderID")] Project project)
         {
             if (ModelState.IsValid)
             {

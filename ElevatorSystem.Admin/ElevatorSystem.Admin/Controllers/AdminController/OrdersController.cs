@@ -145,11 +145,12 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
         // GET: Projects/Create
         public ActionResult CreateProject(int id)
         {
-           
-            TempData["ID"] = id;
+
+            Order order = db.Orders.Find(id);
+            TempData["ID"] = order.ID;
+            TempData["OrderSKU"] = Convert.ToString(order.SKU);
             return new RedirectResult("/Projects/Create");
 
-           
         }
 
        

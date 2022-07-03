@@ -26,19 +26,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Create new Project</h5>
+                            <h5 class="card-title">Create new Project ( from Order @*#@TempData["ID"] *@ '@TempData["OrderSKU"]'   )</h5>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <!-- Floating Labels Form -->
                         <form class="row g-3">
-
-                          
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.OrderID, "OrderID", htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.OrderID, new { htmlAttributes = new { @class = "form-control", @Value = @TempData["ID"], @disabled = "true" }  })
-                                        @Html.ValidationMessageFor(model => model.OrderID, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
 
 
                             <div class="form-group col-sm-12 d-flex">
@@ -58,29 +49,7 @@
 
                                     </div>
                                 </div>
-
                             </div>
-
-                            <div class="form-group col-sm-12 d-flex">
-                                <div class="row mb-3 m-3 col-md-6">
-                                    <label for="inputDate" class="col-sm-3 col-form-label">Started date</label>
-                                    <div class="col-sm-8">
-                                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-                                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-
-                                    </div>
-                                </div>
-
-                                <div class="row mb-5 m-3 col-md-6">
-                                    <label for="inputDate" class="col-sm-3 col-form-label">Ended date</label>
-                                    <div class="col-sm-8">
-                                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-                                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-
-                                    </div>
-                                </div>
-                            </div>
-
 
                             <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
                                 <div class="col-md-6">
@@ -104,16 +73,17 @@
                                 <div class="col-md-6">
                                     <div class="form-floating">
 
-                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Tag description", @style = "height: 100px;" } })
-                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @for = "floatingTextarea" })
+                                        @Html.EditorFor(model => model.Images, new { htmlAttributes = new { @class = "form-control", @id = "floatingName", @placeholder = "@Please enter Image link" } })
+                                        @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+                                        @Html.LabelFor(model => model.Images, htmlAttributes: new { @for = "floatingName" })
                                     </div>
                                 </div>
+
 
                             </div>
 
                             <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-floating">
 
                                         @Html.EditorFor(model => model.Partner, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Partner information", @style = "height: 100px;" } })
@@ -122,7 +92,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-floating">
 
                                         @Html.EditorFor(model => model.Term, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Term & conditions", @style = "height: 100px;" } })
@@ -130,16 +100,40 @@
                                         @Html.LabelFor(model => model.Term, htmlAttributes: new { @for = "floatingTextarea" })
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="col-md-4">
+                            <div class="form-group col-sm-12 d-flex" style="margin-top:30px">
+                                <div class="col-md-12">
                                     <div class="form-floating">
 
-                                        @Html.EditorFor(model => model.Images, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "@Please enter Image link", @style = "height: 100px;" } })
-                                        @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
-                                        @Html.LabelFor(model => model.Images, htmlAttributes: new { @for = "floatingTextarea" })
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "floatingTextarea", @placeholder = "Tag description", @style = "height: 100px;" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @for = "floatingTextarea" })
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="form-group col-sm-12 d-flex">
+                                <div class="row mb-3 m-3 col-md-6">
+                                    <label for="inputDate" class="col-sm-3 col-form-label">Started date</label>
+                                    <div class="col-sm-8">
+                                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+
+                                    </div>
+                                </div>
+
+                                <div class="row mb-5 m-3 col-md-6">
+                                    <label for="inputDate" class="col-sm-3 col-form-label">Ended date</label>
+                                    <div class="col-sm-8">
+                                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="form-group col-sm-12" style="margin-top:30px">
                                 <div class="card">
@@ -157,7 +151,7 @@
                             <div class="text-center">
                                 <button type="submit" value="Create" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
-                                <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Projects")'">Back to list</button>
+                                <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Orders")'">Back to Orders</button>
                             </div>
 
                         </form><!-- End floating Labels Form -->

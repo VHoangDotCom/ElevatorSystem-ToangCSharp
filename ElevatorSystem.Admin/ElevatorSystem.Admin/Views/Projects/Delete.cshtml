@@ -102,7 +102,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -111,3 +112,62 @@
         </div>
     }
 </div>
+
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Project Management</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
+                <li class="breadcrumb-item">Projects</li>
+                <li class="breadcrumb-item active">Delete project</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                
+                        <form class="row g-3">
+                            <div class="card basic">
+                                <div class="card-body">
+                                    <h5 class="card-title m-5">Project <strong style="font-size: 25px">#@Html.DisplayFor(model => model.ID). @Html.DisplayFor(model => model.Name)</strong> </h5>
+                                    <div class="form-group col-sm-12 d-flex">
+                                        <div class="col-md-6">
+                                            <img src="@Html.DisplayFor(model => model.Images)" style="height:800px ;" class="card-img-top" alt="...">
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <h3 class="card-title">Name: @Html.DisplayFor(model => model.Name)  </h3>
+                                          @*  <p>Order SKU: <span>@Html.DisplayFor(model => model.Order.SKU)</span> </p>
+                                            <p>Customer name: <span>@Html.DisplayFor(model => model.Order.FullName)</span> </p>*@
+                                            <p>Description: <span>@Html.DisplayFor(model => model.Description)</span> </p>
+                                            <p>Title: <spans>@Html.DisplayFor(model => model.Title)</spans></p>
+                                            <p>Status: <spans>@Html.DisplayFor(model => model.Status)</spans></p>
+                                            <p>Started Date: <span>@Html.DisplayFor(model => model.StartDate)</span>VND </p>
+                                            <p>Ended Date: <span>@Html.DisplayFor(model => model.EndDate)</span> </p>
+                                            <p>Partner: <span>@Html.DisplayFor(model => model.Partner)</span> </p>
+                                            <p>Term:  <span>@Html.DisplayFor(model => model.Term)</span> </p>
+                                            <p>Description: <span>@Html.DisplayFor(model => model.Description)</span> </p>
+                                            <p>Created Date: <span>@Html.DisplayFor(model => model.CreatedAt)</span> </p>
+                                            <p>Modified Date: <span>@Html.DisplayFor(model => model.UpdatedAt)</span> </p>
+                                            <div class=" d-flex">
+                                                <button type="button" class="btn btn-secondary m-1" title="Edit">Update</button>
+                                                <button type="button" class="btn btn-success m-1" title="Edit" onclick="location.href='@Url.Action("Index", "Elevators")'">Back</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- End floating Labels Form -->
+
+                 
+            </div>
+        </div>
+    </section>
+</main><!-- End #main -->

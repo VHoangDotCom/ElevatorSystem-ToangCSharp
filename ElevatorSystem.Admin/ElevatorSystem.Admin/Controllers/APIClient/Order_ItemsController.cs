@@ -13,44 +13,44 @@ using ElevatorSystem.Admin.Models.Entity;
 
 namespace ElevatorSystem.Admin.Controllers.APIClient
 {
-    public class OrdersController : ApiController
+    public class Order_ItemsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Orders
-        public IQueryable<Order> GetOrders()
+        // GET: api/Order_Items
+        public IQueryable<Order_Items> GetOrder_Items()
         {
-            return db.Orders;
+            return db.Order_Items;
         }
 
-        // GET: api/Orders/5
-        [ResponseType(typeof(Order))]
-        public IHttpActionResult GetOrder(int id)
+        // GET: api/Order_Items/5
+        [ResponseType(typeof(Order_Items))]
+        public IHttpActionResult GetOrder_Items(int id)
         {
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Order_Items order_Items = db.Order_Items.Find(id);
+            if (order_Items == null)
             {
                 return NotFound();
             }
 
-            return Ok(order);
+            return Ok(order_Items);
         }
 
-        // PUT: api/Orders/5
+        // PUT: api/Order_Items/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutOrder(int id, Order order)
+        public IHttpActionResult PutOrder_Items(int id, Order_Items order_Items)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != order.ID)
+            if (id != order_Items.ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(order).State = EntityState.Modified;
+            db.Entry(order_Items).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderExists(id))
+                if (!Order_ItemsExists(id))
                 {
                     return NotFound();
                 }
@@ -71,38 +71,35 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Orders
-        [ResponseType(typeof(Order))]
-        public IHttpActionResult PostOrder(Order order)
+        // POST: api/Order_Items
+        [ResponseType(typeof(Order_Items))]
+        public IHttpActionResult PostOrder_Items(Order_Items order_Items)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            Random rd = new Random();
-            order.SKU = "ELEVATOR00" + rd.Next(1, 1000).ToString();
-            order.CreatedAt = DateTime.Today;
 
-            db.Orders.Add(order);
+            db.Order_Items.Add(order_Items);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = order.ID }, order);
+            return CreatedAtRoute("DefaultApi", new { id = order_Items.ID }, order_Items);
         }
 
-        // DELETE: api/Orders/5
-        [ResponseType(typeof(Order))]
-        public IHttpActionResult DeleteOrder(int id)
+        // DELETE: api/Order_Items/5
+        [ResponseType(typeof(Order_Items))]
+        public IHttpActionResult DeleteOrder_Items(int id)
         {
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Order_Items order_Items = db.Order_Items.Find(id);
+            if (order_Items == null)
             {
                 return NotFound();
             }
 
-            db.Orders.Remove(order);
+            db.Order_Items.Remove(order_Items);
             db.SaveChanges();
 
-            return Ok(order);
+            return Ok(order_Items);
         }
 
         protected override void Dispose(bool disposing)
@@ -114,9 +111,9 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             base.Dispose(disposing);
         }
 
-        private bool OrderExists(int id)
+        private bool Order_ItemsExists(int id)
         {
-            return db.Orders.Count(e => e.ID == id) > 0;
+            return db.Order_Items.Count(e => e.ID == id) > 0;
         }
     }
 }

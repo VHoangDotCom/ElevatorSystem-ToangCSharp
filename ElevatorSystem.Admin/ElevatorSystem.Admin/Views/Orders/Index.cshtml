@@ -103,12 +103,12 @@
                                         <td> @Html.DisplayFor(modelItem => item.OrderDate)</td>
                                       
 
-                                        <td class="col-4">
+                                        <td class="col-5">
 
-                                            <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Orders",new { id = item.ID })'"><i class='bx bx-edit-alt'> Edit</i></button>
-                                            <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Orders",new { id = item.ID })'"><i class='bx bx-info-circle'> Detail</i></button>
-                                            <button type="button" class="btn btn-warning m-1" title="Order list " onclick="location.href='@Url.Action("GetListItems", "Orders",new { id = item.ID })'"><i class='bx bx-list-ol'> List Items</i></button>
-                                            <button type="button" class="btn btn-warning m-1" title="Create Project " onclick="location.href='@Url.Action("CreateProject", "Orders",new { id = item.ID })'"><i class='bx bxl-product-hunt'> Create Project</i></button>
+                                            <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Orders",new { id = item.ID })'"><i class='bx bx-edit-alt'>Edit</i></button>
+                                            <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Orders",new { id = item.ID })'"><i class='bx bx-info-circle'>Detail</i></button>
+                                            <button type="button" class="btn btn-warning m-1" title="Order list " onclick="location.href='@Url.Action("GetListItems", "Orders",new { id = item.ID })'"><i class='bx bx-list-ol'>List Items</i></button>
+                                            <button type="button" class="btn btn-warning m-1" title="Create Project " onclick="location.href='@Url.Action("CreateProject", "Orders",new { id = item.ID })'"><i class='bx bxl-product-hunt'>New Project</i></button>
                                         </td>
                                     </tr>
 

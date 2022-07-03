@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ElevatorSystem.Admin.Models;
@@ -25,13 +26,19 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
 
         // GET: api/Categories/5
         [ResponseType(typeof(Category))]
-        public IHttpActionResult GetCategory(int id)
+        public async Task<IHttpActionResult> GetCategory(int id)
         {
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+            var category = await db.Categories.Where(c => c.ID == id).Join(
+                    db.Elevators,
+                    c => c.ID,
+                    e => e.CategoryID,
+                    (c, e) => new
+                    {
+                        CategoryName = c.Name,
+                        Elevators = c.Elevators
+                    }
+                ).ToArrayAsync();
+
 
             return Ok(category);
         }
