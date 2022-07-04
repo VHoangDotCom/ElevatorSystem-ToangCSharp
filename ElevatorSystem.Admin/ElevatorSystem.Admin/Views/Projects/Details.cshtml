@@ -3,112 +3,82 @@
 @{
     ViewBag.Title = "Details";
 }
+<main id="main" class="main">
 
-<h2>Details</h2>
+    <div class="pagetitle">
+        <h1>Project Management</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Home")'">Home</a></li>
+                <li class="breadcrumb-item">Projects</li>
+                <li class="breadcrumb-item active">Detail project</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-<div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+            
+                <div class="card basic">
+                    <div class="card-body">
+                        <h5 class="card-title m-5"> <strong style="font-size: 25px">#@Html.DisplayFor(model => model.ID). @Html.DisplayFor(model => model.Name)</strong> </h5>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+                        <div class="form-group col-sm-12 d-flex">
+                            <div class="col-md-6">
+                                <img src="@Html.DisplayFor(model => model.Images)" style="height:800px ;" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col-md-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+                                <h3 class="card-title">Name: @Html.DisplayFor(model => model.Name)  </h3>
+                                @*  <p>Order SKU: <span>@Html.DisplayFor(model => model.Order.SKU)</span> </p>
+                <p>Customer name: <span>@Html.DisplayFor(model => model.Order.FullName)</span> </p>*@
+                                <p><strong>Description:</strong> <span>@Html.DisplayFor(model => model.Description)</span> </p>
+                                <p><strong>Title:</strong> <spans>@Html.DisplayFor(model => model.Title)</spans></p>
+                                <p><strong>Status:</strong> <spans>@ViewData["projectStatus"]</spans></p>
+                                <p><strong>Started date:</strong> <span>@Html.DisplayFor(model => model.StartDate)</span>VND </p>
+                                <p><strong>Ended date:</strong> <span>@Html.DisplayFor(model => model.EndDate)</span> </p>
+                                <p><strong>Partner:</strong> <span>@Html.DisplayFor(model => model.Partner)</span> </p>
+                                <p><strong>Term:</strong>  <span>@Html.DisplayFor(model => model.Term)</span> </p>
+                                <p><strong>Description:</strong> <span>@Html.DisplayFor(model => model.Description)</span> </p>
+                                <p><strong>Created date:</strong> <span>@Html.DisplayFor(model => model.CreatedAt)</span> </p>
+                                <p><strong>Modified date:</strong> <span>@Html.DisplayFor(model => model.UpdatedAt)</span> </p>
+                                <p><strong>Project Contrast: </strong><i> ( Please Export Contrast for more details! )</i></p>
+                                <textarea id="Grid" style="display:none;" class="tinymce-editor">
+                                           @Html.DisplayFor(model => model.ContractDocument ,new { htmlAttributes = new { @disabled = true } })
+                                        </textarea><!-- End TinyMCE Editor -->
+                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
+                        </div>
+                        <div class="d-flex" style="margin-left:300px;">
+                            <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Projects",new { id = Model.ID})'">Update</button>
+                            <button type="button" class="btn btn-success m-1" title="back to List" onclick="location.href='@Url.Action("Index", "Projects")'">Back to list</button>
+                            @*Import Contrast here*@
+                            @using (Html.BeginForm("ExportDoc", "Projects", new { projectName = Model.Name }, FormMethod.Post))
+                            {
 
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
+                                <input type="hidden" name="GridHtml" />
+                                <button type="submit" class="btn btn-secondary m-1" id="btnSubmit" value="Export"><i style="font-size:18px;" class='bx bxs-file-doc'> Export Project Contrast</i></button>
+                            }
+                        </div>
+                      
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            </div>
+        </div>
+    </section>
+</main><!-- End #main -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Partner)
-        </dt>
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                $("input[name='GridHtml']").val($("#Grid").val());
 
-        <dd>
-            @Html.DisplayFor(model => model.Partner)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Term)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Term)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Images)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Images)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContractDocument)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContractDocument)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Order_DetailID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Order_DetailID)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            });
+        });
+    </script>
+}

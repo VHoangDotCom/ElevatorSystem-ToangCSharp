@@ -24,7 +24,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">List Project</h5>
-                      
+
 
                         @if (@TempData["CreateMessage"] != null)
                         {
@@ -55,7 +55,7 @@
                         }
 
 
-                      
+                        <button type="button" style="margin-left:10px" class="btn btn-secondary rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("ProjectReport", "Projects")'"><i class='bx bxs-file-export'> Export data</i></button>
                         <!-- Table with stripped rows -->
                         <table class="table datatable table-striped">
                             <thead>
@@ -78,7 +78,7 @@
                                         <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
                                         <td> @Html.DisplayFor(modelItem => item.Name)</td>
                                         <td> @Html.DisplayFor(modelItem => item.StartDate)</td>
-                              
+
                                         <td> <img src="@Html.DisplayFor(modelItem => item.Images)" alt="Project #@Html.DisplayFor(modelItem => item.ID)" width="100" height="120"></td>
                                         <td> @Html.DisplayFor(modelItem => item.Partner)</td>
 

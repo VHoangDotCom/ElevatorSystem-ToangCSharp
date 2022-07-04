@@ -13,6 +13,7 @@ namespace ElevatorSystem.Admin.Models.Entity
         public int ID { get; set; }
         [Required(ErrorMessage = "Please enter elevator name !")]
         public string Name { get; set; }
+        //Stock Keeping Unit
         public string SKU { get; set; }
         public int Status { get; set; }
         [AllowHtml]

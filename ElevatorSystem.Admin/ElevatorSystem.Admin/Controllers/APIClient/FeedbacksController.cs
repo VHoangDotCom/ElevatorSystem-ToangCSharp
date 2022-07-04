@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ElevatorSystem.Admin.Models;
 using ElevatorSystem.Admin.Models.Entity;
+using ElevatorSystem.Admin.Models.ViewModels;
 
 namespace ElevatorSystem.Admin.Controllers.APIClient
 {
@@ -17,103 +20,37 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Feedbacks
-        public IQueryable<Feedback> GetFeedbacks()
+        [Route("api/GetFeedbackByElevatorID/{elevatorID}")]
+        [HttpGet]
+        public IHttpActionResult GetFeedbackByElevatorID(int elevatorID)
         {
-            return db.Feedbacks;
+            var data = db.Elevators.Where(e => e.ID == elevatorID)
+                .Join(db.Feedbacks, e => e.ID, f => f.ElevatorID,
+                    (e, f) => new { Elevator_ID = e.ID, Feedback = e.Feedbacks }).FirstOrDefault();
+            return Ok(new { success = true, data });
         }
 
-        // GET: api/Feedbacks/5
-        [ResponseType(typeof(Feedback))]
-        public IHttpActionResult GetFeedback(int id)
-        {
-            Feedback feedback = db.Feedbacks.Find(id);
-            if (feedback == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(feedback);
-        }
-
-        // PUT: api/Feedbacks/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutFeedback(int id, Feedback feedback)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != feedback.ID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(feedback).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FeedbackExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        // api/SatisfyingLevel
 
         // POST: api/Feedbacks
+        [System.Web.Http.Authorize(Roles = "user")]
         [ResponseType(typeof(Feedback))]
-        public IHttpActionResult PostFeedback(Feedback feedback)
+        public IHttpActionResult PostFeedback(FeedbackViewModel feedback)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Feedbacks.Add(feedback);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = feedback.ID }, feedback);
-        }
-
-        // DELETE: api/Feedbacks/5
-        [ResponseType(typeof(Feedback))]
-        public IHttpActionResult DeleteFeedback(int id)
-        {
-            Feedback feedback = db.Feedbacks.Find(id);
-            if (feedback == null)
-            {
-                return NotFound();
-            }
-
-            db.Feedbacks.Remove(feedback);
-            db.SaveChanges();
-
-            return Ok(feedback);
-        }
-
-       protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool FeedbackExists(int id)
-        {
-            return db.Feedbacks.Count(e => e.ID == id) > 0;
+            var identity = User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
+            string queryString = "INSERT INTO Feedbacks(Description,SatisfyingLevel,Problem,Improvement,ApplicationUser_Id,ElevatorID)" +
+                                 " VALUES(@Description,@SatisfyingLevel, @Problem,@Improvement,@ApplicationUser_Id,@ElevatorID)";
+            var dbset = db.Database.SqlQuery<FeedbackViewModel>(queryString,
+                                                    new SqlParameter("@Description", feedback.Description),
+                                                    new SqlParameter("@SatisfyingLevel", feedback.SatisfyingLevel),
+                                                    new SqlParameter("@Problem", feedback.Problem),
+                                                    new SqlParameter("@Improvement", feedback.Improvement),
+                                                    new SqlParameter("@ApplicationUser_Id", id),
+                                                    new SqlParameter("@ElevatorID", feedback.ElevatorID)
+                                                    );
+            return Ok(new { dbset, success = true });
         }
     }
 }

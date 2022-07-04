@@ -27,19 +27,19 @@
                         <h5 class="card-title">List Elevators</h5>
                         <p>Elevator is the core product line of the company. All areas of <code>business</code>, <code>commerce</code> or <code>service</code> revolve around Elevators.</p>
 
-                      @*  <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Some Explanation about Elevator Status</h4>
-                            <p>@TempData["0"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["1"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["2"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["3"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["n"]</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>*@
+                        @*  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Some Explanation about Elevator Status</h4>
+            <p>@TempData["0"]</p>
+            <hr>
+            <p class="mb-0">@TempData["1"]</p>
+            <hr>
+            <p class="mb-0">@TempData["2"]</p>
+            <hr>
+            <p class="mb-0">@TempData["3"]</p>
+            <hr>
+            <p class="mb-0">@TempData["n"]</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>*@
 
                         @if (@TempData["CreateMessage"] != null)
                         {
@@ -70,7 +70,8 @@
                         }
 
 
-                        <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Elevators")'"><i class="bi bi-plus-lg"> Add new</i></button>
+                        <button type="button" style="margin-left:10px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Elevators")'"><i class="bi bi-plus-lg"> Add new</i></button>
+                        <button type="button" style="margin-left:10px" class="btn btn-secondary rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("ElevatorReport", "Elevators")'"><i class='bx bxs-file-export'> Export data</i></button>
                         <!-- Table with stripped rows -->
                         <table class="table datatable table-striped">
                             <thead>

@@ -4,115 +4,6 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Partner)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Partner)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Term)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Term)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Images)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Images)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContractDocument)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContractDocument)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
-
-
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
-
 
 
 <main id="main" class="main">
@@ -131,42 +22,79 @@
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-                
-                        <form class="row g-3">
-                            <div class="card basic">
-                                <div class="card-body">
-                                    <h5 class="card-title m-5">Project <strong style="font-size: 25px">#@Html.DisplayFor(model => model.ID). @Html.DisplayFor(model => model.Name)</strong> </h5>
-                                    <div class="form-group col-sm-12 d-flex">
-                                        <div class="col-md-6">
-                                            <img src="@Html.DisplayFor(model => model.Images)" style="height:800px ;" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="col-md-6">
 
-                                            <h3 class="card-title">Name: @Html.DisplayFor(model => model.Name)  </h3>
-                                          @*  <p>Order SKU: <span>@Html.DisplayFor(model => model.Order.SKU)</span> </p>
-                                            <p>Customer name: <span>@Html.DisplayFor(model => model.Order.FullName)</span> </p>*@
-                                            <p>Description: <span>@Html.DisplayFor(model => model.Description)</span> </p>
-                                            <p>Title: <spans>@Html.DisplayFor(model => model.Title)</spans></p>
-                                            <p>Status: <spans>@Html.DisplayFor(model => model.Status)</spans></p>
-                                            <p>Started Date: <span>@Html.DisplayFor(model => model.StartDate)</span>VND </p>
-                                            <p>Ended Date: <span>@Html.DisplayFor(model => model.EndDate)</span> </p>
-                                            <p>Partner: <span>@Html.DisplayFor(model => model.Partner)</span> </p>
-                                            <p>Term:  <span>@Html.DisplayFor(model => model.Term)</span> </p>
-                                            <p>Description: <span>@Html.DisplayFor(model => model.Description)</span> </p>
-                                            <p>Created Date: <span>@Html.DisplayFor(model => model.CreatedAt)</span> </p>
-                                            <p>Modified Date: <span>@Html.DisplayFor(model => model.UpdatedAt)</span> </p>
-                                            <div class=" d-flex">
-                                                <button type="button" class="btn btn-secondary m-1" title="Edit">Update</button>
-                                                <button type="button" class="btn btn-success m-1" title="Edit" onclick="location.href='@Url.Action("Index", "Elevators")'">Back</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                <form class="row g-3">
+                    <div class="card basic">
+                        <div class="card-body">
+                            <h5 class="card-title m-5">Are you sure you want to delete project <strong style="font-size: 25px">#@Html.DisplayFor(model => model.ID). @Html.DisplayFor(model => model.Name)</strong> ? </h5>
+                            @if (@ViewData["InvalidStatus"] != null)
+                            {
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    <strong>Warning !</strong> @ViewData["InvalidStatus"] - The Status is <strong>@ViewData["projectStatus"]</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            }
+                            <div class="form-group col-sm-12 d-flex">
+                                <div class="col-md-6">
+                                    <img src="@Html.DisplayFor(model => model.Images)" style="height:800px ;" class="card-img-top" alt="...">
+                                </div>
+                                <div class="col-md-6">
+
+                                    <h3 class="card-title">Name: @Html.DisplayFor(model => model.Name)  </h3>
+                                    @*  <p>Order SKU: <span>@Html.DisplayFor(model => model.Order.SKU)</span> </p>
+                            <p>Customer name: <span>@Html.DisplayFor(model => model.Order.FullName)</span> </p>*@
+                                    <p><strong>Description:</strong> <span>@Html.DisplayFor(model => model.Description)</span> </p>
+                                    <p><strong>Title:</strong> <spans>@Html.DisplayFor(model => model.Title)</spans></p>
+                                    <p><strong>Status:</strong> <spans>@ViewData["projectStatus"]</spans></p>
+                                    <p><strong>Started date:</strong> <span>@Html.DisplayFor(model => model.StartDate)</span>VND </p>
+                                    <p><strong>Ended date:</strong> <span>@Html.DisplayFor(model => model.EndDate)</span> </p>
+                                    <p><strong>Partner:</strong> <span>@Html.DisplayFor(model => model.Partner)</span> </p>
+                                    <p><strong>Term:</strong>  <span>@Html.DisplayFor(model => model.Term)</span> </p>
+                                    <p><strong>Description:</strong> <span>@Html.DisplayFor(model => model.Description)</span> </p>
+                                    <p><strong>Created date:</strong> <span>@Html.DisplayFor(model => model.CreatedAt)</span> </p>
+                                    <p><strong>Modified date:</strong> <span>@Html.DisplayFor(model => model.UpdatedAt)</span> </p>
+
                                 </div>
                             </div>
-                        </form>
-                        <!-- End floating Labels Form -->
 
-                 
+                        </div>
+
+                    </div>
+
+                </form>
+                <!-- End floating Labels Form -->
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color text-center">
+                        <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#exampleModalCenter">Delete </button>
+                        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Projects")'"><i class="bi arrow-left-circle">Back to list</i></button>
+                    </div>
+                    <!-- Modal -->
+
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Are you absolutely sure about this?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <p onmousedown="return false;" onselect="return false;">Please type <strong>@Html.DisplayFor(model => model.Name)</strong> to confirm.</p>
+                                    <input type="text" class="form-control input-block" id="verify" name="verify" pattern="@Html.DisplayFor(model => model.Name)" required />
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Comfirm Delete Project" id="submitDelete" disabled class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
             </div>
         </div>
     </section>

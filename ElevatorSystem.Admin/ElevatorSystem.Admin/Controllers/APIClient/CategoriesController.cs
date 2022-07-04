@@ -26,9 +26,9 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
 
         // GET: api/Categories/5
         [ResponseType(typeof(Category))]
-        public async Task<IHttpActionResult> GetCategory(int id)
+        public IHttpActionResult GetCategory(int id)
         {
-            var category = await db.Categories.Where(c => c.ID == id).Join(
+            var category = db.Categories.Where(c => c.ID == id).Join(
                     db.Elevators,
                     c => c.ID,
                     e => e.CategoryID,
@@ -37,7 +37,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                         CategoryName = c.Name,
                         Elevators = c.Elevators
                     }
-                ).ToArrayAsync();
+                ).FirstOrDefault();
 
 
             return Ok(category);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using ElevatorSystem.Admin.Models;
 using ElevatorSystem.Admin.Models.Entity;
+using OfficeOpenXml;
 
 namespace ElevatorSystem.Admin.Controllers.AdminController
 {
@@ -33,23 +35,136 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             TempData["shippingStatus1"] = "1 - Delivering";
             TempData["shippingStatus2"] = "2 - Received";
 
-            //Message Created Order
-           // int count = 0;
-          /* foreach(Order order in orders)
-            {
-                if(order.OrderStatus == 0)
-                {
-                    @TempData["PendingMessage"] = "Order { #" + order.ID + ". " + order.SKU + " } has been added to the list !";
-                }else if(order.OrderStatus == 2)
-                {
-                    TempData["CompletedMessage"] = "Order { #" + order.ID + ". " + order.SKU + " } is completed !";
-                }else if(order.OrderStatus == 3)
-                {
-                    TempData["DeleteMessage"] = "Order { #" + order.ID + ". " + order.SKU + " } is canceled !";
-                }
-            }*/
-
             return View(orders.ToList());
+        }
+
+        //Export Data to Excel
+        public void OrderReport()
+        {
+            var orders = db.Orders.Include(e => e.ApplicationUser);
+            ExcelPackage pck = new ExcelPackage();
+            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
+
+            //Set information for order title
+            ws.Cells["A1"].Value = "Manager";
+            ws.Cells["B1"].Value = "Nguyen Viet Hoang";
+
+            ws.Cells["A2"].Value = "Report";
+            ws.Cells["B2"].Value = "Order report";
+
+            ws.Cells["A3"].Value = "Datetime";
+            ws.Cells["B3"].Value = string.Format("{0:dd MMMM yyyy} at {0:H: mm tt}", DateTimeOffset.Now);
+
+            //Set color for Status
+            ws.Cells["D1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            ws.Cells["D2"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            ws.Cells["D3"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            ws.Cells["D4"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            ws.Cells["D5"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            ws.Cells["D6"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+
+
+            ws.Cells["D1"].Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("lightyellow")));
+            ws.Cells["D2"].Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Gold")));
+            ws.Cells["D3"].Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("lightgreen")));
+            ws.Cells["D4"].Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Tomato")));
+            ws.Cells["D5"].Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Teal")));
+            ws.Cells["D6"].Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Sienna")));
+
+
+            ws.Cells["E1"].Value = "Pending - This status means no invoice and shipments have been submitted.";
+            ws.Cells["E2"].Value = "Processing - In this state, the Order is being processed and prepared for packaging and shipping.";
+            ws.Cells["E3"].Value = "Completed - complete - This status means that the order is created, paid, and shipped to the customer.";
+            ws.Cells["E4"].Value = "Canceled - This status is assigned manually in the Admin or for some customers who want to cancel their order.";
+            ws.Cells["E5"].Value = "Refund - This status indicates that the Customer wants to return the product and wants a refund.";
+            ws.Cells["E6"].Value = "Complaint - This status indicates that the customer has submitted a complaint or review about the product.";
+
+            //Data table
+            ws.Cells["A8"].Value = "Order ID";
+            ws.Cells["B8"].Value = "Total ($)";
+            ws.Cells["C8"].Value = "Full Name";
+            ws.Cells["D8"].Value = "SKU (Stock Keeping Unit)";
+            ws.Cells["E8"].Value = "Phonenumber";
+            ws.Cells["F8"].Value = "Address";
+            ws.Cells["G8"].Value = "Description";
+            ws.Cells["H8"].Value = "Shipping Fee ($)";
+            ws.Cells["I8"].Value = "Tax ($)";
+            ws.Cells["J8"].Value = "Order Email";
+            ws.Cells["K8"].Value = "Order Status";
+            ws.Cells["L8"].Value = "Ship Status";
+            ws.Cells["M8"].Value = "Order Date";
+            ws.Cells["N8"].Value = "Created Date";
+            ws.Cells["O8"].Value = "Modified Date";
+           
+
+            int rowStart = 9;
+            foreach (var item in orders)
+            {
+                string status = "";
+                if (item.OrderStatus == 0)
+                {
+                    ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Row(rowStart).Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("lightyellow")));
+                    status = "Pending";
+                }
+                else if (item.OrderStatus == 1)
+                {
+                    ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Row(rowStart).Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Gold")));
+                    status = "Processing";
+                }
+                else if (item.OrderStatus == 2)
+                {
+                    ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Row(rowStart).Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("lightgreen")));
+                    status = "Completed";
+                }
+                else if (item.OrderStatus == 3)
+                {
+                    ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Row(rowStart).Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Tomato")));
+                    status = "Canceled";
+                }
+                else if (item.OrderStatus == 4)
+                {
+                    ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Row(rowStart).Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Teal")));
+                    status = "Refund";
+                }
+                else if (item.OrderStatus == 5)
+                {
+                    ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Row(rowStart).Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Sienna")));
+                    status = "Complaint";
+                }
+               
+
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.ID;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Total;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.FullName;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.SKU;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.PhoneNumber;
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.Address;
+                ws.Cells[string.Format("G{0}", rowStart)].Value = item.Description;
+                ws.Cells[string.Format("H{0}", rowStart)].Value = item.ShippingFee;
+                ws.Cells[string.Format("I{0}", rowStart)].Value = item.Tax;
+                ws.Cells[string.Format("J{0}", rowStart)].Value = item.OrderEmail;
+                ws.Cells[string.Format("K{0}", rowStart)].Value = status;
+                ws.Cells[string.Format("L{0}", rowStart)].Value = item.ShipStatus;
+                ws.Cells[string.Format("M{0}", rowStart)].Value = string.Format("{0:dd MMMM yyyy} at {0:H: mm tt}", item.OrderDate);
+                ws.Cells[string.Format("N{0}", rowStart)].Value = string.Format("{0:dd MMMM yyyy} at {0:H: mm tt}", item.CreatedAt);
+                ws.Cells[string.Format("O{0}", rowStart)].Value = string.Format("{0:dd MMMM yyyy} at {0:H: mm tt}", item.ModifiedAt);
+               
+
+                rowStart++;
+            }
+
+            ws.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment: filename" + "Orders Report.xlsx");
+            Response.BinaryWrite(pck.GetAsByteArray());
+            Response.End();
         }
 
         // GET: Orders/Details/5

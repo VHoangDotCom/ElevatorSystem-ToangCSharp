@@ -26,6 +26,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Update project <strong>@Model.Name</strong> </h5>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div style="display:none;"> @Html.EditorFor(model => model.OrderID))</div>
+                           
                             <!-- Floating Labels Form -->
                             <form class="row g-3">
 
@@ -109,6 +111,7 @@
                                             @Html.LabelFor(model => model.Description, htmlAttributes: new { @for = "floatingTextarea" })
                                         </div>
                                     </div>
+                                   
                                 </div>
 
 

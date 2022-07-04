@@ -19,11 +19,11 @@
 
     <section class="section">
         <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <form class="row g-3">
-                            <h5 class="card-title m-5">Blog <code style="font-size: 30px">#@Html.DisplayFor(model => model.ID).ToHtmlString  @Html.DisplayFor(model => model.Title)</code></h5>
+                            <h5 class="card-title m-5">Blog <strong>#@Html.DisplayFor(model => model.ID).  @Html.DisplayFor(model => model.Title)</strong></h5>
 
                             <!-- Floating Labels Form -->
                             <div class="row mb-3">
@@ -99,21 +99,13 @@
                                     </div>
                                 </div>
 
-                                <!--<div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label">Blog Cotent</label>
-                                    <div class="col-sm-12">
 
-                                        <textarea class="tinymce-editor">
-                                           @Html.DisplayFor(model => model.PostContent ,new { htmlAttributes = new { @disabled = true } })
-                                        </textarea>--><!-- End TinyMCE Editor -->
-                                    <!--</div>
-                                </div>-->
 
                                 <div class="col-sm-12 m-3">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">Blog's content</h5>
-                                            <textarea class="tinymce-editor">
+                                            <textarea id="Grid" class="tinymce-editor">
                                            @Html.DisplayFor(model => model.PostContent ,new { htmlAttributes = new { @disabled = true } })
                                         </textarea><!-- End TinyMCE Editor -->
                                         </div>
@@ -124,10 +116,21 @@
                             <div class="text-center">
                                 <button type="button" class="btn btn-secondary m-1" onclick="location.href='@Url.Action("Edit", "Blogs",new { id = Model.ID })'"><i class="bi bi-pen">Edit</i></button>
                                 <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Blogs")'"><i class="bi arrow-left-circle">Back to list</i></button>
+
                             </div>
                         </form>
                         <!-- End floating Labels Form -->
-                     
+
+                        @using (Html.BeginForm("ExportDoc", "Blogs",new {blogTitle = Model.Title  }, FormMethod.Post))
+                        {
+
+                            <div class="text-center" style="margin-top:20px;">
+                                <input type="hidden" name="GridHtml" />
+                                <button type="submit" class="btn btn-secondary" id="btnSubmit" value="Export"><i style="font-size:18px;" class='bx bxs-file-doc'>Export Post Content</i></button>
+                            </div>
+
+                        }
+
                     </div>
                 </div>
             </div>
@@ -136,3 +139,15 @@
 
 
 </main><!-- End #main -->
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                 $("input[name='GridHtml']").val($("#Grid").val());
+               
+            });
+        });
+    </script>
+}
+

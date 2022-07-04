@@ -31,34 +31,34 @@
                             through the entire fulfillment process, to the point a customer <code>receives their goods</code>.
                         </p>
 
-                       @* <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Some Explanation about Order Status</h4>
-                            <p>@TempData["orderStatus0"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["orderStatus1"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["orderStatus2"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["orderStatus3"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["orderStatus4"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["orderStatus5"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["n"]</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <div class="alert alert-warning  alert-dismissible fade show" role="alert">
-                            <h4 class="alert-heading">Some Explanation about Shipping Status</h4>
-                            <p>@TempData["shippingStatus0"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["shippingStatus1"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["shippingStatus2"]</p>
-                            <hr>
-                            <p class="mb-0">@TempData["n"]</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>*@
+                        @* <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Some Explanation about Order Status</h4>
+            <p>@TempData["orderStatus0"]</p>
+            <hr>
+            <p class="mb-0">@TempData["orderStatus1"]</p>
+            <hr>
+            <p class="mb-0">@TempData["orderStatus2"]</p>
+            <hr>
+            <p class="mb-0">@TempData["orderStatus3"]</p>
+            <hr>
+            <p class="mb-0">@TempData["orderStatus4"]</p>
+            <hr>
+            <p class="mb-0">@TempData["orderStatus5"]</p>
+            <hr>
+            <p class="mb-0">@TempData["n"]</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="alert alert-warning  alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Some Explanation about Shipping Status</h4>
+            <p>@TempData["shippingStatus0"]</p>
+            <hr>
+            <p class="mb-0">@TempData["shippingStatus1"]</p>
+            <hr>
+            <p class="mb-0">@TempData["shippingStatus2"]</p>
+            <hr>
+            <p class="mb-0">@TempData["n"]</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>*@
 
                         @if (@TempData["UpdateMessage"] != null)
                         {
@@ -71,21 +71,22 @@
                         }
 
 
-                      @*  <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Orders")'"><i class="bi bi-plus-lg"> Add new</i></button>*@
+                        @*  <button type="button" style="margin-left:800px" class="btn btn-success rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("Create", "Orders")'"><i class="bi bi-plus-lg"> Add new</i></button>*@
+                        <button type="button" style="margin-left:10px" class="btn btn-secondary rounded-pill mt-2 mb-2" onclick="location.href='@Url.Action("OrderReport", "Orders")'"><i class='bx bxs-file-export'> Export data</i></button>
                         <!-- Table with stripped rows -->
                         <table class="table datatable table-striped">
                             <thead>
                                 <tr>
 
                                     <th scope="col">#</th>
-                                  
+
                                     <th scope="col">SKU</th>
-                                  
+
                                     <th scope="col">Total($)</th>
-                                   
-                                   
+
+
                                     <th scope="col">Order Date</th>
-                                   
+
                                     <th></th>
                                 </tr>
                             </thead>
@@ -95,20 +96,20 @@
                                 {
                                     <tr>
                                         <th scope="row"> @Html.DisplayFor(modelItem => item.ID)</th>
-                                       
+
                                         <td> @Html.DisplayFor(modelItem => item.SKU)</td>
-                                       
+
                                         <td> @Html.DisplayFor(modelItem => item.Total)</td>
-                                       
+
                                         <td> @Html.DisplayFor(modelItem => item.OrderDate)</td>
-                                      
+
 
                                         <td class="col-5">
 
                                             <button type="button" class="btn btn-secondary m-1" title="Edit" onclick="location.href='@Url.Action("Edit", "Orders",new { id = item.ID })'"><i class='bx bx-edit-alt'>Edit</i></button>
                                             <button type="button" class="btn btn-info m-1" title="Detail" onclick="location.href='@Url.Action("Details", "Orders",new { id = item.ID })'"><i class='bx bx-info-circle'>Detail</i></button>
                                             <button type="button" class="btn btn-warning m-1" title="Order list " onclick="location.href='@Url.Action("GetListItems", "Orders",new { id = item.ID })'"><i class='bx bx-list-ol'>List Items</i></button>
-                                            <button type="button" class="btn btn-warning m-1" title="Create Project " onclick="location.href='@Url.Action("CreateProject", "Orders",new { id = item.ID })'"><i class='bx bxl-product-hunt'>New Project</i></button>
+                                            <button type="button" class="btn btn-success m-1" title="Create Project " onclick="location.href='@Url.Action("CreateProject", "Orders",new { id = item.ID })'"><i class='bx bxl-product-hunt'>New Project</i></button>
                                         </td>
                                     </tr>
 

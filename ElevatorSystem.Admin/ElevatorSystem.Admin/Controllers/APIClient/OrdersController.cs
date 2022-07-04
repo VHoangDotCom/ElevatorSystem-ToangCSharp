@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ElevatorSystem.Admin.Models;
 using ElevatorSystem.Admin.Models.Entity;
+using ElevatorSystem.Admin.Models.ViewModels;
 
 namespace ElevatorSystem.Admin.Controllers.APIClient
 {
@@ -37,19 +40,22 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
         }
 
         // PUT: api/Orders/5
+        [System.Web.Http.Authorize(Roles = "user")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutOrder(int id, Order order)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok("loi");
             }
 
             if (id != order.ID)
             {
-                return BadRequest();
+                return Ok("loi  ID");
             }
-
+            Random rd = new Random();
+            order.SKU = "ELEVATOR00" + rd.Next(1, 1000).ToString();
+            order.CreatedAt = DateTime.Today;
             db.Entry(order).State = EntityState.Modified;
 
             try
@@ -68,25 +74,42 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(new { success = true });
         }
 
+
         // POST: api/Orders
+        [System.Web.Http.Authorize(Roles = "user")]
         [ResponseType(typeof(Order))]
-        public IHttpActionResult PostOrder(Order order)
+        public IHttpActionResult PostOrder(OrderViewModel order)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var identity = User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+            var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
             Random rd = new Random();
-            order.SKU = "ELEVATOR00" + rd.Next(1, 1000).ToString();
-            order.CreatedAt = DateTime.Today;
+            string query = "INSERT INTO Orders(Total,FullName,SKU,PhoneNumber,Address,Description," +
+                            "ShippingFee,Tax,OrderEmail,OrderStatus,ShipStatus,CreatedAt,ApplicationUser_Id) " +
+                            "Values(@Total,@FullName,@SKU,@PhoneNumber,@Address,@Description,@ShippingFee,@Tax," +
+                            "@OrderEmail,@OrderStatus,@ShipStatus,@CreatedAt,@ApplicationUser_Id) ";
 
-            db.Orders.Add(order);
-            db.SaveChanges();
+            var dbset = db.Database.SqlQuery<OrderViewModel>(query,
+                            new SqlParameter("@Total", order.Total),
+                            new SqlParameter("@FullName", order.FullName),
+                            new SqlParameter("@SKU", "ELEVATOR00" + rd.Next(1, 1000).ToString()),
+                            new SqlParameter("@PhoneNumber", order.PhoneNumber),
+                            new SqlParameter("@Address", order.Address),
+                            new SqlParameter("@Description", order.Description),
+                            new SqlParameter("@ShippingFee", 1),
+                            new SqlParameter("@Tax", 10),
+                            new SqlParameter("@OrderEmail", order.OrderEmail),
+                            new SqlParameter("@OrderStatus", order.OrderStatus),
+                            new SqlParameter("@ShipStatus", order.ShipStatus),
+                            new SqlParameter("@CreatedAt", DateTime.Today),
+                            new SqlParameter("@ApplicationUser_Id", id)
+                            );
 
-            return CreatedAtRoute("DefaultApi", new { id = order.ID }, order);
+
+            return Ok(new { dbset, succes = true });
         }
 
         // DELETE: api/Orders/5
