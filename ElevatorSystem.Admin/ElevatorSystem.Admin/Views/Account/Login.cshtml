@@ -2,9 +2,12 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
+
+
+<!--<h2>@ViewBag.Title.</h2>
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
@@ -56,7 +59,100 @@
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
-</div>
+</div>-->
+
+
+<main>
+    <div class="container">
+
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4" id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                            <div class="d-flex justify-content-center py-4">
+                                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                                    <img src="assets/img/logo.png" alt="">
+                                    <span class="d-none d-lg-block">Toang C#</span>
+                                </a>
+                            </div><!-- End Logo -->
+
+                            <div style="width:450px;height:600px" class="card mb-3">
+
+                                <div class="card-body">
+
+                                    <div class="pt-4 pb-2">
+                                        <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                                        <p class="text-center small">Enter your username & password to login</p>
+                                    </div>
+
+                                    <form class="row g-3 needs-validation" novalidate>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <div class="col-12 form-group">
+                                            @Html.LabelFor(m => m.Email, new { @class = "form-label control-label" })
+
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger " })
+                                            <div class="input-group has-validation">
+                                                <span class="input-group-text" id="inputGroupPrepend">Email</span>
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id = "yourUsername", @required = "true" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 form-group" style="margin-top:20px;">
+                                            @Html.LabelFor(m => m.Password, new { @for = "yourPassword", @class = "form-label control-label" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger " })
+                                            @Html.PasswordFor(m => m.Password, new { @id = "yourPassword", @class = "form-control", required = "true" })
+
+                                        </div>
+
+
+                                        <div class="col-12" style="margin-top:20px;">
+                                            <div class="form-check">
+                                                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
+                                                @Html.LabelFor(m => m.RememberMe, new { @class = "form-check-label" })
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12" style="margin-top:20px;">
+                                            <button class="btn btn-primary w-100" type="submit" value="Log in">Login</button>
+                                        </div>
+                                        <div class="col-12" style="margin-top:30px;">
+                                            <p class=" mb-0">Don't have an account? <a href="@Url.Action("Register", "Account")">Create an account</a></p>
+                                        </div>
+
+
+                                    </form>
+                                    <div class="col-12" style="margin-top:30px;">
+                                        <section id="socialLoginForm">
+                                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+
+                          
+
+                            <div style="width:200px;" class="credits">
+
+                                Designed by <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Phù Thủy JS</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+            </section>
+
+    </div>
+</main><!-- End #main -->
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

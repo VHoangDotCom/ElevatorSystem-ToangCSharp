@@ -10,6 +10,8 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
+        <li class="nav-heading" style="margin-top:30px;">Management</li>
+
         <li class="nav-item">
             <a class="nav-link " href="@Url.Action("Index", "Tags")">
                 <i class='bx bx-purchase-tag'></i>
@@ -48,16 +50,24 @@
         <li class="nav-item">
             <a class="nav-link " href="@Url.Action("Index", "Projects")">
                 <i class='bx bxl-digitalocean'></i>
-                
+
                 <span>Project</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("IndexAccount", "Home")">
+                <i class='bx bx-user'></i>
 
+                <span>Account</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-heading" style="margin-top:30px;">Personal Profile</li>
 
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
-                <i class="bi bi-grid"></i>
+            <a class="nav-link " href="@Url.Action("Profile", "Manage")">
+                <i class='bx bxs-user-account'></i>
                 <span>Profile</span>
             </a>
         </li><!-- End Dashboard Nav -->

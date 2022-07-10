@@ -54,15 +54,15 @@ namespace ElevatorSystem.Admin
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "2237213496454327",
+               appSecret: "b8f72a1e5789e73d931f50996cec7651");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+           app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+               ClientId = "633720633677-ejpj4smhibqv6uttvc19cbppa14ts9ij.apps.googleusercontent.com",
+                ClientSecret = "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"
+           });
         }
     }
 }

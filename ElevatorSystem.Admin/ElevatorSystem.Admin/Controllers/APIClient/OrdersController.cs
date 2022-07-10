@@ -30,13 +30,22 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(int id)
         {
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
+            var order = db.Orders.Where(o => o.ID == id);
+            var dataOrder = db.Order_Items.Where(ot => ot.OrderID == id)
+                            .Join(db.Elevators,
+                                ot => ot.ElevatorID,
+                                e => e.ID,
+                                (ot, e) => new
+                                {
+                                    Quantity = ot.Quantity,
+                                    OrderItemsId = ot.ID,
+                                    NumberOfFloor = ot.NumberOfFloor,
+                                    Elevator = ot.Elevator
+                                }
+                                ).ToArray();
 
-            return Ok(order);
+
+            return Ok(new { order, dataOrder });
         }
 
         // PUT: api/Orders/5
@@ -54,7 +63,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                 return Ok("loi  ID");
             }
             Random rd = new Random();
-            order.SKU = "ELEVATOR00" + rd.Next(1, 1000).ToString();
+            order.SKU = "ELEVATOR00" + rd.Next(1, 1000000).ToString();
             order.CreatedAt = DateTime.Today;
             db.Entry(order).State = EntityState.Modified;
 
@@ -92,10 +101,11 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                             "Values(@Total,@FullName,@SKU,@PhoneNumber,@Address,@Description,@ShippingFee,@Tax," +
                             "@OrderEmail,@OrderStatus,@ShipStatus,@CreatedAt,@ApplicationUser_Id) ";
 
+            string SKU = "ELEVATOR00" + rd.Next(1, 1000000).ToString();
             var dbset = db.Database.SqlQuery<OrderViewModel>(query,
                             new SqlParameter("@Total", order.Total),
                             new SqlParameter("@FullName", order.FullName),
-                            new SqlParameter("@SKU", "ELEVATOR00" + rd.Next(1, 1000).ToString()),
+                            new SqlParameter("@SKU",SKU),
                             new SqlParameter("@PhoneNumber", order.PhoneNumber),
                             new SqlParameter("@Address", order.Address),
                             new SqlParameter("@Description", order.Description),
@@ -107,9 +117,9 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
                             new SqlParameter("@CreatedAt", DateTime.Today),
                             new SqlParameter("@ApplicationUser_Id", id)
                             );
+            var findOrder = db.Database.SqlQuery<int>("select ID from Orders where SKU = @SKU", new SqlParameter("@SKU", SKU));
 
-
-            return Ok(new { dbset, succes = true });
+            return Ok(new { dbset, success = true, findOrder });
         }
 
         // DELETE: api/Orders/5

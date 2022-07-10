@@ -264,8 +264,9 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             {
                 project.CreatedAt = DateTime.Today;
                 project.OrderID = Convert.ToInt32(TempData["ID"]);
-              
+                db.Database.ExecuteSqlCommand("UPDATE Orders SET OrderStatus = 6 WHERE ID = " + project.OrderID);
                 db.Projects.Add(project);
+
                 db.SaveChanges();
                 TempData["CreateMessage"] = "Project { #" + project.ID + "." + project.Name + " } has been added to the list !";
                 return RedirectToAction("Index");

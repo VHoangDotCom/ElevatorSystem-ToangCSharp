@@ -7,12 +7,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ElevatorSystem.Admin.Models;
+using ElevatorSystem.Admin.Models.ViewModels;
 
 namespace ElevatorSystem.Admin.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -64,15 +66,65 @@ namespace ElevatorSystem.Admin.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                UserName = _userManager.FindById(userId).UserName
             };
-            return View(model);
+
+
+            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+            TempData["email"] = user.Email;
+            return View( model);
+        }
+
+        //Detail Profile
+        public ActionResult Profile()
+        {
+            var adminID = User.Identity.GetUserId();
+            return View();
+        }
+
+        public JsonResult GetProfile(/*string adminID*/)
+        {
+            var adminID = User.Identity.GetUserId();//Cach nay lay ra dc 
+            var query = db.Database.SqlQuery<AccountViewModel>("select Id, AddressLine1, AddressLine2, City, " +
+                "Country,Company,Status,Email,PhoneNumber,UserName " +
+                "from AspNetUsers " +
+                "where Id = '"+adminID+"'");
+
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
+
+        //Change Password Page
+        public ActionResult ChangePasswordAdmin()
+        {
+            return PartialView();
+        }
+
+        //Update Profile
+        public ActionResult UpdateProfile()
+        {
+            return PartialView();
+        }
+
+        //Email Setting
+        public ActionResult EmailSetting()
+        {
+            return PartialView();
+        }
+
+        public async Task<ActionResult> getProfileResult()
+        {
+            var userId = User.Identity.GetUserId();
+            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+            return View("../Views/Shared/_LoginPartial", user);
         }
 
         //

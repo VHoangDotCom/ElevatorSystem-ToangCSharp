@@ -1,0 +1,170 @@
+﻿@using Microsoft.AspNet.Identity
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Profile</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Users</li>
+                <li class="breadcrumb-item active">Profile</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+        <div class="row" id="userProfile">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center" id="profileTitle">
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-8">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                            </li>
+
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                            </li>
+
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                            </li>
+
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content pt-2">
+
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+
+                            </div>
+
+                            @Html.Partial("_UpdateProfile")
+
+                            @Html.Partial("_EmailSetting")
+
+                            @Html.Partial("_ChangePasswordAdmin")
+
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: '@Url.Action("GetProfile", "Manage")',
+            type: 'GET',
+            contentType: 'application/json',
+            //dataType: 'jsonp', jsonp is for sending to a site other than the current one
+
+              success: function (result) {
+                  $('#profile-overview').html("")
+                  var htmlString = ""
+                  for (var i = 0; i < result.length; i++) {
+
+                      htmlString += `<h5 class="card-title">About</h5>`
+                      htmlString += `<p class=" fst-italic">There are times when prosecutors have not been prosecuted for the greater part of the time since. There is no free time whence I come, there is that pain. That's right, there are things that will happen when you encounter things that no one else hates. Flights follow, but they often look at how.</p>`
+                      htmlString += `<h5 class="card-title">Profile Details</h5>`
+                      htmlString += `<div class="row">`
+                      htmlString += ` <div class="col-lg-3 col-md-4 label ">Full name</div>`
+                      htmlString += ` <div class="col-lg-9 col-md-8">${result[i].UserName}</div>`
+                      htmlString += `</div>`
+                      htmlString += `<div class="row">`
+                      htmlString += ` <div class="col-lg-3 col-md-4 label ">Company</div>`
+                      htmlString += ` <div class="col-lg-9 col-md-8">${result[i].Company}</div>`
+                      htmlString += `</div>`
+                      htmlString += `<div class="row">`
+                      htmlString += ` <div class="col-lg-3 col-md-4 label ">Job</div>`
+                      htmlString += ` <div class="col-lg-9 col-md-8">Web Developer</div>`
+                      htmlString += `</div>`
+                      htmlString += `<div class="row">`
+                      htmlString += ` <div class="col-lg-3 col-md-4 label ">Country</div>`
+                      htmlString += ` <div class="col-lg-9 col-md-8">${result[i].Country}</div>`
+                      htmlString += `</div>`
+                      htmlString += `<div class="row">`
+                      htmlString += ` <div class="col-lg-3 col-md-4 label ">Address</div>`
+                      htmlString += ` <div class="col-lg-9 col-md-8">${result[i].AddressLine1}</div>`
+                      htmlString += `</div>`
+                      htmlString += `<div class="row">`
+                      htmlString += ` <div class="col-lg-3 col-md-4 label ">Phone Number</div>`
+                      htmlString += ` <div class="col-lg-9 col-md-8">${result[i].PhoneNumber}</div>`
+                      htmlString += `</div>`
+                      htmlString += `<div class="row">`
+                      htmlString += ` <div class="col-lg-3 col-md-4 label ">Email</div>`
+                      htmlString += ` <div class="col-lg-9 col-md-8">${result[i].Email}</div>`
+                      htmlString += `</div>`
+
+                      //htmlString += `<td ><img src="${result[i].AddressLine2}" alt="User #${i+1}" width="100" height="120"></td>`
+
+                  }
+                  console.log(result)
+                  $('#profile-overview').html(htmlString)
+            }
+        });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: '@Url.Action("GetProfile", "Manage")',
+            type: 'GET',
+            contentType: 'application/json',
+            //dataType: 'jsonp', jsonp is for sending to a site other than the current one
+
+              success: function (result) {
+                  $('#profileTitle').html("")
+                  var htmlString = ""
+                  for (var i = 0; i < result.length; i++) {
+
+                      htmlString += `<img src="${result[i].AddressLine2}" alt="Profile" class="rounded-circle">`
+                      htmlString += `<h2>${result[i].UserName}</h2>`
+                      htmlString += `<h3>Web Developer</h3>`
+                      htmlString += `<div class="social-links mt-2">`
+                      htmlString += ` <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>`
+                      htmlString += `<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>`
+                      htmlString += `<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>`
+                      htmlString += `<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>`
+                      htmlString += `</div>`
+
+                      //htmlString += `<td ><img src="${result[i].AddressLine2}" alt="User #${i+1}" width="100" height="120"></td>`
+
+                  }
+
+                  $('#profileTitle').html(htmlString)
+            }
+        });
+        });
+    </script>
+
+
+}
+
+

@@ -68,6 +68,5 @@ namespace ElevatorSystem.Admin.Models
         {
             return new ApplicationDbContext();
         }
-
     }
 }

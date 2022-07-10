@@ -1,0 +1,190 @@
+﻿
+
+<li class="nav-item dropdown">
+
+    <a class="nav-link nav-icon" id="orderSpan" href="#" data-bs-toggle="dropdown">
+
+    </a><!-- End Notification Icon -->
+
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+
+        <li class="dropdown-header" id="orderNew">
+            You have  new orders this week
+            <a href="@Url.Action("Index", "Orders")"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+        </li>
+        <div id="orderNotify">
+
+        </div>
+        @*
+            if (item.OrderStatus == 0)
+            {
+                <div id="orderNotify">
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li class="notification-item">
+                    <i class="bi bi-info-circle text-primary"></i>
+                    <div>
+                        <h4> Order #@item.ID. @item.SKU is <strong>placed</strong> !</h4>
+                        <p>by @item.FullName</p>
+                        <p>10 hrs. ago</p>
+                    </div>
+                </li>
+                </div>
+
+            }
+            if (item.OrderStatus == 2)
+            {
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li class="notification-item">
+                    <i class="bi bi-check-circle text-success"></i>
+                    <div>
+                        <h4> Order #@item.ID. @item.SKU is <strong>completed</strong> !</h4>
+                        <p>by @item.FullName</p>
+                        <p>10 hrs. ago</p>
+                    </div>
+                </li>
+            }
+            if (item.OrderStatus == 3)
+            {
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li class="notification-item">
+                    <i class="bi bi-x-circle text-danger"></i>
+                    <div>
+                        <h4> Order #@item.ID. @item.SKU is <strong>canceled</strong> !</h4>
+                        <p>by @item.FullName</p>
+                        <p>10 hrs. ago</p>
+                    </div>
+                </li>
+            }
+            if (item.OrderStatus == 5)
+            {
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li class="notification-item">
+                    <i class="bi bi-exclamation-circle text-warning"></i>
+                    <div>
+                        <h4> Order #@item.ID. @item.SKU is <strong>complainted</strong> !</h4>
+                        <p>by @item.FullName</p>
+                        <p>10 hrs. ago</p>
+                    </div>
+                </li>
+            }*@
+
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li class="dropdown-footer">
+            <a href="@Url.Action("Index", "Orders")">Show all orders</a>
+        </li>
+
+    </ul><!-- End Notification Dropdown Items -->
+</li><!-- End Notification Nav -->
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: '@Url.Action("OrderNotification", "Home")',
+            type: 'GET',
+            contentType: 'application/json',
+            //dataType: 'jsonp', jsonp is for sending to a site other than the current one
+
+              success: function (result) {
+                  $('#orderNotify').html("")
+                  var htmlString = ""
+                  for (var i = 0; i < result.length; i++) {
+                      if (result[i].OrderStatus == 0 && result[i].OrderStatus == 1) {
+                          htmlString += "<li>"
+                          htmlString += ` <hr class="dropdown-divider">`
+                          htmlString += `</li>`
+                          htmlString += `<li class="notification-item">`
+                          htmlString += `<i class="bi bi-info-circle text-primary"></i>`
+                          htmlString += `<div>`
+                          htmlString += ` <h4> Order #${result[i].Id}. ${result[i].SKU} is <strong>placed</strong> !</h4>`
+                          htmlString += `<p>by ${result[i].FullName}</p>`
+                          htmlString += `<p>by ${result[i].TimeAgo} days ago</p>`
+
+                          htmlString += "</div>"
+
+                          htmlString += "</li>"
+                      } else if (result[i].OrderStatus == 2) {
+                          htmlString += "<li>"
+                          htmlString += ` <hr class="dropdown-divider">`
+                          htmlString += `</li>`
+                          htmlString += `<li class="notification-item">`
+                          htmlString += ` <i class="bi bi-check-circle text-success"></i>`
+                          htmlString += `<div>`
+                          htmlString += ` <h4> Order #${result[i].Id}. ${result[i].SKU} is <strong>completed</strong> !</h4>`
+                          htmlString += `<p>by ${result[i].FullName}</p>`
+                          htmlString += `<p>by ${result[i].TimeAgo} days ago</p>`
+
+                          htmlString += "</div>"
+
+                          htmlString += "</li>"
+                      } else if (result[i].OrderStatus == 3) {
+                          htmlString += "<li>"
+                          htmlString += ` <hr class="dropdown-divider">`
+                          htmlString += `</li>`
+                          htmlString += `<li class="notification-item">`
+                          htmlString += `<i class="bi bi-x-circle text-danger"></i>`
+                          htmlString += `<div>`
+                          htmlString += ` <h4> Order #${result[i].Id}. ${result[i].SKU} is <strong>canceled</strong> !</h4>`
+                          htmlString += `<p>by ${result[i].FullName}</p>`
+                          htmlString += `<p>by ${result[i].TimeAgo} days ago</p>`
+
+                          htmlString += "</div>"
+
+                          htmlString += "</li>"
+                      } else if (result[i].OrderStatus == 5) {
+                          htmlString += "<li>"
+                          htmlString += ` <hr class="dropdown-divider">`
+                          htmlString += `</li>`
+                          htmlString += `<li class="notification-item">`
+                          htmlString += `<i class="bi bi-exclamation-circle text-warning"></i>`
+                          htmlString += `<div>`
+                          htmlString += ` <h4> Order #${result[i].Id}. ${result[i].SKU} is <strong>complainted</strong> !</h4>`
+                          htmlString += `<p>by ${result[i].FullName}</p>`
+                          htmlString += `<p>by ${result[i].TimeAgo} days ago</p>`
+
+                          htmlString += "</div>"
+
+                          htmlString += "</li>"
+                      }
+                  }
+                  console.log(result)
+                  $('#orderNotify').html(htmlString)
+            }
+        });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: '@Url.Action("OrderCount", "Home")',
+            type: 'GET',
+            contentType: 'application/json',
+            //dataType: 'jsonp', jsonp is for sending to a site other than the current one
+
+              success: function (result) {
+                  $('#orderSpan').html("")
+                  var htmlString = ""
+
+                          htmlString += `<i class='bx bx-bell'></i>`
+                          htmlString += `<span class="badge bg-primary badge-number"> ${result} </span>`
+
+                  $('#orderSpan').html(htmlString)
+            }
+        });
+        });
+    </script>
+}
+
+

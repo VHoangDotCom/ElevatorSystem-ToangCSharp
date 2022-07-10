@@ -29,6 +29,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             TempData["orderStatus3"] = " 3 - Canceled - This status is assigned manually in the Admin or for some customers who want to cancel their order.";
             TempData["orderStatus4"] = " 4 - Refund - This status indicates that the Customer wants to return the product and wants a refund.";
             TempData["orderStatus5"] = " 5 - Complaint - This status indicates that the customer has submitted a complaint or review about the product.";
+            TempData["orderStatus5"] = " 6 - Done Project - This status happend when Project is done.";
             TempData["n"] = "Status : n - Status is undefined";
 
             TempData["shippingStatus0"] = "0 - Packaging";
@@ -230,6 +231,7 @@ namespace ElevatorSystem.Admin.Controllers.AdminController
             TempData["orderStatus3"] = " 3 - Canceled - This status is assigned manually in the Admin or for some customers who want to cancel their order.";
             TempData["orderStatus4"] = " 4 - Refund - This status indicates that the Customer wants to return the product and wants a refund.";
             TempData["orderStatus5"] = " 5 - Complaint - This status indicates that the customer has submitted a complaint or review about the product.";
+            TempData["orderStatus5"] = " 6 - Done Project - This status happend when Project is done.";
             TempData["n"] = "Status : n - Status is undefined";
 
             TempData["shippingStatus0"] = "0 - Packaging";

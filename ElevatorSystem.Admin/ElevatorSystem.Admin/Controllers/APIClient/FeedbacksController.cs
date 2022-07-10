@@ -21,13 +21,25 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [Route("api/GetFeedbackByElevatorID/{elevatorID}")]
-        [HttpGet]
+
         public IHttpActionResult GetFeedbackByElevatorID(int elevatorID)
         {
-            var data = db.Elevators.Where(e => e.ID == elevatorID)
-                .Join(db.Feedbacks, e => e.ID, f => f.ElevatorID,
-                    (e, f) => new { Elevator_ID = e.ID, Feedback = e.Feedbacks }).FirstOrDefault();
-            return Ok(new { success = true, data });
+            string queryString = "SELECT f.Description,f.SatisfyingLevel, f.Improvement, f.Problem, a.Username,a.AddressLine2, a.Email, f.ElevatorID " +
+                                 "FROM Elevators as e JOIN Feedbacks as f on e.ID = f.ElevatorID JOIN AspNetUsers as a on f.ApplicationUser_Id = a.Id WHERE  e.ID = @ID";
+            var datas = db.Database.SqlQuery<FeedbackViewModel_2>(queryString, new SqlParameter("@ID", elevatorID));
+
+            return Ok(new { success = true, datas });
+           
+        }
+
+        [Route("api/GetUserById/{userId}")]
+        [HttpGet]
+        public IHttpActionResult GetUserById(string userId)
+        {
+            string queryString = "SELECT Id as Id, Email  as Email, Username as Username,AddressLine2 as AddressLine2 FROM AspNetUsers  WHERE Id = @Id";
+            var datas = db.Database.SqlQuery<UserModel>(queryString, new SqlParameter("@Id", userId));
+
+            return Ok(new { success = true, datas });
         }
 
         // api/SatisfyingLevel

@@ -1,0 +1,32 @@
+﻿@model ElevatorSystem.Admin.Models.ViewModels.AdminViewModel
+
+<div class="card">
+    <div class="filter">
+        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+            <li class="dropdown-header text-start">
+                <h6>Filter</h6>
+            </li>
+
+            <li><a class="dropdown-item" href="#">Today</a></li>
+            <li><a class="dropdown-item" href="#">This Month</a></li>
+            <li><a class="dropdown-item" href="#">This Year</a></li>
+        </ul>
+    </div>
+
+    <div class="card-body pb-0">
+        <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+
+        @foreach (var item in Model.Blogs)
+        {
+            <div class="news">
+                <div class="post-item clearfix">
+                    <img src=" @Html.DisplayFor(modelItem => item.Thumbnail)" alt="">
+                    <h4><a onclick="location.href='@Url.Action("Details", "Blogs",new { id = item.ID })'"> @Html.DisplayFor(modelItem => item.Title)</a></h4>
+                    <p> @Html.DisplayFor(modelItem => item.Summary)</p>
+                </div>
+            </div>
+                }
+
+            </div><!-- End sidebar recent posts-->
+ </div>

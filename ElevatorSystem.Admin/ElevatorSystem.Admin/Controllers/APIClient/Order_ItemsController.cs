@@ -79,7 +79,7 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
             {
                 return BadRequest(ModelState);
             }
-
+            db.Database.ExecuteSqlCommand("UPDATE Orders SET OrderStatus = 1 WHERE ID = " + order_Items.OrderID);
             db.Order_Items.Add(order_Items);
             db.SaveChanges();
 

@@ -1,10 +1,12 @@
 ﻿using ElevatorSystem.Admin.Authentication;
 using ElevatorSystem.Admin.Models;
+using ElevatorSystem.Admin.Models.ViewModels;
 using ElevatorSystem.Admin.Validators;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -114,6 +116,34 @@ namespace ElevatorSystem.Admin.Controllers.APIClient
 
             }
             return null;
+        }
+
+        [System.Web.Http.Authorize(Roles = "user")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/getOrderByIdUser")]
+        public IHttpActionResult getOrderByIdUser()
+        {
+            var identity = User.Identity as ClaimsIdentity;
+        
+            IEnumerable<Claim> claims = identity.Claims;
+            var id = claims.Where(p => p.Type == "Id").FirstOrDefault()?.Value;
+
+            var queryString =
+                "select o.ID, o.OrderEmail, o.Address,o.FullName, o.OrderStatus, o.Total , o.PhoneNumber, o.SKU, o.CreatedAt from AspNetUsers as au " +
+                "join Orders as o on  au.Id = o.ApplicationUser_Id  where au.Id = @UserId";
+
+            var dataOrder = db.Database.SqlQuery<OrderUserViewModel>(queryString, new SqlParameter("@UserId", id));
+
+            return Ok(dataOrder);
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/getCountUser")]
+        public IHttpActionResult getCountUser()
+        {
+            var queryString = "select COUNT(Id) from AspNetUsers";
+            var dataOrder = db.Database.SqlQuery<int>(queryString);
+            return Ok(dataOrder);
         }
     }
 }

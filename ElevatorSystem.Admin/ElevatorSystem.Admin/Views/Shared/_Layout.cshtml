@@ -75,6 +75,108 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: '@Url.Action("GetProfile", "Manage")',
+            type: 'GET',
+            contentType: 'application/json',
+            //dataType: 'jsonp', jsonp is for sending to a site other than the current one
+
+              success: function (result) {
+                  $('#imageAccount').html("")
+                  var htmlString = ""
+                  for (var i = 0; i < result.length; i++) {
+
+                      htmlString += `<img src="${result[i].AddressLine2}" alt="Profile" class="rounded-circle">`
+                      htmlString += ` <span class="d-none d-md-block dropdown-toggle ps-2">${result[i].UserName}</span>`
+                  }
+
+                  $('#imageAccount').html(htmlString)
+            }
+        });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: '@Url.Action("GetProfile", "Manage")',
+            type: 'GET',
+            contentType: 'application/json',
+            //dataType: 'jsonp', jsonp is for sending to a site other than the current one
+
+              success: function (result) {
+                  $('#dropAccount').html("")
+                  var htmlString = ""
+                  for (var i = 0; i < result.length; i++) {
+
+                      htmlString += ` <h6>${result[i].UserName}</h6>`
+                      htmlString += `  <h6>Admin ID: ${result[i].Id}</h6>`
+                  }
+
+                  $('#dropAccount').html(htmlString)
+            }
+        });
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: '@Url.Action("OrderNotification", "Home")',
+            type: 'GET',
+            contentType: 'application/json',
+            //dataType: 'jsonp', jsonp is for sending to a site other than the current one
+
+              success: function (result) {
+                  $('#orderNotify').html("")
+                  var htmlString = ""
+                  for (var i = 0; i < result.length; i++) {
+                      htmlString += "<li>"
+                      htmlString += ` <hr class="dropdown-divider">`
+                      htmlString += `</li>`
+                      htmlString += `<li class="notification-item">`
+                      htmlString += `<i class="bi bi-info-circle text-primary"></i>`
+                      htmlString += `<div>`
+                      htmlString += ` <h4> Order #${result[i].Id}. ${result[i].SKU} is <strong>placed</strong> !</h4>`
+                      htmlString += `<p>by ${result[i].FullName}</p>`
+                      htmlString += `<p>by ${result[i].TimeAgo} days ago</p>`
+
+                      htmlString += "</div>"
+
+                      htmlString += "</li>"
+
+                  }
+                  console.log(result)
+                  $('#orderNotify').html(htmlString)
+            }
+        });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: '@Url.Action("OrderCount", "Home")',
+            type: 'GET',
+            contentType: 'application/json',
+            //dataType: 'jsonp', jsonp is for sending to a site other than the current one
+
+              success: function (result) {
+                  $('#orderSpan').html("")
+                  var htmlString = ""
+
+                          htmlString += `<i class='bx bx-bell'></i>`
+                          htmlString += `<span class="badge bg-primary badge-number"> ${result} </span>`
+
+                  $('#orderSpan').html(htmlString)
+            }
+        });
+        });
+    </script>
+
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     @RenderSection("Scripts", required: false)

@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ElevatorSystem.Admin.Models.Entity.Order>
-@Html.Partial("_HeadPartialOrder")
+@*@Html.Partial("_HeadPartialOrder")*@
 
 @{
     ViewBag.Title = "Index";
@@ -32,33 +32,33 @@
                         </p>
 
                         @* <div class="alert alert-primary alert-dismissible fade show" role="alert">
-            <h4 class="alert-heading">Some Explanation about Order Status</h4>
-            <p>@TempData["orderStatus0"]</p>
-            <hr>
-            <p class="mb-0">@TempData["orderStatus1"]</p>
-            <hr>
-            <p class="mb-0">@TempData["orderStatus2"]</p>
-            <hr>
-            <p class="mb-0">@TempData["orderStatus3"]</p>
-            <hr>
-            <p class="mb-0">@TempData["orderStatus4"]</p>
-            <hr>
-            <p class="mb-0">@TempData["orderStatus5"]</p>
-            <hr>
-            <p class="mb-0">@TempData["n"]</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <div class="alert alert-warning  alert-dismissible fade show" role="alert">
-            <h4 class="alert-heading">Some Explanation about Shipping Status</h4>
-            <p>@TempData["shippingStatus0"]</p>
-            <hr>
-            <p class="mb-0">@TempData["shippingStatus1"]</p>
-            <hr>
-            <p class="mb-0">@TempData["shippingStatus2"]</p>
-            <hr>
-            <p class="mb-0">@TempData["n"]</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>*@
+                                <h4 class="alert-heading">Some Explanation about Order Status</h4>
+                                <p>@TempData["orderStatus0"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["orderStatus1"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["orderStatus2"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["orderStatus3"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["orderStatus4"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["orderStatus5"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["n"]</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <div class="alert alert-warning  alert-dismissible fade show" role="alert">
+                                <h4 class="alert-heading">Some Explanation about Shipping Status</h4>
+                                <p>@TempData["shippingStatus0"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["shippingStatus1"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["shippingStatus2"]</p>
+                                <hr>
+                                <p class="mb-0">@TempData["n"]</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>*@
 
                         @if (@TempData["UpdateMessage"] != null)
                         {

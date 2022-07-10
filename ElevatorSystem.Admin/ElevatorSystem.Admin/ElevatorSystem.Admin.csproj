@@ -463,6 +463,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController\BlogsController.cs" />
     <Compile Include="Controllers\AdminController\CategoriesController.cs" />
+    <Compile Include="Controllers\AdminController\ChartsController.cs" />
     <Compile Include="Controllers\AdminController\ElevatorsController.cs" />
     <Compile Include="Controllers\AdminController\OrdersController.cs" />
     <Compile Include="Controllers\AdminController\Order_ItemsController.cs" />
@@ -515,9 +516,16 @@
     <Compile Include="Models\Entity\Tag.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\AdminViewModel.cs" />
     <Compile Include="Models\ViewModels\BlogViewModel.cs" />
     <Compile Include="Models\ViewModels\FeedbackViewModel.cs" />
+    <Compile Include="Models\ViewModels\FeedbackViewModel_2.cs" />
+    <Compile Include="Models\ViewModels\OrderHeaderViewModel.cs" />
+    <Compile Include="Models\ViewModels\OrderUserViewModel.cs" />
     <Compile Include="Models\ViewModels\OrderViewModel.cs" />
+    <Compile Include="Models\ViewModels\SaleViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BlogRepository.cs" />
     <Compile Include="Startup.cs" />
@@ -902,6 +910,7 @@
     <Content Include="Content\assets\vendor\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff" />
     <None Include="Properties\PublishProfiles\ElevatorSystemDashboard - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Home\RecentSales.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -991,12 +1000,31 @@
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Orders\CreateProject.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Account\Term_Condition.cshtml" />
+    <Content Include="Views\Shared\OrderNotification.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Home\SalesReport.cshtml" />
+    <Content Include="Views\Home\RevenueReport.cshtml" />
+    <Content Include="Views\Home\_CustomersReport.cshtml" />
+    <Content Include="Views\Home\_ReportChart.cshtml" />
+    <Content Include="Views\Home\_ReportCategory.cshtml" />
+    <Content Include="Views\Home\NewestBlog.cshtml" />
+    <Content Include="Views\Home\ListAccount.cshtml" />
+    <Content Include="Views\Home\IndexAccount.cshtml" />
+    <Content Include="Views\Home\_RecentSales.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Manage\Profile.cshtml" />
+    <Content Include="Views\Manage\_UpdateProfile.cshtml" />
+    <Content Include="Views\Manage\_EmailSetting.cshtml" />
+    <Content Include="Views\Manage\_ChangePasswordAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Blogs\" />
     <Folder Include="Content\images\" />
     <Folder Include="Image\Blogs\" />
+    <Folder Include="Views\Charts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
