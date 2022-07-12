@@ -57,7 +57,7 @@
                                     <th scope="col">Email </th>
                                     <th scope="col">Image </th>
 
-                                    <th></th>
+                                   
                                 </tr>
                             </thead>
 
@@ -113,10 +113,7 @@
                       htmlString += `<td>${result[i].PhoneNumber}</td>`
                       htmlString += `<td >${result[i].Email}</td>`
                       htmlString += `<td ><img src="${result[i].AddressLine2}" alt="User #${i+1}" width="100" height="120"></td>`
-                      htmlString += `<td class="col-3">`
-                      htmlString += `<button type="button" href="" class="btn btn-secondary m-1" title="Edit" ><i class="bi bi-pen"></i></button>`
-                      htmlString += `<button type="button" class="btn btn-info m-1" title="Detail" ><i class="bi bi-info-circle-fill"></i></button>`
-                      htmlString += "</td>"
+                    
                       htmlString += "</tr>"
 
                   }

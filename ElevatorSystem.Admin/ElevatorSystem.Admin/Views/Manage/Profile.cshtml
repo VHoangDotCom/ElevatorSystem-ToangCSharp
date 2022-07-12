@@ -9,6 +9,17 @@
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Users</li>
                 <li class="breadcrumb-item active">Profile</li>
+               @* <li class="breadcrumb-item">
+                     @if (@ViewData["changeSuccess"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle me-1"></i>
+                        <strong>Success !</strong>  @ViewData["changeSuccess"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                </li>*@
+               
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -60,8 +71,9 @@
                             @Html.Partial("_UpdateProfile")
 
                             @Html.Partial("_EmailSetting")
-
-                            @Html.Partial("_ChangePasswordAdmin")
+                            
+                              @Html.Partial("ChangePassword")
+                          @*  @Html.Partial("_ChangePasswordAdmin")*@
 
                         </div><!-- End Bordered Tabs -->
 
@@ -89,6 +101,7 @@
                   var htmlString = ""
                   for (var i = 0; i < result.length; i++) {
 
+                    
                       htmlString += `<h5 class="card-title">About</h5>`
                       htmlString += `<p class=" fst-italic">There are times when prosecutors have not been prosecuted for the greater part of the time since. There is no free time whence I come, there is that pain. That's right, there are things that will happen when you encounter things that no one else hates. Flights follow, but they often look at how.</p>`
                       htmlString += `<h5 class="card-title">Profile Details</h5>`

@@ -797,29 +797,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Elevator\1007286881_product_l27.jpg" />
-    <Content Include="Content\Elevator\1341548516_news-2.jpg" />
-    <Content Include="Content\Elevator\1377064510_product_l12.jpg" />
-    <Content Include="Content\Elevator\1405546780_product_l14.jpg" />
-    <Content Include="Content\Elevator\1454510859_product_l23.jpg" />
-    <Content Include="Content\Elevator\1510434875_product_l7.jpg" />
-    <Content Include="Content\Elevator\1631916735_news-3.jpg" />
-    <Content Include="Content\Elevator\1651068406_messages-1.jpg" />
-    <Content Include="Content\Elevator\1653807538_product_l29.jpg" />
-    <Content Include="Content\Elevator\1708136265_DSC_0594.jfif" />
-    <Content Include="Content\Elevator\1708389013_messages-1.jpg" />
-    <Content Include="Content\Elevator\1756295794_product_l8.jpg" />
-    <Content Include="Content\Elevator\180326729_product_l21.jpg" />
-    <Content Include="Content\Elevator\2062924160_product_l3.jpg" />
-    <Content Include="Content\Elevator\243324653_profile-img.jpg" />
-    <Content Include="Content\Elevator\410347254_slides-3.jpg" />
-    <Content Include="Content\Elevator\451681001_product_l2.jpg" />
-    <Content Include="Content\Elevator\554583586_product_l1.jpg" />
-    <Content Include="Content\Elevator\579734487_news-2.jpg" />
-    <Content Include="Content\Elevator\627719622_profile-img.jpg" />
-    <Content Include="Content\Elevator\778364089_DSC_0593.jfif" />
-    <Content Include="Content\Elevator\88625835_messages-1.jpg" />
-    <Content Include="Content\Elevator\941737779_product_l28.jpg" />
     <Content Include="Content\forms\contact.php" />
     <Content Include="Content\forms\Readme.txt" />
     <Content Include="favicon.ico" />
@@ -951,7 +928,6 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
@@ -1018,10 +994,12 @@
     <Content Include="Views\Manage\_UpdateProfile.cshtml" />
     <Content Include="Views\Manage\_EmailSetting.cshtml" />
     <Content Include="Views\Manage\_ChangePasswordAdmin.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Blogs\" />
+    <Folder Include="Content\Elevator\" />
     <Folder Include="Content\images\" />
     <Folder Include="Image\Blogs\" />
     <Folder Include="Views\Charts\" />
